@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		5608F3E8235DF6AF008A8BA4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5608F3E7235DF6AF008A8BA4 /* AppDelegate.swift */; };
-		5608F3EA235DF6AF008A8BA4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5608F3E9235DF6AF008A8BA4 /* ViewController.swift */; };
 		5608F3ED235DF6AF008A8BA4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5608F3EB235DF6AF008A8BA4 /* Main.storyboard */; };
 		5608F3F0235DF6AF008A8BA4 /* Reciplease.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5608F3EE235DF6AF008A8BA4 /* Reciplease.xcdatamodeld */; };
 		5608F3F2235DF6BD008A8BA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5608F3F1235DF6BD008A8BA4 /* Assets.xcassets */; };
@@ -18,7 +17,6 @@
 /* Begin PBXFileReference section */
 		5608F3E4235DF6AF008A8BA4 /* Reciplease.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reciplease.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5608F3E7235DF6AF008A8BA4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		5608F3E9235DF6AF008A8BA4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		5608F3EC235DF6AF008A8BA4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5608F3EF235DF6AF008A8BA4 /* Reciplease.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Reciplease.xcdatamodel; sourceTree = "<group>"; };
 		5608F3F1235DF6BD008A8BA4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -60,7 +58,6 @@
 				5608F3FE235DF709008A8BA4 /* Model */,
 				5608F3FD235DF707008A8BA4 /* View */,
 				5608F3FC235DF703008A8BA4 /* Controller */,
-				5608F3E9235DF6AF008A8BA4 /* ViewController.swift */,
 				5608F3EE235DF6AF008A8BA4 /* Reciplease.xcdatamodeld */,
 			);
 			path = Reciplease;
@@ -171,7 +168,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5608F3F0235DF6AF008A8BA4 /* Reciplease.xcdatamodeld in Sources */,
-				5608F3EA235DF6AF008A8BA4 /* ViewController.swift in Sources */,
 				5608F3E8235DF6AF008A8BA4 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
