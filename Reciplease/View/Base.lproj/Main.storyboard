@@ -13,7 +13,6 @@
         <!--Tab Bar Controller-->
         <scene sceneID="5Vs-Xp-3nh">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zAa-Hs-cdb" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tabBarController id="SLL-aP-rgj" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="hAJ-go-8FN">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
@@ -26,6 +25,7 @@
                         <segue destination="OdK-gC-0gM" kind="relationship" relationship="viewControllers" id="iOa-Ly-lEm"/>
                     </connections>
                 </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zAa-Hs-cdb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-849" y="-689"/>
         </scene>
@@ -92,10 +92,10 @@
             </objects>
             <point key="canvasLocation" x="87" y="-1023"/>
         </scene>
-        <!--View Controller-->
+        <!--Search View Controller-->
         <scene sceneID="xki-i1-xrk">
             <objects>
-                <viewController id="pnX-Ix-Q8a" sceneMemberID="viewController">
+                <viewController id="pnX-Ix-Q8a" customClass="SearchViewController" customModule="Reciplease" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fMT-j9-o74">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -112,24 +112,37 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="vxI-JS-539">
                                         <rect key="frame" x="0.0" y="57.5" width="414" height="42"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="96q-io-dV9">
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="96q-io-dV9">
                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="42"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uhw-DN-17H">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uhw-DN-17H">
                                                 <rect key="frame" x="384" y="0.0" width="30" height="42"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                 <state key="normal" title="+">
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="didTapButtonToAddIngredient:" destination="pnX-Ix-Q8a" eventType="touchUpInside" id="IyZ-20-fwM"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HE9-HO-dte">
                                         <rect key="frame" x="0.0" y="125.5" width="414" height="530"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="MyCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyCell" id="Zf9-R9-FTt">
+                                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Zf9-R9-FTt" id="8BE-qw-CiA">
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </tableViewCellContentView>
+                                            </tableViewCell>
+                                        </prototypes>
                                     </tableView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="asF-MQ-Szi">
                                         <rect key="frame" x="0.0" y="681.5" width="414" height="43.5"/>
@@ -151,6 +164,12 @@
                         <viewLayoutGuide key="safeArea" id="aPO-Ye-iyq"/>
                     </view>
                     <navigationItem key="navigationItem" id="uZR-Xq-l4I"/>
+                    <connections>
+                        <outlet property="addIngredientButton" destination="Uhw-DN-17H" id="Onm-4s-V7p"/>
+                        <outlet property="ingredientsTableView" destination="HE9-HO-dte" id="Iyn-HC-BZc"/>
+                        <outlet property="searchRecipesButton" destination="asF-MQ-Szi" id="FuN-7j-cfK"/>
+                        <outlet property="searchTextField" destination="96q-io-dV9" id="qhR-7C-asm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y01-m5-wEa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

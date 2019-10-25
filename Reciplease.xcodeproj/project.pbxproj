@@ -12,6 +12,8 @@
 		5608F3F0235DF6AF008A8BA4 /* Reciplease.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5608F3EE235DF6AF008A8BA4 /* Reciplease.xcdatamodeld */; };
 		5608F3F2235DF6BD008A8BA4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5608F3F1235DF6BD008A8BA4 /* Assets.xcassets */; };
 		5608F3F5235DF6BD008A8BA4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5608F3F3235DF6BD008A8BA4 /* LaunchScreen.storyboard */; };
+		56C0939E2362EDD80030D85E /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C0939D2362EDD80030D85E /* SearchViewController.swift */; };
+		56C093A02362F4C40030D85E /* ControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C0939F2362F4C40030D85E /* ControllerExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		5608F3F1235DF6BD008A8BA4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5608F3F4235DF6BD008A8BA4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5608F3F6235DF6BD008A8BA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		56C0939D2362EDD80030D85E /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		56C0939F2362F4C40030D85E /* ControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +63,7 @@
 				5608F3FD235DF707008A8BA4 /* View */,
 				5608F3FC235DF703008A8BA4 /* Controller */,
 				5608F3EE235DF6AF008A8BA4 /* Reciplease.xcdatamodeld */,
+				56C0939F2362F4C40030D85E /* ControllerExtension.swift */,
 			);
 			path = Reciplease;
 			sourceTree = "<group>";
@@ -66,6 +71,7 @@
 		5608F3FC235DF703008A8BA4 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				56C0939D2362EDD80030D85E /* SearchViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -167,6 +173,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56C0939E2362EDD80030D85E /* SearchViewController.swift in Sources */,
+				56C093A02362F4C40030D85E /* ControllerExtension.swift in Sources */,
 				5608F3F0235DF6AF008A8BA4 /* Reciplease.xcdatamodeld in Sources */,
 				5608F3E8235DF6AF008A8BA4 /* AppDelegate.swift in Sources */,
 			);
@@ -315,7 +323,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = Reciplease/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Reciplease/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -332,7 +340,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = Reciplease/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Reciplease/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
