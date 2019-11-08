@@ -117,6 +117,9 @@
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="pnX-Ix-Q8a" id="qyg-pM-op6"/>
+                                                </connections>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uhw-DN-17H">
                                                 <rect key="frame" x="384" y="0.0" width="30" height="42"/>
@@ -134,7 +137,7 @@
                                         <rect key="frame" x="0.0" y="125.5" width="414" height="530"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="MyCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyCell" id="Zf9-R9-FTt">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="MyCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchCell" id="Zf9-R9-FTt">
                                                 <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Zf9-R9-FTt" id="8BE-qw-CiA">
@@ -150,11 +153,19 @@
                                         <state key="normal" title="Go !">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="didTapGoButton:" destination="pnX-Ix-Q8a" eventType="touchUpInside" id="WDg-qR-2Qc"/>
+                                        </connections>
                                     </button>
                                 </subviews>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="s15-Cg-qiD" appends="YES" id="VmS-8G-ndi"/>
+                                </connections>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="nu9-Xl-LkH" firstAttribute="leading" secondItem="fMT-j9-o74" secondAttribute="leading" id="80h-5R-fNt"/>
                             <constraint firstItem="aPO-Ye-iyq" firstAttribute="bottom" secondItem="nu9-Xl-LkH" secondAttribute="bottom" id="9pK-e9-Bke"/>
@@ -162,6 +173,10 @@
                             <constraint firstItem="aPO-Ye-iyq" firstAttribute="trailing" secondItem="nu9-Xl-LkH" secondAttribute="trailing" id="i3h-vY-mSs"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="aPO-Ye-iyq"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="s15-Cg-qiD" appends="YES" id="bUh-YW-NU6"/>
+                            <outletCollection property="gestureRecognizers" destination="s15-Cg-qiD" appends="YES" id="oYc-6b-mvt"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="uZR-Xq-l4I"/>
                     <connections>
@@ -169,11 +184,61 @@
                         <outlet property="ingredientsTableView" destination="HE9-HO-dte" id="Iyn-HC-BZc"/>
                         <outlet property="searchRecipesButton" destination="asF-MQ-Szi" id="FuN-7j-cfK"/>
                         <outlet property="searchTextField" destination="96q-io-dV9" id="qhR-7C-asm"/>
+                        <segue destination="tN4-2O-MdG" kind="show" identifier="fromSearchToRecipesVC" id="r3H-p6-WrQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y01-m5-wEa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="s15-Cg-qiD">
+                    <connections>
+                        <action selector="dismissKeyboard:" destination="pnX-Ix-Q8a" id="Xcw-NO-gL1"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="900.00000000000011" y="-1026.5625"/>
+        </scene>
+        <!--Recipes View Controller-->
+        <scene sceneID="0Pk-fB-yHs">
+            <objects>
+                <viewController id="tN4-2O-MdG" customClass="RecipesViewController" customModule="Reciplease" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mc4-WZ-2dR">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="EH4-bd-UY9">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecipeCell" id="ROi-83-iuQ">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ROi-83-iuQ" id="Kcl-Ab-7VD">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="tN4-2O-MdG" id="JFb-PI-4Bn"/>
+                                    <outlet property="delegate" destination="tN4-2O-MdG" id="OLq-ig-SqQ"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="EH4-bd-UY9" firstAttribute="leading" secondItem="kHT-rO-XIE" secondAttribute="leading" id="8yC-rE-56v"/>
+                            <constraint firstItem="EH4-bd-UY9" firstAttribute="top" secondItem="kHT-rO-XIE" secondAttribute="top" id="AsW-sD-dKS"/>
+                            <constraint firstItem="kHT-rO-XIE" firstAttribute="trailing" secondItem="EH4-bd-UY9" secondAttribute="trailing" id="IwU-ww-TkD"/>
+                            <constraint firstItem="kHT-rO-XIE" firstAttribute="bottom" secondItem="EH4-bd-UY9" secondAttribute="bottom" id="nX8-Dw-Nbj"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="kHT-rO-XIE"/>
+                    </view>
+                    <connections>
+                        <outlet property="recipesTableView" destination="EH4-bd-UY9" id="Myq-Nw-PiF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uPy-TN-m8n" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1764" y="-1027"/>
         </scene>
     </scenes>
     <resources>

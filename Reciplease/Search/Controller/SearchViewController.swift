@@ -11,6 +11,7 @@ import UIKit
 class SearchViewController: UIViewController {
     
     var ingredientsArray = [String]()
+    
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var addIngredientButton: UIButton!
     @IBOutlet weak var ingredientsTableView: UITableView!
@@ -22,7 +23,6 @@ class SearchViewController: UIViewController {
         ingredientsTableView.dataSource = self
     }
     
-    
     @IBAction func didTapButtonToAddIngredient(_ sender: Any) {
         guard searchTextField.text?.isEmpty == false else {
             presentAlert(message: "Please enter an ingredient :) ")
@@ -32,8 +32,21 @@ class SearchViewController: UIViewController {
         ingredientsTableView.reloadData()
     }
     
-    func addIngredientToTableView() {
+    @IBAction func didTapGoButton(_ sender: Any) {
+        performSegue(withIdentifier: "fromSearchToRecipesVC", sender: nil)
         
+    }
+    
+    @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
+        searchTextField.resignFirstResponder()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let recipesVc = segue.destination as? RecipesViewController else {return}
+        recipesVc.ingredients = ingredientsArray
+    }
+    
+    func addIngredientToTableView() {
         guard let searchbarTxt = searchTextField.text else {
             return
         }
@@ -44,7 +57,6 @@ class SearchViewController: UIViewController {
 }
 
 extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -54,7 +66,7 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SearchCell", for: indexPath)
         cell.textLabel?.text = ingredientsArray[indexPath.row]
         
         return cell
