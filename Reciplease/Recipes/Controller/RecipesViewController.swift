@@ -10,7 +10,7 @@ import UIKit
 
 class RecipesViewController: UIViewController {
     
-    var recipeService = RecipeService()
+    var recipeService = SearchService()
     
     var ingredients = [String]()
     
@@ -19,13 +19,21 @@ class RecipesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print ("\(ingredients.joined(separator: ","))")
+        recipeService.getRecipes(ingredients: "chicken") { result in
+            switch result {
+            case .success(let data):
+                print("\(data.hits[0].recipe.calories)")
+            case .failure():
+                print("oups")
+            }
+        }
+        // print ("\(ingredients.joined(separator: ","))")
     }
 }
 
 extension RecipesViewController {
     func displayAllRecipes() {
-        recipeService.getRecipe(ingredients: ingredients.joined(separator: ",")) { result in
+        recipeService.getRecipes(ingredients: ingredients.joined(separator: ",")) { result in
             switch result {
             case .success:
                 DispatchQueue.main.async {
