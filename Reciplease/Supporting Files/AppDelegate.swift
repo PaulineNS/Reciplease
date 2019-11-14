@@ -13,15 +13,14 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    lazy var coreDataStack = CoreDataStack(modelName: "ToDoList")
+    lazy var coreDataStack = CoreDataStack(modelName: "Reciplease")
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         guard let tabBarController = window?.rootViewController as? UITabBarController else {
-            print ("1")
             fatalError("Application storyboard is not setup correctly")
         }
             
-        guard let navViewController = tabBarController.viewControllers as? UINavigationController, let searchViewController = navViewController.topViewController as? SearchViewController else {
+        guard let navViewController = tabBarController.viewControllers?[0] as? UINavigationController, let searchViewController = navViewController.topViewController as? SearchViewController else {
             fatalError("Application storyboard is not setup correctly")
         }
         searchViewController.coreDataManager = CoreDataManager(coreDataStack: coreDataStack)
