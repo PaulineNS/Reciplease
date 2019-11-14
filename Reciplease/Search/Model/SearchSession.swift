@@ -13,7 +13,7 @@ protocol AlamoSession {
     func request(with url: URL, callBack: @escaping (AFDataResponse<Any>) -> Void)
 }
 
-final class RecipeSession: AlamoSession {
+final class SearchSession: AlamoSession {
     func request(with url: URL, callBack: @escaping (AFDataResponse<Any>) -> Void) {
         AF.request(url).responseJSON { responseData in
             callBack(responseData)

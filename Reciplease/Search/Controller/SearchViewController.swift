@@ -10,8 +10,11 @@ import UIKit
 
 class SearchViewController: UIViewController {
     
-    var recipeService = SearchService()
+    var coreDataManager: CoreDataManager?
+    var searchService = SearchService()
+    
     var ingredientsArray = [String]()
+
     
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var addIngredientButton: UIButton!
@@ -20,7 +23,27 @@ class SearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        recipeService.getRecipes(ingredients: "chicken") { result in
+//        searchService.getRecipes(ingredients: "chicken") { result in
+//            switch result {
+//            case .success(let data):
+//                print("\(data.hits[0].recipe.calories)")
+//            case .failure:
+//                print("oups")
+//            }
+//        }
+        ingredientsTableView.delegate = self
+        ingredientsTableView.dataSource = self
+    }
+    
+    @IBAction func didTapButtonToAddIngredient(_ sender: Any) {
+        guard let ingredientName = searchTextField.text, !ingredientName.isBlank else {return}
+        coreDataManager?.createIngredient(name: ingredientName)
+        searchTextField.text = " "
+        ingredientsTableView.reloadData()
+    }
+    
+    @IBAction func didTapGoButton(_ sender: Any) {
+        searchService.getRecipes(ingredients: ingredientsArray.joined(separator: ",")) { result in
             switch result {
             case .success(let data):
                 print("\(data.hits[0].recipe.calories)")
@@ -28,20 +51,6 @@ class SearchViewController: UIViewController {
                 print("oups")
             }
         }
-        ingredientsTableView.delegate = self
-        ingredientsTableView.dataSource = self
-    }
-    
-    @IBAction func didTapButtonToAddIngredient(_ sender: Any) {
-        guard searchTextField.text?.isEmpty == false else {
-            presentAlert(message: "Please enter an ingredient :) ")
-            return
-        }
-        addIngredientToTableView()
-        ingredientsTableView.reloadData()
-    }
-    
-    @IBAction func didTapGoButton(_ sender: Any) {
         performSegue(withIdentifier: "fromSearchToRecipesVC", sender: nil)
         
     }
@@ -54,15 +63,6 @@ class SearchViewController: UIViewController {
         guard let recipesVc = segue.destination as? RecipesViewController else {return}
         recipesVc.ingredients = ingredientsArray
     }
-    
-    func addIngredientToTableView() {
-        guard let searchbarTxt = searchTextField.text else {
-            return
-        }
-        ingredientsArray.append(searchbarTxt)
-        searchTextField.text = " "
-        print("\(ingredientsArray)")
-    }
 }
 
 extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
@@ -71,12 +71,14 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return ingredientsArray.count
+        return coreDataManager?.ingredients.count ?? 0
+            //ingredientsArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchCell", for: indexPath)
-        cell.textLabel?.text = ingredientsArray[indexPath.row]
+        cell.textLabel?.text = coreDataManager?.ingredients[indexPath.row].name
+           // ingredientsArray[indexPath.row]
         
         return cell
     }
