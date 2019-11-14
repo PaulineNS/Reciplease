@@ -159,9 +159,6 @@
                                     </button>
                                 </subviews>
                                 <gestureRecognizers/>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="s15-Cg-qiD" appends="YES" id="VmS-8G-ndi"/>
-                                </connections>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -175,7 +172,6 @@
                         <viewLayoutGuide key="safeArea" id="aPO-Ye-iyq"/>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="s15-Cg-qiD" appends="YES" id="bUh-YW-NU6"/>
-                            <outletCollection property="gestureRecognizers" destination="s15-Cg-qiD" appends="YES" id="oYc-6b-mvt"/>
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" id="uZR-Xq-l4I"/>

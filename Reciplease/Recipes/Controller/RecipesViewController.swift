@@ -23,7 +23,7 @@ class RecipesViewController: UIViewController {
             switch result {
             case .success(let data):
                 print("\(data.hits[0].recipe.calories)")
-            case .failure():
+            case .failure:
                 print("oups")
             }
         }

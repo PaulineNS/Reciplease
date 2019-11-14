@@ -10,6 +10,7 @@ import UIKit
 
 class SearchViewController: UIViewController {
     
+    var recipeService = SearchService()
     var ingredientsArray = [String]()
     
     @IBOutlet weak var searchTextField: UITextField!
@@ -19,6 +20,14 @@ class SearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        recipeService.getRecipes(ingredients: "chicken") { result in
+            switch result {
+            case .success(let data):
+                print("\(data.hits[0].recipe.calories)")
+            case .failure:
+                print("oups")
+            }
+        }
         ingredientsTableView.delegate = self
         ingredientsTableView.dataSource = self
     }
