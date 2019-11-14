@@ -19,7 +19,6 @@ class RecipesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print ("\(ingredients.joined(separator: ","))")
     }
 }
 

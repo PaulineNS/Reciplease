@@ -38,7 +38,7 @@ final class CoreDataManager {
         coreDataStack.saveContext()
     }
     
-    func deleteAllTasks() {
+    func deleteAllIngredients() {
         ingredients.forEach { managedObjectContext.delete($0) }
         coreDataStack.saveContext()
     }
