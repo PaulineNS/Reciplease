@@ -23,14 +23,6 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
         ingredientsTableView.delegate = self
         ingredientsTableView.dataSource = self
-        searchService.getRecipes(ingredients: "chicken") { result in
-            switch result {
-            case .success(let data):
-                print("\(data.hits[0].recipe.calories)")
-            case .failure:
-                print("oups")
-            }
-        }
         setUpNavBar()
     }
     
@@ -64,8 +56,12 @@ class SearchViewController: UIViewController {
     }
     
     @IBAction func didTapGoButton(_ sender: Any) {
-        //fillIngredientArray()
-        searchService.getRecipes(ingredients: "chicken" /*ingredientsArray.joined(separator: ",")*/) { result in
+        
+        guard fillIngredientArray() == true else {
+            presentAlert(message: "You have to enter at least 1 ingredient")
+            return}
+        
+        searchService.getRecipes(ingredients: ingredientsArray.joined(separator: ",")) { result in
             switch result {
             case .success(let data):
                 print("\(data.hits[0].recipe.calories)")
@@ -92,12 +88,21 @@ class SearchViewController: UIViewController {
 //    }
 //
     
-    func fillIngredientArray() {
-        ingredientsArray = [String]()
-        guard let numberOfIngredients = coreDataManager?.ingredients.count else {return}
-        for index in 0...numberOfIngredients - 1 {
-            ingredientsArray.append(coreDataManager?.ingredients[index].name ?? "")
+    func fillIngredientArray() -> Bool {
+        
+        guard let numberOfIngredients = coreDataManager?.ingredients.count else {
+            return false
         }
+        
+        guard numberOfIngredients == 0 else {
+            ingredientsArray = [String]()
+            for index in 0...numberOfIngredients - 1 {
+                ingredientsArray.append(coreDataManager?.ingredients[index].name ?? "")
+            }
+            return true
+        }
+        
+        return false
     }
 }
 
