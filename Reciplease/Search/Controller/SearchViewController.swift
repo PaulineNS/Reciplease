@@ -23,6 +23,14 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
         ingredientsTableView.delegate = self
         ingredientsTableView.dataSource = self
+        searchService.getRecipes(ingredients: "chicken") { result in
+            switch result {
+            case .success(let data):
+                print("\(data.hits[0].recipe.calories)")
+            case .failure:
+                print("oups")
+            }
+        }
         setUpNavBar()
     }
     
@@ -56,8 +64,8 @@ class SearchViewController: UIViewController {
     }
     
     @IBAction func didTapGoButton(_ sender: Any) {
-        fillIngredientArray()
-        searchService.getRecipes(ingredients: ingredientsArray.joined(separator: ",")) { result in
+        //fillIngredientArray()
+        searchService.getRecipes(ingredients: "chicken" /*ingredientsArray.joined(separator: ",")*/) { result in
             switch result {
             case .success(let data):
                 print("\(data.hits[0].recipe.calories)")

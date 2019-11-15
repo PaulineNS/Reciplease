@@ -6,6 +6,7 @@
 //  Copyright © 2019 PaulineNomballais. All rights reserved.
 //
 
+@testable import Reciplease
 import XCTest
 
 class RecipleaseTests: XCTestCase {
