@@ -20,7 +20,7 @@
 		56FEA6F123757056002341C1 /* RecipesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FEA6F023757056002341C1 /* RecipesTableViewCell.swift */; };
 		56FEA6F3237C4A36002341C1 /* SearchSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FEA6F2237C4A36002341C1 /* SearchSession.swift */; };
 		56FEA6F7237C5DDA002341C1 /* SearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FEA6F6237C5DDA002341C1 /* SearchService.swift */; };
-		56FEA702237D6072002341C1 /* RecipleaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FEA701237D6071002341C1 /* RecipleaseTests.swift */; };
+		56FEA702237D6072002341C1 /* SearchServiceTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FEA701237D6071002341C1 /* SearchServiceTestCase.swift */; };
 		56FEA70A237D6365002341C1 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FEA709237D6365002341C1 /* StringExtension.swift */; };
 		56FEA70C237D69A7002341C1 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FEA70B237D69A7002341C1 /* CoreDataManager.swift */; };
 		56FEA70E237D69BB002341C1 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FEA70D237D69BB002341C1 /* CoreDataStack.swift */; };
@@ -55,7 +55,7 @@
 		56FEA6F2237C4A36002341C1 /* SearchSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSession.swift; sourceTree = "<group>"; };
 		56FEA6F6237C5DDA002341C1 /* SearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchService.swift; sourceTree = "<group>"; };
 		56FEA6FF237D6071002341C1 /* RecipleaseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RecipleaseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		56FEA701237D6071002341C1 /* RecipleaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipleaseTests.swift; sourceTree = "<group>"; };
+		56FEA701237D6071002341C1 /* SearchServiceTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchServiceTestCase.swift; sourceTree = "<group>"; };
 		56FEA703237D6072002341C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		56FEA709237D6365002341C1 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		56FEA70B237D69A7002341C1 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
@@ -170,6 +170,7 @@
 		56FEA6DB23755655002341C1 /* Recipes */ = {
 			isa = PBXGroup;
 			children = (
+				56FEA70F237EDD1C002341C1 /* View */,
 				56FEA6E0237556CD002341C1 /* Controller */,
 				56FEA6DF237556C5002341C1 /* Model */,
 			);
@@ -214,7 +215,6 @@
 			isa = PBXGroup;
 			children = (
 				56FEA6EE23756D18002341C1 /* RecipesViewController.swift */,
-				56FEA6F023757056002341C1 /* RecipesTableViewCell.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -250,10 +250,26 @@
 		56FEA700237D6071002341C1 /* RecipleaseTests */ = {
 			isa = PBXGroup;
 			children = (
-				56FEA701237D6071002341C1 /* RecipleaseTests.swift */,
 				56FEA703237D6072002341C1 /* Info.plist */,
+				56FEA710237EEDF8002341C1 /* SearchServiceTestCase */,
 			);
 			path = RecipleaseTests;
+			sourceTree = "<group>";
+		};
+		56FEA70F237EDD1C002341C1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				56FEA6F023757056002341C1 /* RecipesTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		56FEA710237EEDF8002341C1 /* SearchServiceTestCase */ = {
+			isa = PBXGroup;
+			children = (
+				56FEA701237D6071002341C1 /* SearchServiceTestCase.swift */,
+			);
+			path = SearchServiceTestCase;
 			sourceTree = "<group>";
 		};
 		A89E5932B0D7F380DDEB8DE4 /* Frameworks */ = {
@@ -438,7 +454,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				56FEA702237D6072002341C1 /* RecipleaseTests.swift in Sources */,
+				56FEA702237D6072002341C1 /* SearchServiceTestCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

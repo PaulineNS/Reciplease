@@ -10,6 +10,9 @@ import UIKit
 
 class RecipesTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var recipeImageView: UIImageView!
+    @IBOutlet weak var recipeTitleLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -20,5 +23,9 @@ class RecipesTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    
+    // Cell Configuration
+    func configure(title: String){
+        recipeTitleLabel.text = title
+    }
 }

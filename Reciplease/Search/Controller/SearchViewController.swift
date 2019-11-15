@@ -23,6 +23,27 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
         ingredientsTableView.delegate = self
         ingredientsTableView.dataSource = self
+        setUpNavBar()
+    }
+    
+    func setUpNavBar() {
+        
+        if let navigationController = navigationController {
+            navigationController.navigationBar.prefersLargeTitles = true
+            let image = #imageLiteral(resourceName: "chief")
+            let imageView = UIImageView(image: image)
+            
+            let bannerWidth = navigationController.navigationBar.frame.size.width
+            let bannerHeight = navigationController.navigationBar.frame.size.height
+            
+            let bannerX = bannerWidth / 2 - image.size.width / 2
+            let bannerY = bannerHeight / 2 - image.size.width / 2
+            
+            imageView.frame = CGRect(x: bannerX, y: bannerY, width: bannerWidth, height: bannerHeight)
+            imageView.contentMode = .scaleAspectFit
+            
+            navigationItem.titleView = imageView
+        }
     }
     
     @IBAction func didTapButtonToAddIngredient(_ sender: Any) {
@@ -40,11 +61,11 @@ class SearchViewController: UIViewController {
             switch result {
             case .success(let data):
                 print("\(data.hits[0].recipe.calories)")
+                self.performSegue(withIdentifier: "fromSearchToRecipesVC", sender: nil)
             case .failure:
-                print("oups")
+                self.presentAlert(message: "Veuillez rééssayer ulterieurement")
             }
         }
-        performSegue(withIdentifier: "fromSearchToRecipesVC", sender: nil)
     }
     
     @IBAction func didTapClearButton(_ sender: Any) {
@@ -57,10 +78,11 @@ class SearchViewController: UIViewController {
         searchTextField.resignFirstResponder()
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let recipesVc = segue.destination as? RecipesViewController else {return}
-        recipesVc.ingredients = ingredientsArray
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        guard let recipesVc = segue.destination as? RecipesViewController else {return}
+//        recipesVc.recipesTableView.reloadData()
+//    }
+//
     
     func fillIngredientArray() {
         ingredientsArray = [String]()
