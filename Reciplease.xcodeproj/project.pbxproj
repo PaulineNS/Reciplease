@@ -181,9 +181,9 @@
 		56FEA6DB23755655002341C1 /* Recipes */ = {
 			isa = PBXGroup;
 			children = (
-				56FEA70F237EDD1C002341C1 /* View */,
 				56FEA6E0237556CD002341C1 /* Controller */,
 				56FEA6DF237556C5002341C1 /* Model */,
+				56FEA70F237EDD1C002341C1 /* View */,
 			);
 			path = Recipes;
 			sourceTree = "<group>";

@@ -12,16 +12,17 @@ class RecipesViewController: UIViewController {
     
     var searchService = SearchService()
     
-    var ingredients = [String]()
     var recipeTitle = ""
     var recipeImage = UIImageView()
-    
+    var recipeData = [Recipe]()
 
     @IBOutlet weak var recipesTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         recipesTableView.reloadData()
+        print(recipeData)
+        print (recipeData[0].hits.count)
     }
 }
 
@@ -44,7 +45,7 @@ class RecipesViewController: UIViewController {
 
 extension RecipesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return searchService.searchData.count
+        return recipeData[0].hits.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -52,7 +53,7 @@ extension RecipesViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         
-        cell.configure(title: searchService.searchData[0].hits[0].recipe.label)
+        cell.configure(title: recipeData[0].hits[indexPath.row].recipe.label)
         
         return cell
     }

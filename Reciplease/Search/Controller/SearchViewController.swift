@@ -13,6 +13,8 @@ class SearchViewController: UIViewController {
     var coreDataManager: CoreDataManager?
     var searchService = SearchService()
     var ingredientsArray = [String]()
+    var recipeDataReceived = [Recipe]()
+
     
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var addIngredientButton: UIButton!
@@ -64,7 +66,7 @@ class SearchViewController: UIViewController {
         searchService.getRecipes(ingredients: ingredientsArray.joined(separator: ",")) { result in
             switch result {
             case .success(let data):
-                print("\(data.hits[0].recipe.calories)")
+                self.recipeDataReceived = [data]
                 self.performSegue(withIdentifier: "fromSearchToRecipesVC", sender: nil)
             case .failure:
                 self.presentAlert(message: "Veuillez rééssayer ulterieurement")
@@ -82,11 +84,12 @@ class SearchViewController: UIViewController {
         searchTextField.resignFirstResponder()
     }
     
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        guard let recipesVc = segue.destination as? RecipesViewController else {return}
-//        recipesVc.recipesTableView.reloadData()
-//    }
-//
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == "fromSearchToRecipesVC" else {return}
+        guard let recipesVc = segue.destination as? RecipesViewController else {return}
+        recipesVc.recipeData = recipeDataReceived
+    }
+
     
     func fillIngredientArray() -> Bool {
         
