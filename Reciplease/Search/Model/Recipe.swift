@@ -13,15 +13,15 @@ struct Recipe: Codable {
     let q: String
     let from, to: Int
 //    let params: Params
-    let more: Bool
-    let count: Int
+//    let more: Bool
+//    let count: Int
     let hits: [Hit]
 }
 
 // MARK: - Hit
 struct Hit: Codable {
     let recipe: RecipeClass
-    let bookmarked, bought: Bool
+//    let bookmarked, bought: Bool
 }
 
 // MARK: - RecipeClass
@@ -29,16 +29,16 @@ struct RecipeClass: Codable {
 //    let uri: String
     let label: String
     let image: String
-    let source: String
+//    let source: String
     let url: String
-    let shareAs: String
-    let yield: Int
-    let dietLabels: [String]
+//    let shareAs: String
+//    let yield: Int
+//    let dietLabels: [String]
 //    let healthLabels: [HealthLabel]
-    let cautions, ingredientLines: [String]
-    let ingredients: [Ingredient]
-    let calories, totalWeight: Double
-    let totalTime: Int
+//    let cautions, ingredientLines: [String]
+//    let ingredients: [Ingredient]
+//    let calories, totalWeight: Double
+//    let totalTime: Int
 //    let totalNutrients, totalDaily: [String: Total]
 //    let digest: [Digest]
 }
@@ -83,10 +83,10 @@ struct RecipeClass: Codable {
 //}
 
 // MARK: - Ingredient
-struct Ingredient: Codable {
-    let text: String
-    let weight: Double
-}
+//struct Ingredient: Codable {
+//    let text: String
+//    let weight: Double
+//}
 
 //// MARK: - Total
 //struct Total: Codable {
