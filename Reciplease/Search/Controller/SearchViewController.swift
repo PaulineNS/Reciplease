@@ -25,6 +25,7 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
         ingredientsTableView.delegate = self
         ingredientsTableView.dataSource = self
+        fillIngredientsArray()
         setUpNavBar()
     }
     
@@ -58,12 +59,14 @@ class SearchViewController: UIViewController {
     }
     
     @IBAction func didTapGoButton(_ sender: Any) {
-        
-        guard fillIngredientArray() == true else {
+        guard isIngredientsAlreadySaved() == true else {
             presentAlert(message: "You have to enter at least 1 ingredient")
-            return}
-        
-        searchService.getRecipes(ingredients: ingredientsArray.joined(separator: ",")) { result in
+            return
+        }
+        guard let allIngredients = ingredientsArray.joined(separator: ",").addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {
+            return
+        }
+        searchService.getRecipes(ingredients: allIngredients) { result in
             switch result {
             case .success(let data):
                 self.recipeDataReceived = [data]
@@ -76,6 +79,7 @@ class SearchViewController: UIViewController {
     
     @IBAction func didTapClearButton(_ sender: Any) {
         coreDataManager?.deleteAllIngredients()
+        ingredientsArray = [String]()
         ingredientsTableView.reloadData()
     }
     
@@ -90,22 +94,25 @@ class SearchViewController: UIViewController {
         recipesVc.recipeData = recipeDataReceived
     }
 
-    
-    func fillIngredientArray() -> Bool {
-        
+    func isIngredientsAlreadySaved() -> Bool {
         guard let numberOfIngredients = coreDataManager?.ingredients.count else {
             return false
         }
-        
         guard numberOfIngredients == 0 else {
-            ingredientsArray = [String]()
-            for index in 0...numberOfIngredients - 1 {
-                ingredientsArray.append(coreDataManager?.ingredients[index].name ?? "")
-            }
+            fillIngredientsArray()
             return true
         }
-        
         return false
+    }
+    
+    func fillIngredientsArray() {
+        guard let numberOfIngredients = coreDataManager?.ingredients.count else {
+            return
+        }
+        ingredientsArray = [String]()
+        for index in 0...numberOfIngredients - 1 {
+            ingredientsArray.append(coreDataManager?.ingredients[index].name ?? "")
+        }
     }
 }
 

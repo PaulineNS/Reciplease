@@ -21,8 +21,6 @@ class RecipesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         recipesTableView.reloadData()
-        print(recipeData)
-        print (recipeData[0].hits.count)
     }
 }
 
