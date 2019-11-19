@@ -14,6 +14,7 @@
 		5608F3F5235DF6BD008A8BA4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5608F3F3235DF6BD008A8BA4 /* LaunchScreen.storyboard */; };
 		56C0939E2362EDD80030D85E /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C0939D2362EDD80030D85E /* SearchViewController.swift */; };
 		56C093A02362F4C40030D85E /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C0939F2362F4C40030D85E /* UIViewControllerExtension.swift */; };
+		56EA08EC2383E87F0087C1EE /* ExtensionsUIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56EA08EB2383E87F0087C1EE /* ExtensionsUIImageView.swift */; };
 		56FEA6E9237558E7002341C1 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FEA6E8237558E7002341C1 /* Recipe.swift */; };
 		56FEA6EB237559EE002341C1 /* ErrorCases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FEA6EA237559EE002341C1 /* ErrorCases.swift */; };
 		56FEA6EF23756D18002341C1 /* RecipesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FEA6EE23756D18002341C1 /* RecipesViewController.swift */; };
@@ -53,6 +54,7 @@
 		5608F3F6235DF6BD008A8BA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		56C0939D2362EDD80030D85E /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		56C0939F2362F4C40030D85E /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
+		56EA08EB2383E87F0087C1EE /* ExtensionsUIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionsUIImageView.swift; sourceTree = "<group>"; };
 		56FEA6E8237558E7002341C1 /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		56FEA6EA237559EE002341C1 /* ErrorCases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorCases.swift; sourceTree = "<group>"; };
 		56FEA6EE23756D18002341C1 /* RecipesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesViewController.swift; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 			children = (
 				56C0939F2362F4C40030D85E /* UIViewControllerExtension.swift */,
 				56FEA709237D6365002341C1 /* StringExtension.swift */,
+				56EA08EB2383E87F0087C1EE /* ExtensionsUIImageView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -507,6 +510,7 @@
 				56FEA6F7237C5DDA002341C1 /* SearchService.swift in Sources */,
 				56FEA6F123757056002341C1 /* RecipesTableViewCell.swift in Sources */,
 				56FEA6EB237559EE002341C1 /* ErrorCases.swift in Sources */,
+				56EA08EC2383E87F0087C1EE /* ExtensionsUIImageView.swift in Sources */,
 				56FEA70E237D69BB002341C1 /* CoreDataStack.swift in Sources */,
 				56FEA70C237D69A7002341C1 /* CoreDataManager.swift in Sources */,
 				56C093A02362F4C40030D85E /* UIViewControllerExtension.swift in Sources */,

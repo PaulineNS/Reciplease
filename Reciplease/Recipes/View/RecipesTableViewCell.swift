@@ -26,7 +26,8 @@ class RecipesTableViewCell: UITableViewCell {
     }
     
     // Cell Configuration
-    func configure(title: String){
+    func configure(title: String, pictureUrl: URL){
         recipeTitleLabel.text = title
+        recipeImageView.load(url: pictureUrl)
     }
 }

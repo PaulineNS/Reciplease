@@ -26,23 +26,6 @@ class RecipesViewController: UIViewController {
     }
 }
 
-//extension RecipesViewController {
-//    func displayAllRecipes() {
-//        searchService.getRecipes(ingredients: ingredients.joined(separator: ",")) { result in
-//            switch result {
-//            case .success:
-//                DispatchQueue.main.async {
-//                    self.recipesTableView.reloadData()
-//                }
-//            case .failure:
-//                DispatchQueue.main.async {
-//                    self.presentAlert(message: "Problème au moment du chargement des recettes.")
-//                }
-//            }
-//        }
-//    }
-//}
-
 extension RecipesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return recipeData[0].hits.count
@@ -52,8 +35,9 @@ extension RecipesViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeCell", for: indexPath) as? RecipesTableViewCell else {
             return UITableViewCell()
         }
+        guard let urlImage = URL(string: recipeData[0].hits[indexPath.row].recipe.image) else {return UITableViewCell()}
         
-        cell.configure(title: recipeData[0].hits[indexPath.row].recipe.label)
+        cell.configure(title: recipeData[0].hits[indexPath.row].recipe.label, pictureUrl: urlImage)
         
         return cell
     }
