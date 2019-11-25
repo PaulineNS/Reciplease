@@ -27,7 +27,7 @@ final class MockSearchSession: AlamoSession {
         self.fakeResponse = fakeResponse
     }
     
-    func request(with url: URL, callBack: @escaping (AFDataResponse<Any>) -> Void) {
+    func request(with url: URL, callBack: @escaping (DataResponse<Any>) -> Void) {
         let httpResponse = fakeResponse.response
         let data = fakeResponse.data
         
