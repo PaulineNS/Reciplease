@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleAspectFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="recipeCell" rowHeight="320" id="KGk-i7-Jjw" customClass="RecipeTableViewCell" customModule="Reciplease" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="319.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ieu-Nh-DaJ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="319.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FAm-7S-VsK">
+                                <rect key="frame" x="17" y="250" width="286" height="48.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="Sis-a6-XBS">
+                                <rect key="frame" x="17" y="0.0" width="286" height="242.00000000000011"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="241.99999999999989" id="uvD-3m-Kaf"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Sis-a6-XBS" firstAttribute="leading" secondItem="FAm-7S-VsK" secondAttribute="leading" id="8Lb-Qt-7tb"/>
+                            <constraint firstItem="Sis-a6-XBS" firstAttribute="leading" secondItem="Ieu-Nh-DaJ" secondAttribute="leading" constant="17" id="A7a-3f-woD"/>
+                            <constraint firstItem="Sis-a6-XBS" firstAttribute="centerX" secondItem="Ieu-Nh-DaJ" secondAttribute="centerX" id="Ht0-p2-ATE"/>
+                            <constraint firstItem="Sis-a6-XBS" firstAttribute="top" secondItem="Ieu-Nh-DaJ" secondAttribute="top" id="UpX-bg-G27"/>
+                            <constraint firstItem="FAm-7S-VsK" firstAttribute="top" secondItem="Sis-a6-XBS" secondAttribute="bottom" constant="8.0000000000001137" id="h8v-eT-EMm"/>
+                            <constraint firstItem="Sis-a6-XBS" firstAttribute="trailing" secondItem="FAm-7S-VsK" secondAttribute="trailing" id="jpY-IK-mMU"/>
+                            <constraint firstAttribute="bottom" secondItem="FAm-7S-VsK" secondAttribute="bottom" constant="21" id="utw-nj-Lvz"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Ieu-Nh-DaJ" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="BCw-cR-brp"/>
+                    <constraint firstItem="Ieu-Nh-DaJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Bi8-Lf-L94"/>
+                    <constraint firstItem="Ieu-Nh-DaJ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Noq-Ai-CYZ"/>
+                    <constraint firstItem="Ieu-Nh-DaJ" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="b7B-q8-wp3"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="recipeImageView" destination="Sis-a6-XBS" id="dpN-ng-Nyo"/>
+                <outlet property="recipeTitleLabel" destination="FAm-7S-VsK" id="GPt-9I-0d3"/>
+            </connections>
+            <point key="canvasLocation" x="137.68115942028987" y="218.30357142857142"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="logo" width="1074" height="694"/>
+    </resources>
+</document>

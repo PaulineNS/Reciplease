@@ -21,6 +21,8 @@ class RecipesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         recipesTableView.reloadData()
+        let nibName = UINib(nibName: "RecipeTableViewCell", bundle: nil)
+        recipesTableView.register(nibName, forCellReuseIdentifier: "recipeCell")
     }
 }
 
@@ -30,7 +32,7 @@ extension RecipesViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeCell", for: indexPath) as? RecipesTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "recipeCell", for: indexPath) as? RecipeTableViewCell else {
             return UITableViewCell()
         }
         guard let urlImage = URL(string: recipeData[0].hits[indexPath.row].recipe.image) else {return UITableViewCell()}
@@ -38,5 +40,9 @@ extension RecipesViewController: UITableViewDelegate, UITableViewDataSource {
         cell.configure(title: recipeData[0].hits[indexPath.row].recipe.label, pictureUrl: urlImage)
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 300
     }
 }
