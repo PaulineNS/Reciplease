@@ -13,7 +13,7 @@ class RecipleaseTests: XCTestCase {
 
     func testGetData_WhenNoDataIsPassed_ThenShouldReturnFailedCallback() {
         let session = MockSearchSession(fakeResponse: FakeResponse(response: nil, data: nil))
-        let requestService = SearchService(session: session)
+        let requestService = SearchRecipesService(session: session)
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         requestService.getRecipes(ingredients: "chicken") { result in
             guard case .failure(let error) = result else {
@@ -28,7 +28,7 @@ class RecipleaseTests: XCTestCase {
     
     func testGetData_WhenIncorrectResponseIsPassed_ThenShouldReturnFailedCallback() {
         let session = MockSearchSession(fakeResponse: FakeResponse(response: FakeResponseData.responseKO, data: FakeResponseData.correctData))
-        let requestService = SearchService(session: session)
+        let requestService = SearchRecipesService(session: session)
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         requestService.getRecipes(ingredients: "chicken") { result in
             guard case .failure(let error) = result else {
@@ -43,7 +43,7 @@ class RecipleaseTests: XCTestCase {
     
     func testGetData_WhenUndecodableDataIsPassed_ThenShouldReturnFailedCallback() {
         let session = MockSearchSession(fakeResponse: FakeResponse(response: FakeResponseData.responseOK, data: FakeResponseData.incorrectData))
-        let requestService = SearchService(session: session)
+        let requestService = SearchRecipesService(session: session)
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         requestService.getRecipes(ingredients: "chicken") { result in
             guard case .failure(let error) = result else {

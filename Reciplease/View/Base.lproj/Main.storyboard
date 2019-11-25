@@ -251,7 +251,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="Ffj-zg-Nhb">
-                                <rect key="frame" x="0.0" y="140" width="414" height="323.00000000000011"/>
+                                <rect key="frame" x="0.0" y="140" width="414" height="323"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="323" id="UOK-74-09d"/>
                                 </constraints>

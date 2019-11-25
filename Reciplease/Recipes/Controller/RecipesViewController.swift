@@ -10,12 +10,13 @@ import UIKit
 
 class RecipesViewController: UIViewController {
     
-    var searchService = SearchService()
+    var searchDetailsService = SearchDetailsService()
     
     var recipeTitle = ""
     var recipeImage = UIImageView()
     var recipeData = [Recipe]()
-
+    var recipeDetailsDataReceived = [[RecipeDetail]()]
+    
     @IBOutlet weak var recipesTableView: UITableView!
     
     override func viewDidLoad() {
@@ -45,4 +46,24 @@ extension RecipesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 300
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        searchDetailsService.getRecipeDetails(recipeId: recipeData[0].hits[indexPath.row].recipe.uri) { result in
+            switch result {
+            case .success(let data):
+                self.recipeDetailsDataReceived = [data]
+                self.performSegue(withIdentifier: "fromAllRecipesToDetailsVC", sender: nil)
+            case .failure:
+                self.presentAlert(message: "Veuillez rééssayer ulterieurement")
+            }
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == "fromAllRecipesToDetailsVC" else {return}
+        guard let recipesVc = segue.destination as? RecipeDetailsViewController else {return}
+        recipesVc.recipeDetailsData = recipeDetailsDataReceived
+    }
+    
 }
+

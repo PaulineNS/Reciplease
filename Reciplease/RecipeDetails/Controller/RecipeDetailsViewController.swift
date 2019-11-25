@@ -10,6 +10,8 @@ import UIKit
 
 class RecipeDetailsViewController: UIViewController {
 
+    var recipeDetailsData = [[RecipeDetail]()]
+    
     @IBOutlet weak var recipeImageView: UIImageView!
     @IBOutlet weak var recipeTitleLabel: UILabel!
     @IBOutlet weak var recipeIngredientsTxtView: UITextView!
@@ -17,5 +19,15 @@ class RecipeDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        updateTheView()
     }
+    
+    func updateTheView() {
+        recipeTitleLabel.text = recipeDetailsData[0][0].label
+        guard let urlImage = URL(string: recipeDetailsData[0][0].image) else {
+            return
+        }
+        recipeImageView.load(url: urlImage)
+        recipeIngredientsTxtView.text = "-" + " " +  recipeDetailsData[0][0].ingredientLines.joined(separator: "\n\n" + "-" + " " )
+       }
 }

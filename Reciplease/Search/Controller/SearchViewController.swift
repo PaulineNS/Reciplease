@@ -10,7 +10,8 @@ import UIKit
 
 class SearchViewController: UIViewController {
     
-    var searchService = SearchService()
+    var searchService = SearchRecipesService()
+    
     var ingredientsArray = [String]()
     var recipeDataReceived = [Recipe]()
 

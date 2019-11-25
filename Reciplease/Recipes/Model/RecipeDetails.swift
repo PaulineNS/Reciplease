@@ -1,44 +1,32 @@
 //
-//  Recipe.swift
+//  RecipeDetails.swift
 //  Reciplease
 //
-//  Created by Pauline Nomballais on 08/11/2019.
+//  Created by Pauline Nomballais on 25/11/2019.
 //  Copyright © 2019 PaulineNomballais. All rights reserved.
 //
 
+// This file was generated from JSON Schema using quicktype, do not modify it directly.
+// To parse the JSON, add this file to your project and do:
+//
+//   let recipeDetails = try? newJSONDecoder().decode(RecipeDetails.self, from: jsonData)
+
 import Foundation
 
-// MARK: - Recipe
-struct Recipe: Codable {
-    let q: String
-    let from, to: Int
-//    let params: Params
-//    let more: Bool
-//    let count: Int
-    let hits: [Hit]
-}
-
-// MARK: - Hit
-struct Hit: Codable {
-    let recipe: RecipeClass
-//    let bookmarked, bought: Bool
-}
-
-// MARK: - RecipeClass
-struct RecipeClass: Codable {
-    let uri: String
-    let label: String
+// MARK: - RecipeDetail
+struct RecipeDetail: Codable {
+ //   let uri: String
+    let label: String?
     let image: String
 //    let source: String
- //   let url: String
-//    let shareAs: String
+//    let url, shareAs: String
 //    let yield: Int
-//    let dietLabels: [String]
-//    let healthLabels: [HealthLabel]
-//    let cautions, ingredientLines: [String]
-  //  let ingredients: [Ingredient]
-//    let calories, totalWeight: Double
-//    let totalTime: Int
+//    let dietLabels, healthLabels: [String]
+//    let cautions: [JSONAny]
+    let ingredientLines: [String]
+//    let ingredients: [Ingredient]
+//    let calories: Double
+//    let totalWeight, totalTime: Int
 //    let totalNutrients, totalDaily: [String: Total]
 //    let digest: [Digest]
 }
@@ -46,69 +34,44 @@ struct RecipeClass: Codable {
 //// MARK: - Digest
 //struct Digest: Codable {
 //    let label, tag: String
-//    let schemaOrgTag: SchemaOrgTag?
+//    let schemaOrgTag: String?
 //    let total: Double
 //    let hasRDI: Bool
 //    let daily: Double
-//    let unit: Unit
+//    let unit: DigestUnit
 //    let sub: [Digest]?
 //}
-
-//enum SchemaOrgTag: String, Codable {
-//    case carbohydrateContent = "carbohydrateContent"
-//    case cholesterolContent = "cholesterolContent"
-//    case fatContent = "fatContent"
-//    case fiberContent = "fiberContent"
-//    case proteinContent = "proteinContent"
-//    case saturatedFatContent = "saturatedFatContent"
-//    case sodiumContent = "sodiumContent"
-//    case sugarContent = "sugarContent"
-//    case transFatContent = "transFatContent"
-//}
 //
-//enum Unit: String, Codable {
-//    case empty = "%"
+//enum DigestUnit: String, Codable {
 //    case g = "g"
-//    case iu = "IU"
-//    case kcal = "kcal"
 //    case mg = "mg"
 //    case µg = "µg"
 //}
 //
-//enum HealthLabel: String, Codable {
-//    case alcoholFree = "Alcohol-Free"
-//    case peanutFree = "Peanut-Free"
-//    case sugarConscious = "Sugar-Conscious"
-//    case treeNutFree = "Tree-Nut-Free"
-//}
-
-// MARK: - Ingredient
+//// MARK: - Ingredient
 //struct Ingredient: Codable {
 //    let text: String
-//    let weight: Double
+//    let weight: Int
 //}
-
+//
 //// MARK: - Total
 //struct Total: Codable {
 //    let label: String
 //    let quantity: Double
-//    let unit: Unit
+//    let unit: TotalDailyUnit
 //}
-
-//// MARK: - Params
-//struct Params: Codable {
-//    let sane: [JSONAny]
-//    let q, appKey, appID: [String]
 //
-//    enum CodingKeys: String, CodingKey {
-//        case sane, q
-//        case appKey = "app_key"
-//        case appID = "app_id"
-//    }
+//enum TotalDailyUnit: String, Codable {
+//    case empty = "%"
+//    case g = "g"
+//    case kcal = "kcal"
+//    case mg = "mg"
 //}
-
-// MARK: - Encode/decode helpers
-
+//
+//typealias RecipeDetails = [RecipeDetail]
+//
+//// MARK: - Encode/decode helpers
+//
 //class JSONNull: Codable, Hashable {
 //
 //    public static func == (lhs: JSONNull, rhs: JSONNull) -> Bool {
@@ -133,7 +96,7 @@ struct RecipeClass: Codable {
 //        try container.encodeNil()
 //    }
 //}
-//
+
 //class JSONCodingKey: CodingKey {
 //    let key: String
 //
