@@ -22,8 +22,6 @@ class SearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        ingredientsTableView.delegate = self
-        ingredientsTableView.dataSource = self
     }
     
     @IBAction func didTapButtonToAddIngredient(_ sender: Any) {

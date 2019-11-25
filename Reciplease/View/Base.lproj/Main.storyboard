@@ -37,16 +37,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Uzz-GP-B97">
-                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Uzz-GP-B97" id="vNA-Xu-Wcw">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="2vP-iw-KnZ" id="m05-e9-uTk"/>
                             <outlet property="delegate" destination="2vP-iw-KnZ" id="rrf-dv-aNH"/>
@@ -166,6 +156,10 @@
                                                 </tableViewCellContentView>
                                             </tableViewCell>
                                         </prototypes>
+                                        <connections>
+                                            <outlet property="dataSource" destination="pnX-Ix-Q8a" id="wvv-Hu-eUc"/>
+                                            <outlet property="delegate" destination="pnX-Ix-Q8a" id="3No-3V-1Cl"/>
+                                        </connections>
                                     </tableView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="asF-MQ-Szi">
                                         <rect key="frame" x="0.0" y="631" width="414" height="42"/>
@@ -241,23 +235,23 @@
                     <navigationItem key="navigationItem" id="TxQ-ta-BAr"/>
                     <connections>
                         <outlet property="recipesTableView" destination="EH4-bd-UY9" id="Myq-Nw-PiF"/>
-                        <segue destination="MFT-TQ-Uvq" kind="show" id="fne-0q-7eW"/>
+                        <segue destination="MFT-TQ-Uvq" kind="show" identifier="fromAllRecipesToDetailsVC" id="fne-0q-7eW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uPy-TN-m8n" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1764" y="-1027"/>
         </scene>
-        <!--View Controller-->
+        <!--Recipe Details View Controller-->
         <scene sceneID="eut-rH-eob">
             <objects>
-                <viewController id="MFT-TQ-Uvq" sceneMemberID="viewController">
+                <viewController id="MFT-TQ-Uvq" customClass="RecipeDetailsViewController" customModule="Reciplease" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uAt-eK-Ol7">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="Ffj-zg-Nhb">
-                                <rect key="frame" x="0.0" y="140" width="414" height="323"/>
+                                <rect key="frame" x="0.0" y="140" width="414" height="323.00000000000011"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="323" id="UOK-74-09d"/>
                                 </constraints>
@@ -300,6 +294,12 @@
                     <navigationItem key="navigationItem" id="1qA-5R-FtJ">
                         <barButtonItem key="rightBarButtonItem" title="Item" image="heart" id="Ixl-Kq-Biy"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="getDirectionsButton" destination="c8H-Jc-YC7" id="8yV-f4-mvk"/>
+                        <outlet property="recipeImageView" destination="Ffj-zg-Nhb" id="Jys-DT-DWN"/>
+                        <outlet property="recipeIngredientsTxtView" destination="Qwp-PD-BMU" id="mHR-wc-QbV"/>
+                        <outlet property="recipeTitleLabel" destination="Pvp-fg-9Y5" id="4gT-Ta-5Ru"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SMT-ka-ly1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
