@@ -10,7 +10,6 @@ import UIKit
 
 class SearchViewController: UIViewController {
     
-    var coreDataManager: CoreDataManager?
     var searchService = SearchService()
     var ingredientsArray = [String]()
     var recipeDataReceived = [Recipe]()
@@ -25,41 +24,25 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
         ingredientsTableView.delegate = self
         ingredientsTableView.dataSource = self
-        fillIngredientsArray()
-        setUpNavBar()
-    }
-    
-    func setUpNavBar() {
-        
-        if let navigationController = navigationController {
-            navigationController.navigationBar.prefersLargeTitles = true
-            let image = #imageLiteral(resourceName: "chief")
-            let imageView = UIImageView(image: image)
-            
-            let bannerWidth = navigationController.navigationBar.frame.size.width
-            let bannerHeight = navigationController.navigationBar.frame.size.height
-            
-            let bannerX = bannerWidth / 2 - image.size.width / 2
-            let bannerY = bannerHeight / 2 - image.size.width / 2
-            
-            imageView.frame = CGRect(x: bannerX, y: bannerY, width: bannerWidth, height: bannerHeight)
-            imageView.contentMode = .scaleAspectFit
-            
-            navigationItem.titleView = imageView
-        }
     }
     
     @IBAction func didTapButtonToAddIngredient(_ sender: Any) {
         guard let ingredientName = searchTextField.text, !ingredientName.isBlank else {
             presentAlert(message: "Veuillez saisir un ingrédient")
             return}
-        coreDataManager?.createIngredient(name: ingredientName)
-        searchTextField.text = " "
+        addIngredientToTableView()
         ingredientsTableView.reloadData()
     }
     
+    func addIngredientToTableView() {
+        guard let searchBarTxt = searchTextField.text else {return}
+        ingredientsArray.append(searchBarTxt)
+        searchTextField.text = " "
+    }
+    
     @IBAction func didTapGoButton(_ sender: Any) {
-        guard isIngredientsAlreadySaved() == true else {
+        guard ingredientsArray.count != 0
+            else {
             presentAlert(message: "You have to enter at least 1 ingredient")
             return
         }
@@ -78,11 +61,9 @@ class SearchViewController: UIViewController {
     }
     
     @IBAction func didTapClearButton(_ sender: Any) {
-        coreDataManager?.deleteAllIngredients()
         ingredientsArray = [String]()
         ingredientsTableView.reloadData()
     }
-    
     
     @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
         searchTextField.resignFirstResponder()
@@ -93,27 +74,6 @@ class SearchViewController: UIViewController {
         guard let recipesVc = segue.destination as? RecipesViewController else {return}
         recipesVc.recipeData = recipeDataReceived
     }
-
-    func isIngredientsAlreadySaved() -> Bool {
-        guard let numberOfIngredients = coreDataManager?.ingredients.count else {
-            return false
-        }
-        guard numberOfIngredients == 0 else {
-            fillIngredientsArray()
-            return true
-        }
-        return false
-    }
-    
-    func fillIngredientsArray() {
-        guard let numberOfIngredients = coreDataManager?.ingredients.count else {
-            return
-        }
-        ingredientsArray = [String]()
-        for index in 0...numberOfIngredients - 1 {
-            ingredientsArray.append(coreDataManager?.ingredients[index].name ?? "")
-        }
-    }
 }
 
 extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
@@ -122,12 +82,12 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return coreDataManager?.ingredients.count ?? 0
+        return ingredientsArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchCell", for: indexPath)
-        cell.textLabel?.text = coreDataManager?.ingredients[indexPath.row].name
+        cell.textLabel?.text = ingredientsArray[indexPath.row]
         
         return cell
     }

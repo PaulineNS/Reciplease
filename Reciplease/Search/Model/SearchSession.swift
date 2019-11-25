@@ -10,12 +10,12 @@ import Foundation
 import Alamofire
 
 protocol AlamoSession {
-    func request(with url: URL, callBack: @escaping (AFDataResponse<Any>) -> Void)
+    func request(with url: URL, callBack: @escaping (DataResponse<Any>) -> Void)
 }
 
 final class SearchSession: AlamoSession {
-    func request(with url: URL, callBack: @escaping (AFDataResponse<Any>) -> Void) {
-        AF.request(url).responseJSON { responseData in
+    func request(with url: URL, callBack: @escaping (DataResponse<Any>) -> Void) {
+        Alamofire.request(url).responseJSON { responseData in
             callBack(responseData)
         }
     }
