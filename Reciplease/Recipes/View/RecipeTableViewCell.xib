@@ -29,7 +29,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="Sis-a6-XBS">
-                                <rect key="frame" x="17" y="0.0" width="286" height="242.00000000000011"/>
+                                <rect key="frame" x="17" y="0.0" width="286" height="242"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="241.99999999999989" id="uvD-3m-Kaf"/>
                                 </constraints>
