@@ -268,13 +268,16 @@
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="Qwp-PD-BMU">
                                         <rect key="frame" x="0.0" y="29.5" width="374" height="272"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c8H-Jc-YC7">
                                         <rect key="frame" x="0.0" y="310.5" width="374" height="30.5"/>
                                         <state key="normal" title="Get directions"/>
+                                        <connections>
+                                            <action selector="didTapGetDirectionsButton:" destination="MFT-TQ-Uvq" eventType="touchUpInside" id="Wie-nJ-b60"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -295,7 +298,6 @@
                         <barButtonItem key="rightBarButtonItem" title="Item" image="heart" id="Ixl-Kq-Biy"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="getDirectionsButton" destination="c8H-Jc-YC7" id="8yV-f4-mvk"/>
                         <outlet property="recipeImageView" destination="Ffj-zg-Nhb" id="Jys-DT-DWN"/>
                         <outlet property="recipeIngredientsTxtView" destination="Qwp-PD-BMU" id="mHR-wc-QbV"/>
                         <outlet property="recipeTitleLabel" destination="Pvp-fg-9Y5" id="4gT-Ta-5Ru"/>

@@ -19,7 +19,7 @@ struct RecipeDetail: Codable {
     let label: String?
     let image: String
 //    let source: String
-//    let url, shareAs: String
+    let url: String
 //    let yield: Int
 //    let dietLabels, healthLabels: [String]
 //    let cautions: [JSONAny]
