@@ -9,13 +9,13 @@
 import UIKit
 
 class RecipeDetailsViewController: UIViewController {
-
+    
     var recipeDetailsData = [[RecipeDetail]()]
     
     @IBOutlet weak var recipeImageView: UIImageView!
     @IBOutlet weak var recipeTitleLabel: UILabel!
     @IBOutlet weak var recipeIngredientsTxtView: UITextView!
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,10 +29,18 @@ class RecipeDetailsViewController: UIViewController {
         }
         recipeImageView.load(url: urlImage)
         recipeIngredientsTxtView.text = "-" + " " +  recipeDetailsData[0][0].ingredientLines.joined(separator: "\n\n" + "-" + " " )
-       }
+    }
     
     @IBAction func didTapGetDirectionsButton(_ sender: Any) {
         guard let directionsUrl = URL(string: recipeDetailsData[0][0].url) else {return}
         UIApplication.shared.open(directionsUrl)
+    }
+    
+    @IBAction func didTapFavoriteButton(_ sender: UIBarButtonItem) {
+        if sender.image == UIImage(named: "heart") {
+            sender.image = UIImage(named: "fullHeart")
+        } else if sender.image == UIImage(named: "fullHeart") {
+            sender.image = UIImage(named: "heart")
+        }
     }
 }
