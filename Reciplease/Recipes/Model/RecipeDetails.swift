@@ -15,7 +15,7 @@ import Foundation
 
 // MARK: - RecipeDetail
 struct RecipeDetail: Codable {
- //   let uri: String
+    let uri: String
     let label: String?
     let image: String
 //    let source: String

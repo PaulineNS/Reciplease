@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14492.1" systemVersion="18F132" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="IngredientList" representedClassName="IngredientList" syncable="YES" codeGenerationType="class">
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+    <entity name="FavoritesRecipesList" representedClassName="FavoritesRecipesList" syncable="YES" codeGenerationType="class">
+        <attribute name="uri" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="IngredientList" positionX="-63" positionY="-18" width="128" height="60"/>
+        <element name="FavoritesRecipesList" positionX="-63" positionY="-18" width="128" height="60"/>
     </elements>
 </model>

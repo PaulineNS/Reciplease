@@ -10,6 +10,7 @@ import UIKit
 
 class FavoritesRecipesViewController: UIViewController {
     
+    var coreDataManager: CoreDataManager?
     var favoritesRecipesArray = [String]()
 
     @IBOutlet weak var favoritesRecipesTableView: UITableView! { didSet { favoritesRecipesTableView.tableFooterView = UIView() }}
@@ -19,16 +20,23 @@ class FavoritesRecipesViewController: UIViewController {
     }
 }
 
-//extension FavoritesRecipesViewController: UITableViewDataSource {
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        <#code#>
-//    }
-//    
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        <#code#>
-//    }
-//    
-//}
+extension FavoritesRecipesViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return coreDataManager?.favoritesRecipes.count ?? 0
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "recipeCell", for: indexPath) as? RecipeTableViewCell else {
+            return UITableViewCell()
+        }
+//        guard let urlImage = URL(string: recipeData[0].hits[indexPath.row].recipe.image) else {return UITableViewCell()}
+//        
+//        cell.configure(title: recipeData[0].hits[indexPath.row].recipe.label, pictureUrl: urlImage)
+        
+        return cell
+    }
+    
+}
 
 extension FavoritesRecipesViewController: UITableViewDelegate {
     

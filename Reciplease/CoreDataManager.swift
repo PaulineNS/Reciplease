@@ -16,8 +16,8 @@ final class CoreDataManager {
     private let coreDataStack: CoreDataStack
     private let managedObjectContext: NSManagedObjectContext
     
-    var ingredients: [IngredientList] {
-        let request: NSFetchRequest<IngredientList> = IngredientList.fetchRequest()
+    var favoritesRecipes: [FavoritesRecipesList] {
+        let request: NSFetchRequest<FavoritesRecipesList> = FavoritesRecipesList.fetchRequest()
         //request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
         guard let tasks = try? managedObjectContext.fetch(request) else { return [] }
         return tasks
@@ -32,15 +32,15 @@ final class CoreDataManager {
     
     // MARK: - Manage Task Entity
     
-    func createIngredient(name: String) {
-        let ingredient = IngredientList(context: managedObjectContext)
-        ingredient.name = name
+    func addRecipeToFavorites(uri: String) {
+        let recipe = FavoritesRecipesList(context: managedObjectContext)
+        recipe.uri = uri
         coreDataStack.saveContext()
     }
     
-    func deleteAllIngredients() {
-        ingredients.forEach { managedObjectContext.delete($0) }
-        coreDataStack.saveContext()
-    }
+//    func deleteAllIngredients() {
+//        ingredients.forEach { managedObjectContext.delete($0) }
+//        coreDataStack.saveContext()
+//    }
 }
 

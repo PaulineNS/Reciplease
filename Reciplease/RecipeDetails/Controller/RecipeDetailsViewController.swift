@@ -10,6 +10,7 @@ import UIKit
 
 class RecipeDetailsViewController: UIViewController {
     
+    var coreDataManager: CoreDataManager?
     var recipeDetailsData = [[RecipeDetail]()]
     
     @IBOutlet weak var recipeImageView: UIImageView!
@@ -39,8 +40,15 @@ class RecipeDetailsViewController: UIViewController {
     @IBAction func didTapFavoriteButton(_ sender: UIBarButtonItem) {
         if sender.image == UIImage(named: "heart") {
             sender.image = UIImage(named: "fullHeart")
+            coreDataManager?.addRecipeToFavorites(uri: recipeDetailsData[0][0].uri)
         } else if sender.image == UIImage(named: "fullHeart") {
             sender.image = UIImage(named: "heart")
+            deleteRecipeFromFavorites()
         }
+    }
+    
+    
+    func deleteRecipeFromFavorites() {
+        
     }
 }
