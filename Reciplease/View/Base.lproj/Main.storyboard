@@ -29,25 +29,6 @@
             </objects>
             <point key="canvasLocation" x="-849" y="-689"/>
         </scene>
-        <!--Root View Controller-->
-        <scene sceneID="HiG-CV-BpG">
-            <objects>
-                <tableViewController id="2vP-iw-KnZ" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Uqw-GG-tlw">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <connections>
-                            <outlet property="dataSource" destination="2vP-iw-KnZ" id="m05-e9-uTk"/>
-                            <outlet property="delegate" destination="2vP-iw-KnZ" id="rrf-dv-aNH"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="yQ0-FO-Wa3"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="IZA-nD-anP" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="896" y="-364"/>
-        </scene>
         <!--Favorites-->
         <scene sceneID="EyK-yH-a2A">
             <objects>
@@ -58,12 +39,47 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="2vP-iw-KnZ" kind="relationship" relationship="rootViewController" id="lmj-DM-jix"/>
+                        <segue destination="KnP-8R-eYo" kind="relationship" relationship="rootViewController" id="HbZ-z7-sp9"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QrV-kE-QeP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="87" y="-364"/>
+        </scene>
+        <!--Favorites Recipes View Controller-->
+        <scene sceneID="9zr-Hx-2bb">
+            <objects>
+                <viewController id="KnP-8R-eYo" customClass="FavoritesRecipesViewController" customModule="Reciplease" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dgf-6Y-5Pc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cdd-tY-dXx">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="KnP-8R-eYo" id="tV5-FU-mPf"/>
+                                    <outlet property="delegate" destination="KnP-8R-eYo" id="9uS-Ux-WUU"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="cdd-tY-dXx" firstAttribute="bottom" secondItem="vM1-nQ-piF" secondAttribute="bottom" id="2wq-rB-kN9"/>
+                            <constraint firstItem="cdd-tY-dXx" firstAttribute="top" secondItem="vM1-nQ-piF" secondAttribute="top" id="CSi-d2-Cf3"/>
+                            <constraint firstItem="cdd-tY-dXx" firstAttribute="trailing" secondItem="vM1-nQ-piF" secondAttribute="trailing" id="QAs-UV-v4J"/>
+                            <constraint firstItem="cdd-tY-dXx" firstAttribute="leading" secondItem="vM1-nQ-piF" secondAttribute="leading" id="U06-mu-rjD"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="vM1-nQ-piF"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="81w-1G-XyC"/>
+                    <connections>
+                        <outlet property="favoritesRecipesTableView" destination="cdd-tY-dXx" id="Dez-6I-qpS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CGa-ae-eKV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="900.00000000000011" y="-350.22321428571428"/>
         </scene>
         <!--Search-->
         <scene sceneID="9lA-It-W2s">
