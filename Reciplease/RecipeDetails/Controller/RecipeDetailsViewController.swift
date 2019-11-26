@@ -38,10 +38,19 @@ class RecipeDetailsViewController: UIViewController {
     }
     
     @IBAction func didTapFavoriteButton(_ sender: UIBarButtonItem) {
+        print("first")
         if sender.image == UIImage(named: "heart") {
+            print("second")
             sender.image = UIImage(named: "fullHeart")
-            coreDataManager?.addRecipeToFavorites(uri: recipeDetailsData[0][0].uri)
+            guard let name = recipeDetailsData[0][0].label else {
+                print("bienvenu")
+                return}
+            print("troisième")
+            coreDataManager?.addRecipeToFavorites(name: name, image: recipeDetailsData[0][0].image, ingredients: "-" + " " + recipeDetailsData[0][0].ingredientLines.joined(separator: "\n\n" + "-" + " "))
+            print(coreDataManager?.favoritesRecipes[0] as Any)
+            print("nulnul")
         } else if sender.image == UIImage(named: "fullHeart") {
+            print("four")
             sender.image = UIImage(named: "heart")
             deleteRecipeFromFavorites()
         }

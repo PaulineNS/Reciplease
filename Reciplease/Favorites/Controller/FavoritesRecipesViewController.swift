@@ -10,13 +10,23 @@ import UIKit
 
 class FavoritesRecipesViewController: UIViewController {
     
+    var searchDetailsService = SearchDetailsService()
+    
     var coreDataManager: CoreDataManager?
     var favoritesRecipesArray = [String]()
-
+    
     @IBOutlet weak var favoritesRecipesTableView: UITableView! { didSet { favoritesRecipesTableView.tableFooterView = UIView() }}
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print (coreDataManager?.favoritesRecipes.count as Any)
+        favoritesRecipesTableView.reloadData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        print (coreDataManager?.favoritesRecipes.count as Any)
+        favoritesRecipesTableView.reloadData()
     }
 }
 
@@ -24,25 +34,24 @@ extension FavoritesRecipesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return coreDataManager?.favoritesRecipes.count ?? 0
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "recipeCell", for: indexPath) as? RecipeTableViewCell else {
             return UITableViewCell()
         }
-//        guard let urlImage = URL(string: recipeData[0].hits[indexPath.row].recipe.image) else {return UITableViewCell()}
-//        
-//        cell.configure(title: recipeData[0].hits[indexPath.row].recipe.label, pictureUrl: urlImage)
+        guard let urlImage = URL(string: coreDataManager?.favoritesRecipes[indexPath.row].image ?? "") else { return UITableViewCell()}
+        
+        cell.configure(title: coreDataManager?.favoritesRecipes[indexPath.row].name ?? "", pictureUrl: urlImage)
         
         return cell
     }
-    
 }
 
 extension FavoritesRecipesViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let label = UILabel()
-        label.text = "You have not added any reciped yet in your favorites"
+        label.text = "You have not added any recipes yet in your favorites"
         label.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
         label.textAlignment = .center
         label.textColor = .darkGray
@@ -50,7 +59,6 @@ extension FavoritesRecipesViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return favoritesRecipesArray.isEmpty ? 200 : 0
-        //return coreDataManager?.tasks.isEmpty ?? true ? 200 : 0
+        return coreDataManager?.favoritesRecipes.isEmpty ?? true ? 200 : 0
     }
 }

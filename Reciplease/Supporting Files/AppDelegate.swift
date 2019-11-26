@@ -13,9 +13,11 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    //lazy var coreDataStack = CoreDataStack(modelName: "Reciplease")
+    lazy var coreDataStack = CoreDataStack(modelName: "Reciplease")
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+//        
 //        guard let tabBarController = window?.rootViewController as? UITabBarController else {
 //            fatalError("Application storyboard is not setup correctly")
 //        }
@@ -24,6 +26,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //            fatalError("Application storyboard is not setup correctly")
 //        }
 //        searchViewController.coreDataManager = CoreDataManager(coreDataStack: coreDataStack)
+        
+        
         return true
     }
 
@@ -33,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
-       // coreDataStack.saveContext()
+        coreDataStack.saveContext()
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
@@ -45,7 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
-        // coreDataStack.saveContext()
+         coreDataStack.saveContext()
     }
 
     // MARK: - Core Data stack

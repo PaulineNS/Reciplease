@@ -32,9 +32,11 @@ final class CoreDataManager {
     
     // MARK: - Manage Task Entity
     
-    func addRecipeToFavorites(uri: String) {
+    func addRecipeToFavorites(name: String, image: String, ingredients: String) {
         let recipe = FavoritesRecipesList(context: managedObjectContext)
-        recipe.uri = uri
+        recipe.image = image
+        recipe.ingredients = ingredients
+        recipe.name = name
         coreDataStack.saveContext()
     }
     
