@@ -18,6 +18,10 @@ class FavoritesRecipesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         let nibName = UINib(nibName: "RecipeTableViewCell", bundle: nil)
         favoritesRecipesTableView.register(nibName, forCellReuseIdentifier: "recipeCell")
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}

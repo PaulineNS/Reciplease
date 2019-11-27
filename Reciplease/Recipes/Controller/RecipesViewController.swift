@@ -11,7 +11,6 @@ import UIKit
 class RecipesViewController: UIViewController {
     
     var searchDetailsService = SearchDetailsService()
-    
     var recipeTitle = ""
     var recipeImage = UIImageView()
     var recipeData = [Recipe]()
@@ -28,6 +27,7 @@ class RecipesViewController: UIViewController {
 }
 
 extension RecipesViewController: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return recipeData[0].hits.count
     }
@@ -36,10 +36,9 @@ extension RecipesViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "recipeCell", for: indexPath) as? RecipeTableViewCell else {
             return UITableViewCell()
         }
-        guard let urlImage = URL(string: recipeData[0].hits[indexPath.row].recipe.image) else {return UITableViewCell()}
-        
+        guard let urlImage = URL(string: recipeData[0].hits[indexPath.row].recipe.image) else { return UITableViewCell()
+        }
         cell.configure(title: recipeData[0].hits[indexPath.row].recipe.label, pictureUrl: urlImage)
-        
         return cell
     }
     
@@ -60,10 +59,11 @@ extension RecipesViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard segue.identifier == "fromAllRecipesToDetailsVC" else {return}
+        guard segue.identifier == "fromAllRecipesToDetailsVC" else {
+            return
+        }
         guard let recipesVc = segue.destination as? RecipeDetailsViewController else {return}
         recipesVc.recipeDetailsData = recipeDetailsDataReceived
     }
-    
 }
 

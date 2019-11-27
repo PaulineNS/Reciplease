@@ -16,13 +16,13 @@ class RecipeDetailsViewController: UIViewController {
     @IBOutlet weak var recipeImageView: UIImageView!
     @IBOutlet weak var recipeTitleLabel: UILabel!
     @IBOutlet weak var recipeIngredientsTxtView: UITextView!
+    @IBOutlet weak var favoritesIconButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
         let coreDataStack = appDelegate.coreDataStack
         coreDataManager = CoreDataManager(coreDataStack: coreDataStack)
-        //print(coreDataManager?.favoritesRecipes[0].name as Any)
         updateTheView()
     }
     
@@ -32,7 +32,11 @@ class RecipeDetailsViewController: UIViewController {
             return
         }
         recipeImageView.load(url: urlImage)
-        recipeIngredientsTxtView.text = "-" + " " +  recipeDetailsData[0][0].ingredientLines.joined(separator: "\n\n" + "-" + " " )
+        recipeIngredientsTxtView.text = "-" + " " + recipeDetailsData[0][0].ingredientLines.joined(separator: "\n\n" + "-" + " " )
+        guard coreDataManager?.checkIfRecipeIsAlreadyFavorite(recipeName: recipeTitleLabel.text ?? "") == true else {
+            favoritesIconButton.image = UIImage(named: "heart")
+            return }
+        favoritesIconButton.image = UIImage(named: "fullHeart")
     }
     
     @IBAction func didTapGetDirectionsButton(_ sender: Any) {
@@ -48,9 +52,7 @@ class RecipeDetailsViewController: UIViewController {
             coreDataManager?.addRecipeToFavorites(name: name, image: recipeDetailsData[0][0].image, ingredients: "-" + " " + recipeDetailsData[0][0].ingredientLines.joined(separator: "\n\n" + "-" + " "))
         } else if sender.image == UIImage(named: "fullHeart") {
             sender.image = UIImage(named: "heart")
-            deleteRecipeFromFavorites()
+            coreDataManager?.deleteRecipeFromFavorite(recipeName: recipeTitleLabel.text ?? "")
         }
     }
-    
-    func deleteRecipeFromFavorites() {}
 }

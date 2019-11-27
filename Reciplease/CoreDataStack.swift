@@ -45,4 +45,6 @@ open class CoreDataStack {
             print("Unresolved error \(error), \(error.userInfo)")
         }
     }
+    
+
 }

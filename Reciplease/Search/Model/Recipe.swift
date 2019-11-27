@@ -14,7 +14,7 @@ struct Recipe: Codable {
     let from, to: Int
 //    let params: Params
 //    let more: Bool
-//    let count: Int
+    let count: Int
     let hits: [Hit]
 }
 

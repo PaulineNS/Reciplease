@@ -51,8 +51,12 @@ class SearchViewController: UIViewController {
         searchService.getRecipes(ingredients: allIngredients) { result in
             switch result {
             case .success(let data):
-                self.recipeDataReceived = [data]
-                self.performSegue(withIdentifier: "fromSearchToRecipesVC", sender: nil)
+                if data.count != 0 {
+                    self.recipeDataReceived = [data]
+                    self.performSegue(withIdentifier: "fromSearchToRecipesVC", sender: nil)
+                } else {
+                    self.presentAlert(message: "No recipes found")
+                }
             case .failure:
                 self.presentAlert(message: "Veuillez rééssayer ulterieurement")
             }
