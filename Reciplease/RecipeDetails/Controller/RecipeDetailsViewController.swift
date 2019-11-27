@@ -17,9 +17,12 @@ class RecipeDetailsViewController: UIViewController {
     @IBOutlet weak var recipeTitleLabel: UILabel!
     @IBOutlet weak var recipeIngredientsTxtView: UITextView!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
+        let coreDataStack = appDelegate.coreDataStack
+        coreDataManager = CoreDataManager(coreDataStack: coreDataStack)
+        //print(coreDataManager?.favoritesRecipes[0].name as Any)
         updateTheView()
     }
     
@@ -38,26 +41,16 @@ class RecipeDetailsViewController: UIViewController {
     }
     
     @IBAction func didTapFavoriteButton(_ sender: UIBarButtonItem) {
-        print("first")
         if sender.image == UIImage(named: "heart") {
-            print("second")
             sender.image = UIImage(named: "fullHeart")
             guard let name = recipeDetailsData[0][0].label else {
-                print("bienvenu")
                 return}
-            print("troisième")
             coreDataManager?.addRecipeToFavorites(name: name, image: recipeDetailsData[0][0].image, ingredients: "-" + " " + recipeDetailsData[0][0].ingredientLines.joined(separator: "\n\n" + "-" + " "))
-            print(coreDataManager?.favoritesRecipes[0] as Any)
-            print("nulnul")
         } else if sender.image == UIImage(named: "fullHeart") {
-            print("four")
             sender.image = UIImage(named: "heart")
             deleteRecipeFromFavorites()
         }
     }
     
-    
-    func deleteRecipeFromFavorites() {
-        
-    }
+    func deleteRecipeFromFavorites() {}
 }

@@ -10,8 +10,7 @@ import UIKit
 
 class FavoritesRecipesViewController: UIViewController {
     
-    var searchDetailsService = SearchDetailsService()
-    
+    var searchDetailsService = SearchDetailsService()    
     var coreDataManager: CoreDataManager?
     var favoritesRecipesArray = [String]()
     
@@ -19,13 +18,11 @@ class FavoritesRecipesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print (coreDataManager?.favoritesRecipes.count as Any)
-        favoritesRecipesTableView.reloadData()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        print (coreDataManager?.favoritesRecipes.count as Any)
+        let nibName = UINib(nibName: "RecipeTableViewCell", bundle: nil)
+        favoritesRecipesTableView.register(nibName, forCellReuseIdentifier: "recipeCell")
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
+        let coreDataStack = appDelegate.coreDataStack
+        coreDataManager = CoreDataManager(coreDataStack: coreDataStack)
         favoritesRecipesTableView.reloadData()
     }
 }
@@ -48,7 +45,6 @@ extension FavoritesRecipesViewController: UITableViewDataSource {
 }
 
 extension FavoritesRecipesViewController: UITableViewDelegate {
-    
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let label = UILabel()
         label.text = "You have not added any recipes yet in your favorites"

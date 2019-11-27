@@ -14,7 +14,7 @@ open class CoreDataStack {
     // MARK: - Properties
     
     private let modelName: String
-    
+
     // MARK: - Initializer
     
     public init(modelName: String) {
