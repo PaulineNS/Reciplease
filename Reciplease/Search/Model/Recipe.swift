@@ -38,7 +38,7 @@ struct RecipeClass: Codable {
 //    let cautions, ingredientLines: [String]
   //  let ingredients: [Ingredient]
 //    let calories, totalWeight: Double
-//    let totalTime: Int
+    let totalTime: Int
 //    let totalNutrients, totalDaily: [String: Total]
 //    let digest: [Digest]
 }

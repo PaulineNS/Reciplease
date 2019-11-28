@@ -22,8 +22,8 @@ class RecipeDetailsViewController: UIViewController {
     @IBOutlet weak var recipeIngredientsTxtView: UITextView!
     @IBOutlet weak var favoritesIconButton: UIBarButtonItem!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
         let coreDataStack = appDelegate.coreDataStack
         coreDataManager = CoreDataManager(coreDataStack: coreDataStack)

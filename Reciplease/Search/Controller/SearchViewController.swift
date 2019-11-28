@@ -16,6 +16,8 @@ class SearchViewController: UIViewController {
     var recipeDataReceived = [Recipe]()
 
     
+    @IBOutlet weak var vegetarianSwitch: UISwitch!
+    @IBOutlet weak var veganSwitch: UISwitch!
     @IBOutlet weak var loadActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var addIngredientButton: UIButton!
@@ -41,6 +43,11 @@ class SearchViewController: UIViewController {
         searchTextField.text = " "
     }
     
+    func vegetarienSwitchOn() -> String {
+        let health = "&health=vegetarian"
+        return health
+    }
+    
     @IBAction func didTapGoButton(_ sender: Any) {
         guard ingredientsArray.count != 0
             else {
@@ -50,9 +57,30 @@ class SearchViewController: UIViewController {
         guard let allIngredients = ingredientsArray.joined(separator: ",").addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {
             return
         }
+        guard vegetarianSwitch.isOn else {
+            let gg = ""
+            loadActivityIndicator.isHidden = false
+            searchRecipesButton.isHidden = true
+            searchService.getRecipes(ingredients: allIngredients, health: gg) { result in
+                self.loadActivityIndicator.isHidden = true
+                self.searchRecipesButton.isHidden = false
+                switch result {
+                case .success(let data):
+                    if data.count != 0 {
+                        self.recipeDataReceived = [data]
+                        self.performSegue(withIdentifier: "fromSearchToRecipesVC", sender: nil)
+                    } else {
+                        self.presentAlert(message: "No recipes found")
+                    }
+                case .failure:
+                    self.presentAlert(message: "Veuillez rééssayer ulterieurement")
+                }
+            }
+            return}
+        let gg = vegetarienSwitchOn()
         loadActivityIndicator.isHidden = false
         searchRecipesButton.isHidden = true
-        searchService.getRecipes(ingredients: allIngredients) { result in
+        searchService.getRecipes(ingredients: allIngredients, health: gg) { result in
             self.loadActivityIndicator.isHidden = true
             self.searchRecipesButton.isHidden = false
             switch result {

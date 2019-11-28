@@ -167,7 +167,7 @@
                                         </subviews>
                                     </stackView>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HE9-HO-dte">
-                                        <rect key="frame" x="0.0" y="181.5" width="414" height="351"/>
+                                        <rect key="frame" x="0.0" y="181.5" width="414" height="190"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="MyCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchCell" id="Zf9-R9-FTt">
@@ -184,8 +184,22 @@
                                             <outlet property="delegate" destination="pnX-Ix-Q8a" id="3No-3V-1Cl"/>
                                         </connections>
                                     </tableView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" spacing="26" translatesAutoresizingMaskIntoConstraints="NO" id="OFL-j0-KqG">
+                                        <rect key="frame" x="0.0" y="397.5" width="414" height="77.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vegetarian" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6dX-je-6IB">
+                                                <rect key="frame" x="166" y="0.0" width="82.5" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="4sk-ij-Ubg">
+                                                <rect key="frame" x="182.5" y="46.5" width="51" height="31"/>
+                                            </switch>
+                                        </subviews>
+                                    </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="asF-MQ-Szi">
-                                        <rect key="frame" x="0.0" y="558.5" width="414" height="68.5"/>
+                                        <rect key="frame" x="0.0" y="501" width="414" height="126"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                         <state key="normal" title="Search For Recipes">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -221,6 +235,7 @@
                         <outlet property="loadActivityIndicator" destination="uc4-xo-Q3i" id="HAl-jH-bN2"/>
                         <outlet property="searchRecipesButton" destination="asF-MQ-Szi" id="FuN-7j-cfK"/>
                         <outlet property="searchTextField" destination="96q-io-dV9" id="qhR-7C-asm"/>
+                        <outlet property="vegetarianSwitch" destination="4sk-ij-Ubg" id="Jor-0a-6w0"/>
                         <segue destination="tN4-2O-MdG" kind="show" identifier="fromSearchToRecipesVC" id="r3H-p6-WrQ"/>
                     </connections>
                 </viewController>
@@ -278,7 +293,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="Ffj-zg-Nhb">
-                                <rect key="frame" x="0.0" y="88" width="414" height="323"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="323.00000000000011"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="323" id="UOK-74-09d"/>
                                 </constraints>
