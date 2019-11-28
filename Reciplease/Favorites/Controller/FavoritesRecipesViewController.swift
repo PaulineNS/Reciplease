@@ -12,7 +12,7 @@ class FavoritesRecipesViewController: UIViewController {
     
     var searchDetailsService = SearchDetailsService()    
     var coreDataManager: CoreDataManager?
-    var favoritesRecipeDetailArray:FavoritesRecipesList?
+    var favoritesRecipeDetailArray: FavoritesRecipesList?
     
     
     @IBOutlet weak var favoritesRecipesTableView: UITableView! { didSet { favoritesRecipesTableView.tableFooterView = UIView() }}
@@ -79,5 +79,14 @@ extension FavoritesRecipesViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return coreDataManager?.favoritesRecipes.isEmpty ?? true ? 200 : 0
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        coreDataManager?.deleteRecipeFromFavorite(recipeName: coreDataManager?.favoritesRecipes[indexPath.row].name ?? "")
+        favoritesRecipesTableView.reloadData()
     }
 }
