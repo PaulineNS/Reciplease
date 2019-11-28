@@ -39,8 +39,11 @@ class FavoritesRecipesViewController: UIViewController {
         recipesVc.favoriteRecipeDetailsData = favoritesRecipeDetailArray
         recipesVc.isSegueFromFavoriteVc = true
     }
+    
+    @IBAction func didTapClearButton(_ sender: Any) {
+        coreDataManager?.deleteAllFavorites()
+    }
 }
-
 
 extension FavoritesRecipesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

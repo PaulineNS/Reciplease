@@ -16,6 +16,7 @@ class SearchViewController: UIViewController {
     var recipeDataReceived = [Recipe]()
 
     
+    @IBOutlet weak var loadActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var addIngredientButton: UIButton!
     @IBOutlet weak var ingredientsTableView: UITableView!
@@ -23,6 +24,7 @@ class SearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadActivityIndicator.isHidden = true
     }
     
     @IBAction func didTapButtonToAddIngredient(_ sender: Any) {
@@ -48,7 +50,11 @@ class SearchViewController: UIViewController {
         guard let allIngredients = ingredientsArray.joined(separator: ",").addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {
             return
         }
+        loadActivityIndicator.isHidden = false
+        searchRecipesButton.isHidden = true
         searchService.getRecipes(ingredients: allIngredients) { result in
+            self.loadActivityIndicator.isHidden = true
+            self.searchRecipesButton.isHidden = false
             switch result {
             case .success(let data):
                 if data.count != 0 {
