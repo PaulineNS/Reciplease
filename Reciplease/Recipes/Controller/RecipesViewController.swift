@@ -11,8 +11,7 @@ import UIKit
 class RecipesViewController: UIViewController {
     
     var searchDetailsService = SearchDetailsService()
-    var recipeTitle = ""
-    var recipeImage = UIImageView()
+
     var recipeData = [Recipe]()
     var recipeDetailsDataReceived = [[RecipeDetail]()]
     
@@ -64,6 +63,7 @@ extension RecipesViewController: UITableViewDelegate, UITableViewDataSource {
         }
         guard let recipesVc = segue.destination as? RecipeDetailsViewController else {return}
         recipesVc.recipeDetailsData = recipeDetailsDataReceived
+        recipesVc.isSegueFromFavoriteVc = false
     }
 }
 

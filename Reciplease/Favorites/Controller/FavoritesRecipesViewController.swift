@@ -12,7 +12,8 @@ class FavoritesRecipesViewController: UIViewController {
     
     var searchDetailsService = SearchDetailsService()    
     var coreDataManager: CoreDataManager?
-    var favoritesRecipesArray = [String]()
+    var favoritesRecipeDetailArray:FavoritesRecipesList?
+    
     
     @IBOutlet weak var favoritesRecipesTableView: UITableView! { didSet { favoritesRecipesTableView.tableFooterView = UIView() }}
     
@@ -29,7 +30,17 @@ class FavoritesRecipesViewController: UIViewController {
         coreDataManager = CoreDataManager(coreDataStack: coreDataStack)
         favoritesRecipesTableView.reloadData()
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == "fromFavoritesRecipesToDetailsVC" else {
+            return
+        }
+        guard let recipesVc = segue.destination as? RecipeDetailsViewController else {return}
+        recipesVc.favoriteRecipeDetailsData = favoritesRecipeDetailArray
+        recipesVc.isSegueFromFavoriteVc = true
+    }
 }
+
 
 extension FavoritesRecipesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -45,6 +56,11 @@ extension FavoritesRecipesViewController: UITableViewDataSource {
         cell.configure(title: coreDataManager?.favoritesRecipes[indexPath.row].name ?? "", pictureUrl: urlImage)
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        favoritesRecipeDetailArray = coreDataManager?.favoritesRecipes[indexPath.row]
+        self.performSegue(withIdentifier: "fromFavoritesRecipesToDetailsVC", sender: nil)
     }
 }
 

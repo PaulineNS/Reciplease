@@ -75,11 +75,12 @@
                     <navigationItem key="navigationItem" id="81w-1G-XyC"/>
                     <connections>
                         <outlet property="favoritesRecipesTableView" destination="cdd-tY-dXx" id="Dez-6I-qpS"/>
+                        <segue destination="MFT-TQ-Uvq" kind="show" identifier="fromFavoritesRecipesToDetailsVC" id="sUL-7I-qfw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CGa-ae-eKV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="900.00000000000011" y="-350.22321428571428"/>
+            <point key="canvasLocation" x="1764" y="-352"/>
         </scene>
         <!--Search-->
         <scene sceneID="9lA-It-W2s">
@@ -267,13 +268,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="Ffj-zg-Nhb">
-                                <rect key="frame" x="0.0" y="140" width="414" height="323"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="323"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="323" id="UOK-74-09d"/>
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="oFW-yd-wPf">
-                                <rect key="frame" x="20" y="471" width="374" height="341"/>
+                                <rect key="frame" x="20" y="419" width="374" height="393"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pvp-fg-9Y5">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="20.5"/>
@@ -289,7 +290,7 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c8H-Jc-YC7">
-                                        <rect key="frame" x="0.0" y="310.5" width="374" height="30.5"/>
+                                        <rect key="frame" x="0.0" y="310.5" width="374" height="82.5"/>
                                         <state key="normal" title="Get directions"/>
                                         <connections>
                                             <action selector="didTapGetDirectionsButton:" destination="MFT-TQ-Uvq" eventType="touchUpInside" id="Wie-nJ-b60"/>
@@ -327,7 +328,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SMT-ka-ly1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2560.8695652173915" y="-1028.5714285714284"/>
+            <point key="canvasLocation" x="2797" y="-768"/>
         </scene>
     </scenes>
     <resources>
@@ -335,5 +336,8 @@
         <image name="logo" width="1074" height="694"/>
         <image name="loupe" width="29" height="29"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="sUL-7I-qfw"/>
+    </inferredMetricsTieBreakers>
     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>
