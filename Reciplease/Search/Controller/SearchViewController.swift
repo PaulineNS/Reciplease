@@ -17,16 +17,20 @@ class SearchViewController: UIViewController {
 
     
     @IBOutlet weak var vegetarianSwitch: UISwitch!
-    @IBOutlet weak var veganSwitch: UISwitch!
     @IBOutlet weak var loadActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var addIngredientButton: UIButton!
-    @IBOutlet weak var ingredientsTableView: UITableView!
+    @IBOutlet weak var ingredientsTableView: UITableView! { didSet { ingredientsTableView.tableFooterView = UIView() }}
     @IBOutlet weak var searchRecipesButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         loadActivityIndicator.isHidden = true
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        updateTheNavigationBar(navBarItem: navigationItem)
     }
     
     @IBAction func didTapButtonToAddIngredient(_ sender: Any) {
@@ -139,6 +143,18 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
             ingredientsArray.remove(at: indexPath.row)
             ingredientsTableView.reloadData()
         }
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let imageView = UIImageView()
+        imageView.image = #imageLiteral(resourceName: "logo")
+        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .center
+        return imageView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return ingredientsArray.isEmpty ? 400 : 0
     }
 }
 

@@ -15,8 +15,6 @@ class RecipeDetailsViewController: UIViewController {
     var favoriteRecipeDetailsData: FavoritesRecipesList?
     var isSegueFromFavoriteVc: Bool = true
     
-
-    
     @IBOutlet weak var recipeImageView: UIImageView!
     @IBOutlet weak var recipeTitleLabel: UILabel!
     @IBOutlet weak var recipeIngredientsTxtView: UITextView!
@@ -28,6 +26,11 @@ class RecipeDetailsViewController: UIViewController {
         let coreDataStack = appDelegate.coreDataStack
         coreDataManager = CoreDataManager(coreDataStack: coreDataStack)
         updateTheView()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        updateTheNavigationBar(navBarItem: navigationItem)
     }
     
     func updateTheView() {

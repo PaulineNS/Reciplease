@@ -17,8 +17,9 @@ class FavoritesRecipesViewController: UIViewController {
     
     @IBOutlet weak var favoritesRecipesTableView: UITableView! { didSet { favoritesRecipesTableView.tableFooterView = UIView() }}
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        updateTheNavigationBar(navBarItem: navigationItem)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -42,6 +43,7 @@ class FavoritesRecipesViewController: UIViewController {
     
     @IBAction func didTapClearButton(_ sender: Any) {
         coreDataManager?.deleteAllFavorites()
+        favoritesRecipesTableView.reloadData()
     }
 }
 
@@ -70,7 +72,7 @@ extension FavoritesRecipesViewController: UITableViewDataSource {
 extension FavoritesRecipesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let label = UILabel()
-        label.text = "You have not added any recipes yet in your favorites"
+        label.text = "You haven't any favorites yet"
         label.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
         label.textAlignment = .center
         label.textColor = .darkGray

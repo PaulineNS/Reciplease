@@ -23,6 +23,11 @@ class RecipesViewController: UIViewController {
         let nibName = UINib(nibName: "RecipeTableViewCell", bundle: nil)
         recipesTableView.register(nibName, forCellReuseIdentifier: "recipeCell")
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        updateTheNavigationBar(navBarItem: navigationItem)
+    }
 }
 
 extension RecipesViewController: UITableViewDelegate, UITableViewDataSource {
