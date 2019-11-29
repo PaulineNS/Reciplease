@@ -11,11 +11,12 @@ import UIKit
 final class RecipesViewController: UIViewController {
     
     // Instantiation
-    var searchDetailsService = SearchDetailsService()
+ //   var searchDetailsService = SearchDetailsService()
     
     // Variables
-    var recipeData = [Recipe]()
-    var recipeDetailsDataReceived = [[RecipeDetail]()]
+    var recipeData: Recipe?
+    var recipeDetailsDataReceived: Hit?
+        //= [[RecipeDetail]()]
     
     // Outlets
     @IBOutlet weak var recipesTableView: UITableView!
@@ -25,10 +26,6 @@ final class RecipesViewController: UIViewController {
         recipesTableView.reloadData()
         let nibName = UINib(nibName: "RecipeTableViewCell", bundle: nil)
         recipesTableView.register(nibName, forCellReuseIdentifier: "recipeCell")
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
         updateTheNavigationBar(navBarItem: navigationItem)
     }
     
@@ -38,23 +35,30 @@ final class RecipesViewController: UIViewController {
         }
         guard let recipesVc = segue.destination as? RecipeDetailsViewController else {return}
         recipesVc.recipeDetailsData = recipeDetailsDataReceived
+        //recipeData
+        //recipeDetailsDataReceived
         recipesVc.isSegueFromFavoriteVc = false
+    }
+    
+    func updateRecipeData(indexPath: IndexPath){
+        recipeDetailsDataReceived = recipeData?.hits?[indexPath.row]
     }
 }
 
 extension RecipesViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return recipeData[0].hits.count
+        return recipeData?.hits?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "recipeCell", for: indexPath) as? RecipeTableViewCell else {
             return UITableViewCell()
         }
-        guard let urlImage = URL(string: recipeData[0].hits[indexPath.row].recipe.image) else { return UITableViewCell()
-        }
-        cell.configure(title: recipeData[0].hits[indexPath.row].recipe.label, pictureUrl: urlImage)
+//        guard let urlImage = URL(string: recipeData[0].hits[indexPath.row].recipe.image) else { return UITableViewCell()
+//        }
+        cell.recipe = recipeData?.hits?[indexPath.row]
+//        cell.configure(title: recipeData[0].hits[indexPath.row].recipe.label, pictureUrl: urlImage, time: recipeData[0].hits[indexPath.row].recipe.totalTime.convertIntToTime)
         return cell
     }
     
@@ -63,15 +67,17 @@ extension RecipesViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        searchDetailsService.getRecipeDetails(recipeId: recipeData[0].hits[indexPath.row].recipe.uri) { result in
-            switch result {
-            case .success(let data):
-                self.recipeDetailsDataReceived = [data]
-                self.performSegue(withIdentifier: "fromAllRecipesToDetailsVC", sender: nil)
-            case .failure:
-                self.presentAlert(message: "Veuillez rééssayer ulterieurement")
-            }
-        }
+        updateRecipeData(indexPath: indexPath)
+        performSegue(withIdentifier:"fromAllRecipesToDetailsVC", sender: nil)
+//        searchDetailsService.getRecipeDetails(recipeId: recipeData?.hits?[indexPath.row].recipe?.uri ?? "") { result in
+//            switch result {
+//            case .success(let data):
+//                self.recipeDetailsDataReceived = [data]
+//                self.performSegue(withIdentifier: "fromAllRecipesToDetailsVC", sender: nil)
+//            case .failure:
+//                self.presentAlert(message: "Veuillez rééssayer ulterieurement")
+//            }
+//        }
     }
 }
 

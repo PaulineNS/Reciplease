@@ -12,7 +12,8 @@ final class RecipeDetailsViewController: UIViewController {
     
     // Variables
     var coreDataManager: CoreDataManager?
-    var recipeDetailsData = [[RecipeDetail]()]
+    var recipeDetailsData: Hit?
+    //RecipeDetail?
     var favoriteRecipeDetailsData: FavoritesRecipesList?
     var isSegueFromFavoriteVc: Bool = true
     
@@ -22,17 +23,17 @@ final class RecipeDetailsViewController: UIViewController {
     @IBOutlet weak var recipeIngredientsTxtView: UITextView!
     @IBOutlet weak var favoritesIconButton: UIBarButtonItem!
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
+    override func viewDidLoad() {
+        super.viewDidLoad()
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
         let coreDataStack = appDelegate.coreDataStack
         coreDataManager = CoreDataManager(coreDataStack: coreDataStack)
-        updateTheView()
+        updateTheNavigationBar(navBarItem: navigationItem)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
-        updateTheNavigationBar(navBarItem: navigationItem)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        updateTheView()
     }
 }
 
@@ -47,10 +48,12 @@ extension RecipeDetailsViewController {
     }
     
     func updateTheViewFromCallback(){
-        recipeTitleLabel.text = recipeDetailsData[0][0].label
-        guard let urlImage = URL(string: recipeDetailsData[0][0].image) else { return }
+        recipeTitleLabel.text = recipeDetailsData?.recipe?.label
+            //recipeDetailsData[0][0].label
+        guard let urlImage = URL(string: recipeDetailsData?.recipe?.image ?? ""/*recipeDetailsData[0][0].image*/) else { return }
         recipeImageView.load(url: urlImage)
-        recipeIngredientsTxtView.text = "-" + " " + recipeDetailsData[0][0].ingredientLines.joined(separator: "\n\n" + "-" + " " )
+        guard let ingredientsArray = recipeDetailsData?.recipe?.ingredientLines else {return}
+        recipeIngredientsTxtView.text = "-" + " " + ingredientsArray.joined(separator: "\n\n" + "-" + " ") /*recipeDetailsData[0][0].ingredientLines.joined(separator: "\n\n" + "-" + " " )*/
     }
     
     func updateTheView() {
@@ -71,7 +74,7 @@ extension RecipeDetailsViewController {
     
     @IBAction func didTapGetDirectionsButton(_ sender: Any) {
         if isSegueFromFavoriteVc == false {
-            guard let directionsUrl = URL(string: recipeDetailsData[0][0].url) else {return}
+            guard let directionsUrl = URL(string: recipeDetailsData?.recipe?.url ?? "" /*recipeDetailsData?[0][0].url*/) else {return}
             UIApplication.shared.open(directionsUrl)
         } else if isSegueFromFavoriteVc == true {
             guard let directionsUrl = URL(string: favoriteRecipeDetailsData?.recipeUrl ?? "") else {return}
@@ -83,11 +86,11 @@ extension RecipeDetailsViewController {
         if sender.image == UIImage(named: "heart") {
             sender.image = UIImage(named: "fullHeart")
             if isSegueFromFavoriteVc == false {
-                guard let name = recipeDetailsData[0][0].label else { return}
-                coreDataManager?.addRecipeToFavorites(name: name, image: recipeDetailsData[0][0].image, ingredientsDescription: "-" + " " + recipeDetailsData[0][0].ingredientLines.joined(separator: "\n\n" + "-" + " "), recipeUrl: recipeDetailsData[0][0].url)
+                guard let name = recipeDetailsData?.recipe?.label, let image = recipeDetailsData?.recipe?.image, let ingredientArray = recipeDetailsData?.recipe?.ingredientLines, let url = recipeDetailsData?.recipe?.url, let time = recipeDetailsData?.recipe?.totalTime /*recipeDetailsData?[0][0].label*/ else { return}
+                coreDataManager?.addRecipeToFavorites(name: name, image: image /*recipeDetailsData?[0][0].image*/, ingredientsDescription: "-" + " " + ingredientArray.joined(separator: "\n\n" + "-" + " "), recipeUrl: url /*recipeDetailsData[0][0].url*/, time: String(time) /*recipeDetailsData[0][0].totalTime*/)
             } else if isSegueFromFavoriteVc == true {
                 guard let name = favoriteRecipeDetailsData?.name else { return }
-                coreDataManager?.addRecipeToFavorites(name: name, image: favoriteRecipeDetailsData?.image ?? "", ingredientsDescription: favoriteRecipeDetailsData?.ingredients ?? "", recipeUrl: favoriteRecipeDetailsData?.recipeUrl ?? "")
+                coreDataManager?.addRecipeToFavorites(name: name, image: favoriteRecipeDetailsData?.image ?? "", ingredientsDescription: favoriteRecipeDetailsData?.ingredients ?? "", recipeUrl: favoriteRecipeDetailsData?.recipeUrl ?? "", time: favoriteRecipeDetailsData?.totalTime ?? "")
             }
         } else if sender.image == UIImage(named: "fullHeart") {
             sender.image = UIImage(named: "heart")
@@ -96,4 +99,9 @@ extension RecipeDetailsViewController {
     }
 }
 
-
+////data from url
+//func blabla() {
+//    let stringUrl = ""
+//    guard let url = URL(string: stringUrl) else {return}
+//    guard let data = try? Data(contentsOf: url) else {return}
+//}

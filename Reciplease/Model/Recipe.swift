@@ -9,36 +9,36 @@
 import Foundation
 
 // MARK: - Recipe
-struct Recipe: Codable {
-    let q: String
-    let from, to: Int
+struct Recipe: Decodable {
+    let q: String?
+    let to: Int?
 //    let params: Params
 //    let more: Bool
-    let count: Int
-    let hits: [Hit]
+    let count: Int?
+    let hits: [Hit]?
 }
 
 // MARK: - Hit
-struct Hit: Codable {
-    let recipe: RecipeClass
+struct Hit: Decodable {
+    let recipe: RecipeClass?
 //    let bookmarked, bought: Bool
 }
 
 // MARK: - RecipeClass
-struct RecipeClass: Codable {
-    let uri: String
-    let label: String
-    let image: String
+struct RecipeClass: Decodable {
+    let uri: String?
+    let label: String?
+    let image: String?
 //    let source: String
- //   let url: String
+    let url: String?
 //    let shareAs: String
 //    let yield: Int
 //    let dietLabels: [String]
 //    let healthLabels: [HealthLabel]
-//    let cautions, ingredientLines: [String]
+    let ingredientLines: [String]?
   //  let ingredients: [Ingredient]
 //    let calories, totalWeight: Double
-    let totalTime: Int
+    let totalTime: Int?
 //    let totalNutrients, totalDaily: [String: Total]
 //    let digest: [Digest]
 }

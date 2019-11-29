@@ -29,12 +29,13 @@ final class CoreDataManager {
     }
     
     // MARK: - Manage Task Entity
-    func addRecipeToFavorites(name: String, image: String, ingredientsDescription: String, recipeUrl: String) {
+    func addRecipeToFavorites(name: String, image: String, ingredientsDescription: String, recipeUrl: String, time: String) {
         let recipe = FavoritesRecipesList(context: managedObjectContext)
         recipe.image = image
         recipe.ingredients = ingredientsDescription
         recipe.name = name
         recipe.recipeUrl = recipeUrl
+        recipe.totalTime = time
         coreDataStack.saveContext()
     }
     
@@ -61,6 +62,18 @@ final class CoreDataManager {
             return false }
         guard recipeFound == 0 else { return true}
         return false
+        
+        
+//        let request: NSFetchRequest<FavoritesRecipesList> = FavoritesRecipesList.fetchRequest()
+//        request.predicate = NSPredicate(format: "name == %@", recipeName)
+//
+//        guard let recipes = try? managedObjectContext.fetch(request) else { return false }
+//        if recipes.isEmpty {
+//            return false
+//        }
+//        return true
     }
 }
+
+
 

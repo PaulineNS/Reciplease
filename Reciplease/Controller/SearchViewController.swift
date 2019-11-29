@@ -15,7 +15,7 @@ final class SearchViewController: UIViewController {
     
     // Var
     var ingredientsArray = [String]()
-    var recipeDataReceived = [Recipe]()
+    var recipeDataReceived: Recipe?
     
     // Outlets
     @IBOutlet weak var vegetarianSwitch: UISwitch!
@@ -50,7 +50,8 @@ final class SearchViewController: UIViewController {
             switch result {
             case .success(let data):
                 if data.count != 0 {
-                    self.recipeDataReceived = [data]
+                    self.recipeDataReceived = data
+                    //[data]
                     self.performSegue(withIdentifier: "fromSearchToRecipesVC", sender: nil)
                 } else {
                     self.presentAlert(message: "No recipes found")
@@ -65,11 +66,6 @@ final class SearchViewController: UIViewController {
         guard let searchBarTxt = searchTextField.text else {return}
         ingredientsArray.append(searchBarTxt)
         searchTextField.text = " "
-    }
-    
-    func vegetarienSwitchOn() -> String {
-        let health = "&health=vegetarian"
-        return health
     }
 }
 
@@ -95,7 +91,7 @@ extension SearchViewController {
             getRecipesDependingVegetarianSwitch(allIngredients, "")
             return
         }
-        getRecipesDependingVegetarianSwitch(allIngredients, vegetarienSwitchOn())
+        getRecipesDependingVegetarianSwitch(allIngredients, "&health=vegetarian")
     }
     
     @IBAction func didTapClearButton(_ sender: Any) {

@@ -39,7 +39,6 @@ final class SearchRecipesService {
             }
             callback(.success(dataDecoded))
             self.searchData = [dataDecoded]
-            
         }
     }
 }

@@ -11,7 +11,7 @@ import UIKit
 final class FavoritesRecipesViewController: UIViewController {
     
     //Instantiation
-    var searchDetailsService = SearchDetailsService()
+   // var searchDetailsService = SearchDetailsService()
     
     // Variables
     var coreDataManager: CoreDataManager?
@@ -62,7 +62,7 @@ extension FavoritesRecipesViewController: UITableViewDataSource {
         }
         guard let urlImage = URL(string: coreDataManager?.favoritesRecipes[indexPath.row].image ?? "") else { return UITableViewCell()}
         
-        cell.configure(title: coreDataManager?.favoritesRecipes[indexPath.row].name ?? "", pictureUrl: urlImage)
+        cell.configure(title: coreDataManager?.favoritesRecipes[indexPath.row].name ?? "", pictureUrl: urlImage, time: coreDataManager?.favoritesRecipes[indexPath.row].totalTime ?? "")
         
         return cell
     }
