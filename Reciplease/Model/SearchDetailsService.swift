@@ -10,10 +10,11 @@ import Foundation
 
 final class SearchDetailsService {
     
+    // Variables
     var searchData = [[RecipeDetail]()]
-    
     private let session: AlamoSession
     
+    //Initialisation
     init(session: AlamoSession = SearchSession()) {
         self.session = session
     }

@@ -8,14 +8,16 @@
 
 import UIKit
 
-class SearchViewController: UIViewController {
+final class SearchViewController: UIViewController {
     
+    // Instantiation
     var searchService = SearchRecipesService()
     
+    // Var
     var ingredientsArray = [String]()
     var recipeDataReceived = [Recipe]()
-
     
+    // Outlets
     @IBOutlet weak var vegetarianSwitch: UISwitch!
     @IBOutlet weak var loadActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var searchTextField: UITextField!
@@ -33,12 +35,30 @@ class SearchViewController: UIViewController {
         updateTheNavigationBar(navBarItem: navigationItem)
     }
     
-    @IBAction func didTapButtonToAddIngredient(_ sender: Any) {
-        guard let ingredientName = searchTextField.text, !ingredientName.isBlank else {
-            presentAlert(message: "Veuillez saisir un ingrédient")
-            return}
-        addIngredientToTableView()
-        ingredientsTableView.reloadData()
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == "fromSearchToRecipesVC" else {return}
+        guard let recipesVc = segue.destination as? RecipesViewController else {return}
+        recipesVc.recipeData = recipeDataReceived
+    }
+    
+    func getRecipesDependingVegetarianSwitch(_ allIngredients: String, _ health: String) {
+        loadActivityIndicator.isHidden = false
+        searchRecipesButton.isHidden = true
+        searchService.getRecipes(ingredients: allIngredients, health: health) { result in
+            self.loadActivityIndicator.isHidden = true
+            self.searchRecipesButton.isHidden = false
+            switch result {
+            case .success(let data):
+                if data.count != 0 {
+                    self.recipeDataReceived = [data]
+                    self.performSegue(withIdentifier: "fromSearchToRecipesVC", sender: nil)
+                } else {
+                    self.presentAlert(message: "No recipes found")
+                }
+            case .failure:
+                self.presentAlert(message: "Please try later")
+            }
+        }
     }
     
     func addIngredientToTableView() {
@@ -51,10 +71,20 @@ class SearchViewController: UIViewController {
         let health = "&health=vegetarian"
         return health
     }
+}
+
+// IBActions
+extension SearchViewController {
+    @IBAction func didTapButtonToAddIngredient(_ sender: Any) {
+        guard let ingredientName = searchTextField.text, !ingredientName.isBlank else {
+            presentAlert(message: "Veuillez saisir un ingrédient")
+            return}
+        addIngredientToTableView()
+        ingredientsTableView.reloadData()
+    }
     
     @IBAction func didTapGoButton(_ sender: Any) {
-        guard ingredientsArray.count != 0
-            else {
+        guard ingredientsArray.count != 0 else {
             presentAlert(message: "You have to enter at least 1 ingredient")
             return
         }
@@ -62,43 +92,10 @@ class SearchViewController: UIViewController {
             return
         }
         guard vegetarianSwitch.isOn else {
-            let gg = ""
-            loadActivityIndicator.isHidden = false
-            searchRecipesButton.isHidden = true
-            searchService.getRecipes(ingredients: allIngredients, health: gg) { result in
-                self.loadActivityIndicator.isHidden = true
-                self.searchRecipesButton.isHidden = false
-                switch result {
-                case .success(let data):
-                    if data.count != 0 {
-                        self.recipeDataReceived = [data]
-                        self.performSegue(withIdentifier: "fromSearchToRecipesVC", sender: nil)
-                    } else {
-                        self.presentAlert(message: "No recipes found")
-                    }
-                case .failure:
-                    self.presentAlert(message: "Veuillez rééssayer ulterieurement")
-                }
-            }
-            return}
-        let gg = vegetarienSwitchOn()
-        loadActivityIndicator.isHidden = false
-        searchRecipesButton.isHidden = true
-        searchService.getRecipes(ingredients: allIngredients, health: gg) { result in
-            self.loadActivityIndicator.isHidden = true
-            self.searchRecipesButton.isHidden = false
-            switch result {
-            case .success(let data):
-                if data.count != 0 {
-                    self.recipeDataReceived = [data]
-                    self.performSegue(withIdentifier: "fromSearchToRecipesVC", sender: nil)
-                } else {
-                    self.presentAlert(message: "No recipes found")
-                }
-            case .failure:
-                self.presentAlert(message: "Veuillez rééssayer ulterieurement")
-            }
+            getRecipesDependingVegetarianSwitch(allIngredients, "")
+            return
         }
+        getRecipesDependingVegetarianSwitch(allIngredients, vegetarienSwitchOn())
     }
     
     @IBAction func didTapClearButton(_ sender: Any) {
@@ -108,12 +105,6 @@ class SearchViewController: UIViewController {
     
     @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
         searchTextField.resignFirstResponder()
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard segue.identifier == "fromSearchToRecipesVC" else {return}
-        guard let recipesVc = segue.destination as? RecipesViewController else {return}
-        recipesVc.recipeData = recipeDataReceived
     }
 }
 

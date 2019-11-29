@@ -8,12 +8,13 @@
 
 import UIKit
 
-class RecipeTableViewCell: UITableViewCell {
+final class RecipeTableViewCell: UITableViewCell {
 
+    // Outlets
     @IBOutlet weak var recipeImageView: UIImageView!
     @IBOutlet weak var recipeTitleLabel: UILabel!
     
-//// Cell Configuration
+    // Cell Configuration
     func configure(title: String, pictureUrl: URL){
         recipeTitleLabel.text = title
         recipeImageView.load(url: pictureUrl)

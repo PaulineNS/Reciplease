@@ -8,13 +8,16 @@
 
 import UIKit
 
-class FavoritesRecipesViewController: UIViewController {
+final class FavoritesRecipesViewController: UIViewController {
     
-    var searchDetailsService = SearchDetailsService()    
+    //Instantiation
+    var searchDetailsService = SearchDetailsService()
+    
+    // Variables
     var coreDataManager: CoreDataManager?
     var favoritesRecipeDetailArray: FavoritesRecipesList?
     
-    
+    // Outlets
     @IBOutlet weak var favoritesRecipesTableView: UITableView! { didSet { favoritesRecipesTableView.tableFooterView = UIView() }}
     
     override func viewDidAppear(_ animated: Bool) {
@@ -41,6 +44,7 @@ class FavoritesRecipesViewController: UIViewController {
         recipesVc.isSegueFromFavoriteVc = true
     }
     
+    // Action 
     @IBAction func didTapClearButton(_ sender: Any) {
         coreDataManager?.deleteAllFavorites()
         favoritesRecipesTableView.reloadData()

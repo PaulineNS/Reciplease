@@ -8,13 +8,16 @@
 
 import UIKit
 
-class RecipesViewController: UIViewController {
+final class RecipesViewController: UIViewController {
     
+    // Instantiation
     var searchDetailsService = SearchDetailsService()
-
+    
+    // Variables
     var recipeData = [Recipe]()
     var recipeDetailsDataReceived = [[RecipeDetail]()]
     
+    // Outlets
     @IBOutlet weak var recipesTableView: UITableView!
     
     override func viewDidLoad() {
@@ -27,6 +30,15 @@ class RecipesViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         updateTheNavigationBar(navBarItem: navigationItem)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == "fromAllRecipesToDetailsVC" else {
+            return
+        }
+        guard let recipesVc = segue.destination as? RecipeDetailsViewController else {return}
+        recipesVc.recipeDetailsData = recipeDetailsDataReceived
+        recipesVc.isSegueFromFavoriteVc = false
     }
 }
 
@@ -60,15 +72,6 @@ extension RecipesViewController: UITableViewDelegate, UITableViewDataSource {
                 self.presentAlert(message: "Veuillez rééssayer ulterieurement")
             }
         }
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard segue.identifier == "fromAllRecipesToDetailsVC" else {
-            return
-        }
-        guard let recipesVc = segue.destination as? RecipeDetailsViewController else {return}
-        recipesVc.recipeDetailsData = recipeDetailsDataReceived
-        recipesVc.isSegueFromFavoriteVc = false
     }
 }
 

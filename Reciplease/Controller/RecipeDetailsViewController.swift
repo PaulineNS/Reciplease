@@ -8,13 +8,15 @@
 
 import UIKit
 
-class RecipeDetailsViewController: UIViewController {
+final class RecipeDetailsViewController: UIViewController {
     
+    // Variables
     var coreDataManager: CoreDataManager?
     var recipeDetailsData = [[RecipeDetail]()]
     var favoriteRecipeDetailsData: FavoritesRecipesList?
     var isSegueFromFavoriteVc: Bool = true
     
+    //Outlets
     @IBOutlet weak var recipeImageView: UIImageView!
     @IBOutlet weak var recipeTitleLabel: UILabel!
     @IBOutlet weak var recipeIngredientsTxtView: UITextView!
@@ -32,35 +34,50 @@ class RecipeDetailsViewController: UIViewController {
         super.viewDidAppear(true)
         updateTheNavigationBar(navBarItem: navigationItem)
     }
+}
+
+// Update the view
+extension RecipeDetailsViewController {
+    
+    func updateTheViewFromCoreData(){
+        recipeTitleLabel.text = favoriteRecipeDetailsData?.name
+        guard let urlImage = URL(string: favoriteRecipeDetailsData?.image ?? "") else { return }
+        recipeImageView.load(url: urlImage)
+        recipeIngredientsTxtView.text = favoriteRecipeDetailsData?.ingredients
+    }
+    
+    func updateTheViewFromCallback(){
+        recipeTitleLabel.text = recipeDetailsData[0][0].label
+        guard let urlImage = URL(string: recipeDetailsData[0][0].image) else { return }
+        recipeImageView.load(url: urlImage)
+        recipeIngredientsTxtView.text = "-" + " " + recipeDetailsData[0][0].ingredientLines.joined(separator: "\n\n" + "-" + " " )
+    }
     
     func updateTheView() {
         if isSegueFromFavoriteVc == false {
-            recipeTitleLabel.text = recipeDetailsData[0][0].label
-            guard let urlImage = URL(string: recipeDetailsData[0][0].image) else { return }
-            recipeImageView.load(url: urlImage)
-            recipeIngredientsTxtView.text = "-" + " " + recipeDetailsData[0][0].ingredientLines.joined(separator: "\n\n" + "-" + " " )
-            
+            updateTheViewFromCallback()
         } else if isSegueFromFavoriteVc == true {
-            recipeTitleLabel.text = favoriteRecipeDetailsData?.name
-            guard let urlImage = URL(string: favoriteRecipeDetailsData?.image ?? "") else { return }
-            recipeImageView.load(url: urlImage)
-            recipeIngredientsTxtView.text = favoriteRecipeDetailsData?.ingredients
+            updateTheViewFromCoreData()
         }
         guard coreDataManager?.checkIfRecipeIsAlreadyFavorite(recipeName: recipeTitleLabel.text ?? "") == true else {
             favoritesIconButton.image = UIImage(named: "heart")
             return }
         favoritesIconButton.image = UIImage(named: "fullHeart")
     }
+}
+
+// Actions
+extension RecipeDetailsViewController {
     
     @IBAction func didTapGetDirectionsButton(_ sender: Any) {
         if isSegueFromFavoriteVc == false {
-        guard let directionsUrl = URL(string: recipeDetailsData[0][0].url) else {return}
-        UIApplication.shared.open(directionsUrl)
+            guard let directionsUrl = URL(string: recipeDetailsData[0][0].url) else {return}
+            UIApplication.shared.open(directionsUrl)
         } else if isSegueFromFavoriteVc == true {
             guard let directionsUrl = URL(string: favoriteRecipeDetailsData?.recipeUrl ?? "") else {return}
             UIApplication.shared.open(directionsUrl)
         }
- }
+    }
     
     @IBAction func didTapFavoriteButton(_ sender: UIBarButtonItem) {
         if sender.image == UIImage(named: "heart") {
@@ -75,7 +92,8 @@ class RecipeDetailsViewController: UIViewController {
         } else if sender.image == UIImage(named: "fullHeart") {
             sender.image = UIImage(named: "heart")
             coreDataManager?.deleteRecipeFromFavorite(recipeName: recipeTitleLabel.text ?? "")
-            
         }
     }
 }
+
+
