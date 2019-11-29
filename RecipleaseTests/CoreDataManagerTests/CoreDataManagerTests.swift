@@ -31,16 +31,16 @@ final class CoreDataManagerTests: XCTestCase {
     
     // MARK: - Tests
     
-    func testAddIngredientMethods_WhenAnEntityIsCreated_ThenShouldBeCorrectlySaved() {
-        coreDataManager.createIngredient(name: "chicken")
-        XCTAssertTrue(!coreDataManager.ingredients.isEmpty)
-        XCTAssertTrue(coreDataManager.ingredients.count == 1)
-        XCTAssertTrue(coreDataManager.ingredients[0].name! == "chicken")
+    func testAddRecipeToFavoritesMethods_WhenAnEntityIsCreated_ThenShouldBeCorrectlySaved() {
+        coreDataManager.addRecipeToFavorites(name: "Waldorf Salad", image: "https://www.edamam.com/web-img/891/8913165cf2fbd4cd955cd23442dd2184.jpg", ingredientsDescription: "", recipeUrl: "http://www.bbcgoodfood.com/recipes/9753/")
+        XCTAssertTrue(!coreDataManager.favoritesRecipes.isEmpty)
+        XCTAssertTrue(coreDataManager.favoritesRecipes.count == 1)
+        XCTAssertTrue(coreDataManager.favoritesRecipes[0].name! == "Waldorf Salad")
     }
     
     func testDeleteAllIngredientsMethod_WhenEntitiesAreDeleted_ThenShouldBeCorrectlyDeleted() {
-        coreDataManager.createIngredient(name: "chicken")
-        coreDataManager.deleteAllIngredients()
-        XCTAssertTrue(coreDataManager.ingredients.isEmpty)
+        coreDataManager.addRecipeToFavorites(name: "Waldorf Salad", image: "https://www.edamam.com/web-img/891/8913165cf2fbd4cd955cd23442dd2184.jpg", ingredientsDescription: "", recipeUrl: "http://www.bbcgoodfood.com/recipes/9753/")
+        coreDataManager.deleteAllFavorites()
+        XCTAssertTrue(coreDataManager.favoritesRecipes.isEmpty)
     }
 }

@@ -15,7 +15,7 @@ class RecipleaseTests: XCTestCase {
         let session = MockSearchSession(fakeResponse: FakeResponse(response: nil, data: nil))
         let requestService = SearchRecipesService(session: session)
         let expectation = XCTestExpectation(description: "Wait for queue change.")
-        requestService.getRecipes(ingredients: "chicken") { result in
+        requestService.getRecipes(ingredients: "chicken", health: "") { result in
             guard case .failure(let error) = result else {
                 XCTFail("Test getData method with no data failed.")
                 return
@@ -30,7 +30,7 @@ class RecipleaseTests: XCTestCase {
         let session = MockSearchSession(fakeResponse: FakeResponse(response: FakeResponseData.responseKO, data: FakeResponseData.correctData))
         let requestService = SearchRecipesService(session: session)
         let expectation = XCTestExpectation(description: "Wait for queue change.")
-        requestService.getRecipes(ingredients: "chicken") { result in
+        requestService.getRecipes(ingredients: "chicken", health: "") { result in
             guard case .failure(let error) = result else {
                 XCTFail("Test getData method with incorrect response failed.")
                 return
@@ -45,7 +45,7 @@ class RecipleaseTests: XCTestCase {
         let session = MockSearchSession(fakeResponse: FakeResponse(response: FakeResponseData.responseOK, data: FakeResponseData.incorrectData))
         let requestService = SearchRecipesService(session: session)
         let expectation = XCTestExpectation(description: "Wait for queue change.")
-        requestService.getRecipes(ingredients: "chicken") { result in
+        requestService.getRecipes(ingredients: "chicken", health: "") { result in
             guard case .failure(let error) = result else {
                 XCTFail("Test getData method with undecodable data failed.")
                 return

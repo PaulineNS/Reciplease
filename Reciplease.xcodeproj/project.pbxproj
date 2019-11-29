@@ -212,8 +212,8 @@
 		56FEA700237D6071002341C1 /* RecipleaseTests */ = {
 			isa = PBXGroup;
 			children = (
-				56EA08ED238451E70087C1EE /* CoreDataManagerTests */,
 				56FEA703237D6072002341C1 /* Info.plist */,
+				56EA08ED238451E70087C1EE /* CoreDataManagerTests */,
 				56FEA710237EEDF8002341C1 /* SearchServiceTestCase */,
 			);
 			path = RecipleaseTests;

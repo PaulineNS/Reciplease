@@ -14,7 +14,7 @@ open class CoreDataStack {
     // MARK: - Properties
     
     private let modelName: String
-
+    
     // MARK: - Initializer
     
     public init(modelName: String) {
@@ -45,6 +45,4 @@ open class CoreDataStack {
             print("Unresolved error \(error), \(error.userInfo)")
         }
     }
-    
-
 }
