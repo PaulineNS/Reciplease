@@ -15,6 +15,8 @@ final class RecipeTableViewCell: UITableViewCell {
     @IBOutlet weak var recipeTitleLabel: UILabel!
     @IBOutlet weak var recipeTimeLabel: UILabel!
     
+    
+    // var recipe: dataRecu
     var recipe: Hit? {
         didSet {
             recipeTitleLabel.text = recipe?.recipe?.label

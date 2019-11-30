@@ -13,9 +13,34 @@ final class SearchRecipesService {
     //MARK: VARIABLES
     var searchData = [Recipe]()
     private let session: AlamoSession
+    var mapperEncoderDelegate: MapperEncoder?
     
     init(session: AlamoSession = SearchSession()) {
         self.session = session
+    }
+    
+    func f(ingredients: String, health: String, callback: @escaping (Result<Recipe, Error>) -> Void) {
+        let baseURL = URL(string: "https://api.edamam.com/search?")
+        guard let url = mapperEncoderDelegate?.encode(baseUrl: baseURL, parameters: [("q", ingredients + health),("to", "100"),("app_id","e6b49d48"),("app_key","c2809da35956f6fb80d5a86c46199b6b")]?) else {return}
+        session.request(with: url) { responseData in
+            guard let data = responseData.data else {
+                print ("no data")
+                callback(.failure(NetworkError.noData))
+                return
+            }
+            guard responseData.response?.statusCode == 200 else {
+                print ("bad status code")
+                callback(.failure(NetworkError.incorrectResponse))
+                return
+            }
+            guard let dataDecoded = try? JSONDecoder().decode(Recipe.self, from: data) else {
+                print ("no json")
+                callback(.failure(NetworkError.undecodable))
+                return
+            }
+            callback(.success(dataDecoded))
+            self.searchData = [dataDecoded]
+        }
     }
     
     // request service 

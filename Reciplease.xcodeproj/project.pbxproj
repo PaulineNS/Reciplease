@@ -22,6 +22,8 @@
 		56EA08FA238BFA5F0087C1EE /* RecipeDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56EA08F9238BFA5F0087C1EE /* RecipeDetailsViewController.swift */; };
 		56EA0900238D2E6B0087C1EE /* FavoritesRecipesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56EA08FF238D2E6B0087C1EE /* FavoritesRecipesViewController.swift */; };
 		56EC8F3723913B9800E2FB2F /* IntExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56EC8F3623913B9800E2FB2F /* IntExtension.swift */; };
+		56EC8F39239180F300E2FB2F /* RecipeDataReceived.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56EC8F38239180F300E2FB2F /* RecipeDataReceived.swift */; };
+		56EC8F3B23928C1D00E2FB2F /* MapperEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56EC8F3A23928C1D00E2FB2F /* MapperEncoder.swift */; };
 		56FEA6E9237558E7002341C1 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FEA6E8237558E7002341C1 /* Recipe.swift */; };
 		56FEA6EB237559EE002341C1 /* ErrorCases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FEA6EA237559EE002341C1 /* ErrorCases.swift */; };
 		56FEA6EF23756D18002341C1 /* RecipesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56FEA6EE23756D18002341C1 /* RecipesViewController.swift */; };
@@ -68,6 +70,8 @@
 		56EA08F9238BFA5F0087C1EE /* RecipeDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailsViewController.swift; sourceTree = "<group>"; };
 		56EA08FF238D2E6B0087C1EE /* FavoritesRecipesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesRecipesViewController.swift; sourceTree = "<group>"; };
 		56EC8F3623913B9800E2FB2F /* IntExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntExtension.swift; sourceTree = "<group>"; };
+		56EC8F38239180F300E2FB2F /* RecipeDataReceived.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDataReceived.swift; sourceTree = "<group>"; };
+		56EC8F3A23928C1D00E2FB2F /* MapperEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapperEncoder.swift; sourceTree = "<group>"; };
 		56FEA6E8237558E7002341C1 /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		56FEA6EA237559EE002341C1 /* ErrorCases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorCases.swift; sourceTree = "<group>"; };
 		56FEA6EE23756D18002341C1 /* RecipesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesViewController.swift; sourceTree = "<group>"; };
@@ -176,6 +180,7 @@
 			children = (
 				56FEA6F2237C4A36002341C1 /* SearchSession.swift */,
 				56FEA6E8237558E7002341C1 /* Recipe.swift */,
+				56EC8F38239180F300E2FB2F /* RecipeDataReceived.swift */,
 				56FEA6F6237C5DDA002341C1 /* SearchService.swift */,
 				5608F3EE235DF6AF008A8BA4 /* Reciplease.xcdatamodeld */,
 				56FEA70B237D69A7002341C1 /* CoreDataManager.swift */,
@@ -202,6 +207,7 @@
 				56FEA709237D6365002341C1 /* StringExtension.swift */,
 				56EA08EB2383E87F0087C1EE /* ExtensionsUIImageView.swift */,
 				56EC8F3623913B9800E2FB2F /* IntExtension.swift */,
+				56EC8F3A23928C1D00E2FB2F /* MapperEncoder.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -447,6 +453,7 @@
 				56C0939E2362EDD80030D85E /* SearchViewController.swift in Sources */,
 				56FEA6F3237C4A36002341C1 /* SearchSession.swift in Sources */,
 				56FEA6F7237C5DDA002341C1 /* SearchService.swift in Sources */,
+				56EC8F3B23928C1D00E2FB2F /* MapperEncoder.swift in Sources */,
 				56FEA6EB237559EE002341C1 /* ErrorCases.swift in Sources */,
 				56EA08F6238BE09C0087C1EE /* RecipeTableViewCell.swift in Sources */,
 				56EA08EC2383E87F0087C1EE /* ExtensionsUIImageView.swift in Sources */,
@@ -455,6 +462,7 @@
 				56EC8F3723913B9800E2FB2F /* IntExtension.swift in Sources */,
 				56FEA70C237D69A7002341C1 /* CoreDataManager.swift in Sources */,
 				56C093A02362F4C40030D85E /* UIViewControllerExtension.swift in Sources */,
+				56EC8F39239180F300E2FB2F /* RecipeDataReceived.swift in Sources */,
 				56FEA6E9237558E7002341C1 /* Recipe.swift in Sources */,
 				5608F3F0235DF6AF008A8BA4 /* Reciplease.xcdatamodeld in Sources */,
 				56FEA70A237D6365002341C1 /* StringExtension.swift in Sources */,

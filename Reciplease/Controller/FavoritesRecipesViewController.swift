@@ -10,9 +10,6 @@ import UIKit
 
 final class FavoritesRecipesViewController: UIViewController {
     
-    //Instantiation
-   // var searchDetailsService = SearchDetailsService()
-    
     // Variables
     var coreDataManager: CoreDataManager?
     var favoritesRecipeDetailArray: FavoritesRecipesList?

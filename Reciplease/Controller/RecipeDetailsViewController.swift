@@ -13,7 +13,6 @@ final class RecipeDetailsViewController: UIViewController {
     // Variables
     var coreDataManager: CoreDataManager?
     var recipeDetailsData: Hit?
-    //RecipeDetail?
     var favoriteRecipeDetailsData: FavoritesRecipesList?
     var isSegueFromFavoriteVc: Bool = true
     
@@ -56,6 +55,7 @@ extension RecipeDetailsViewController {
         recipeIngredientsTxtView.text = "-" + " " + ingredientsArray.joined(separator: "\n\n" + "-" + " ") /*recipeDetailsData[0][0].ingredientLines.joined(separator: "\n\n" + "-" + " " )*/
     }
     
+    
     func updateTheView() {
         if isSegueFromFavoriteVc == false {
             updateTheViewFromCallback()
@@ -94,7 +94,12 @@ extension RecipeDetailsViewController {
             }
         } else if sender.image == UIImage(named: "fullHeart") {
             sender.image = UIImage(named: "heart")
+            if isSegueFromFavoriteVc == false {
             coreDataManager?.deleteRecipeFromFavorite(recipeName: recipeTitleLabel.text ?? "")
+            } else if isSegueFromFavoriteVc == true {
+                coreDataManager?.deleteRecipeFromFavorite(recipeName: recipeTitleLabel.text ?? "")
+                navigationController?.popViewController(animated: true)
+            }
         }
     }
 }

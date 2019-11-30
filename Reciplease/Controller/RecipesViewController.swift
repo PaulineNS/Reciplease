@@ -10,13 +10,9 @@ import UIKit
 
 final class RecipesViewController: UIViewController {
     
-    // Instantiation
- //   var searchDetailsService = SearchDetailsService()
-    
     // Variables
     var recipeData: Recipe?
     var recipeDetailsDataReceived: Hit?
-        //= [[RecipeDetail]()]
     
     // Outlets
     @IBOutlet weak var recipesTableView: UITableView!
@@ -35,8 +31,6 @@ final class RecipesViewController: UIViewController {
         }
         guard let recipesVc = segue.destination as? RecipeDetailsViewController else {return}
         recipesVc.recipeDetailsData = recipeDetailsDataReceived
-        //recipeData
-        //recipeDetailsDataReceived
         recipesVc.isSegueFromFavoriteVc = false
     }
     
@@ -69,15 +63,6 @@ extension RecipesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         updateRecipeData(indexPath: indexPath)
         performSegue(withIdentifier:"fromAllRecipesToDetailsVC", sender: nil)
-//        searchDetailsService.getRecipeDetails(recipeId: recipeData?.hits?[indexPath.row].recipe?.uri ?? "") { result in
-//            switch result {
-//            case .success(let data):
-//                self.recipeDetailsDataReceived = [data]
-//                self.performSegue(withIdentifier: "fromAllRecipesToDetailsVC", sender: nil)
-//            case .failure:
-//                self.presentAlert(message: "Veuillez rééssayer ulterieurement")
-//            }
-//        }
     }
 }
 

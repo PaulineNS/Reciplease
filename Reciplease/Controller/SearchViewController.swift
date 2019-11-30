@@ -28,10 +28,6 @@ final class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loadActivityIndicator.isHidden = true
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
         updateTheNavigationBar(navBarItem: navigationItem)
     }
     
@@ -51,7 +47,6 @@ final class SearchViewController: UIViewController {
             case .success(let data):
                 if data.count != 0 {
                     self.recipeDataReceived = data
-                    //[data]
                     self.performSegue(withIdentifier: "fromSearchToRecipesVC", sender: nil)
                 } else {
                     self.presentAlert(message: "No recipes found")
