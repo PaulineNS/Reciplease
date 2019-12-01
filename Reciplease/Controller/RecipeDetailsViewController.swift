@@ -41,8 +41,9 @@ extension RecipeDetailsViewController {
     
     func updateTheViewFromCoreData(){
         recipeTitleLabel.text = favoriteRecipeDetailsData?.name
-        guard let urlImage = URL(string: favoriteRecipeDetailsData?.image ?? "") else { return }
-        recipeImageView.load(url: urlImage)
+        guard let imageData = favoriteRecipeDetailsData?.image else { return }
+        recipeImageView.image = UIImage(data: imageData)
+       // recipeImageView.load(url: urlImage)
         recipeIngredientsTxtView.text = favoriteRecipeDetailsData?.ingredients
     }
     
@@ -103,11 +104,17 @@ extension RecipeDetailsViewController {
     func addRecipeToFavorites() {
         if isSegueFromFavoriteVc == false {
             guard let name = recipeDetailsData?.recipe?.label, let image = recipeDetailsData?.recipe?.image, let ingredientArray = recipeDetailsData?.recipe?.ingredientLines, let url = recipeDetailsData?.recipe?.url, let time = recipeDetailsData?.recipe?.totalTime else { return}
-            coreDataManager?.addRecipeToFavorites(name: name, image: image, ingredientsDescription: "-" + " " + ingredientArray.joined(separator: "\n\n" + "-" + " "), recipeUrl: url, time: String(time))
+            coreDataManager?.addRecipeToFavorites(name: name, image: obtainImageDataFromUl(stringImageUrl: image), ingredientsDescription: "-" + " " + ingredientArray.joined(separator: "\n\n" + "-" + " "), recipeUrl: url, time: String(time))
         } else if isSegueFromFavoriteVc == true {
             guard let name = favoriteRecipeDetailsData?.name else { return }
-            coreDataManager?.addRecipeToFavorites(name: name, image: favoriteRecipeDetailsData?.image ?? "", ingredientsDescription: favoriteRecipeDetailsData?.ingredients ?? "", recipeUrl: favoriteRecipeDetailsData?.recipeUrl ?? "", time: favoriteRecipeDetailsData?.totalTime ?? "")
+            coreDataManager?.addRecipeToFavorites(name: name, image: favoriteRecipeDetailsData?.image ?? Data(), ingredientsDescription: favoriteRecipeDetailsData?.ingredients ?? "", recipeUrl: favoriteRecipeDetailsData?.recipeUrl ?? "", time: favoriteRecipeDetailsData?.totalTime ?? "")
         }
+    }
+    
+    func obtainImageDataFromUl(stringImageUrl: String) -> Data{
+        guard let imageUrl = URL(string: stringImageUrl) else {return Data()}
+        guard let data = try? Data(contentsOf: imageUrl) else {return Data()}
+        return data
     }
 }
 

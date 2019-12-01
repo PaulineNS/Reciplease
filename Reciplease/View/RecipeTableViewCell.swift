@@ -31,9 +31,10 @@ final class RecipeTableViewCell: UITableViewCell {
     }
     
     // Cell Configuration
-    func configure(title: String, pictureUrl: URL, time: String){
+    func configure(title: String, pictureUrl: Data, time: String){
         recipeTitleLabel.text = title
-        recipeImageView.load(url: pictureUrl)
+//        recipeImageView.load(url: pictureUrl)
+        recipeImageView.image = UIImage(data: pictureUrl)
         recipeTimeLabel.text = time
     }
 }

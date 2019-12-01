@@ -57,9 +57,9 @@ extension FavoritesRecipesViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "recipeCell", for: indexPath) as? RecipeTableViewCell else {
             return UITableViewCell()
         }
-        guard let urlImage = URL(string: coreDataManager?.favoritesRecipes[indexPath.row].image ?? "") else { return UITableViewCell()}
+        guard let imageData = coreDataManager?.favoritesRecipes[indexPath.row].image else { return UITableViewCell()}
         
-        cell.configure(title: coreDataManager?.favoritesRecipes[indexPath.row].name ?? "", pictureUrl: urlImage, time: coreDataManager?.favoritesRecipes[indexPath.row].totalTime ?? "")
+        cell.configure(title: coreDataManager?.favoritesRecipes[indexPath.row].name ?? "", pictureUrl: imageData, time: coreDataManager?.favoritesRecipes[indexPath.row].totalTime ?? "")
         
         return cell
     }
