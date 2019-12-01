@@ -54,7 +54,6 @@ extension RecipeDetailsViewController {
         recipeIngredientsTxtView.text = "-" + " " + ingredientsArray.joined(separator: "\n\n" + "-" + " ")
     }
     
-    
     func updateTheView() {
         if isSegueFromFavoriteVc == false {
             updateTheViewFromCallback()
@@ -110,11 +109,3 @@ extension RecipeDetailsViewController {
         }
     }
 }
-
-////data from url
-//func obtainImageDataFromUrl() -> {
-//    let stringImageUrl = ""
-//    guard let imageUrl = URL(string: stringImageUrl) else {return}
-//    guard let data = try? Data(contentsOf: imageUrl) else {return}
-//    return data
-//}

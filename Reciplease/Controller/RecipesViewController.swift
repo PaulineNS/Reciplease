@@ -37,7 +37,6 @@ final class RecipesViewController: UIViewController {
     func updateRecipeData(indexPath: IndexPath){
         recipeDetailsDataReceived = recipeData?.hits?[indexPath.row]
     }
-
 }
 
 extension RecipesViewController: UITableViewDelegate, UITableViewDataSource {

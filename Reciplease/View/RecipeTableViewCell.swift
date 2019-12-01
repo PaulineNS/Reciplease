@@ -27,10 +27,13 @@ final class RecipeTableViewCell: UITableViewCell {
         }
     }
     
-    // Cell Configuration
-    func configure(title: String, imageData: Data, time: String){
-        recipeTitleLabel.text = title
-        recipeImageView.image = UIImage(data: imageData)
-        recipeTimeLabel.text = time
+    var favoriteRecipe: FavoritesRecipesList? {
+        didSet {
+            recipeTitleLabel.text = favoriteRecipe?.ingredients
+            if let imageData = favoriteRecipe?.image {
+                recipeImageView.image = UIImage(data: imageData)
+            }
+            recipeTimeLabel.text = favoriteRecipe?.totalTime  
+        }
     }
 }
