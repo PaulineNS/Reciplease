@@ -86,7 +86,8 @@ extension FavoritesRecipesViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        coreDataManager?.deleteRecipeFromFavorite(recipeName: coreDataManager?.favoritesRecipes[indexPath.row].name ?? "")
+        guard let recipeName = coreDataManager?.favoritesRecipes[indexPath.row].name else {return}
+        coreDataManager?.deleteRecipeFromFavorite(recipeName: recipeName)
         favoritesRecipesTableView.reloadData()
     }
 }

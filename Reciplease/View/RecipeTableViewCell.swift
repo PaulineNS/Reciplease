@@ -23,17 +23,27 @@ final class RecipeTableViewCell: UITableViewCell {
             if let stringUrl = URL(string: recipe?.recipe?.image ?? "") {
                 recipeImageView.load(url: stringUrl)
             }
+            guard recipe?.recipe?.totalTime != 0 else {
+                recipeTimeLabel.isHidden = true
+                return
+            }
+            recipeTimeLabel.isHidden = false
             recipeTimeLabel.text = recipe?.recipe?.totalTime?.convertIntToTime
         }
     }
     
     var favoriteRecipe: FavoritesRecipesList? {
         didSet {
-            recipeTitleLabel.text = favoriteRecipe?.ingredients
+            recipeTitleLabel.text = favoriteRecipe?.name
             if let imageData = favoriteRecipe?.image {
                 recipeImageView.image = UIImage(data: imageData)
             }
-            recipeTimeLabel.text = favoriteRecipe?.totalTime  
+            guard favoriteRecipe?.totalTime != "0" else {
+                recipeTimeLabel.isHidden = true
+                return
+            }
+            recipeTimeLabel.isHidden = false
+            recipeTimeLabel.text = favoriteRecipe?.totalTime?.convertStringToTime
         }
     }
 }

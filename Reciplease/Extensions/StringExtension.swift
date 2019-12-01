@@ -13,4 +13,10 @@ extension String {
     var isBlank: Bool {
         return self.trimmingCharacters(in: .whitespaces) == String() ? true : false
     }
+    
+    var convertStringToTime: String {
+        let hrs = Int(self)! / 60
+        let min = Int(self)! % 60
+        return hrs > 0 ? String(format: "%1dh%02d", hrs, min) : String(format: "%1dmn", min)
+    }
 }
