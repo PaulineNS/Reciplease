@@ -20,8 +20,11 @@ final class RecipeTableViewCell: UITableViewCell {
     var recipe: Hit? {
         didSet {
             recipeTitleLabel.text = recipe?.recipe?.label
-            if let stringUrl = URL(string: recipe?.recipe?.image ?? "") {
-                recipeImageView.load(url: stringUrl)
+            if let stringUrl = recipe?.recipe?.image {
+                guard let imageUrl = URL(string: stringUrl) else {return}
+                guard let data = try? Data(contentsOf: imageUrl) else {return}
+                recipeImageView.image = UIImage(data: data)
+                //recipeImageView.load(url: stringUrl)
             }
             recipeTimeLabel.text = recipe?.recipe?.totalTime?.convertIntToTime
         }
@@ -34,3 +37,8 @@ final class RecipeTableViewCell: UITableViewCell {
         recipeTimeLabel.text = time
     }
 }
+
+
+//guard let imageUrl = URL(string: stringImageUrl) else {return Data()}
+//guard let data = try? Data(contentsOf: imageUrl) else {return Data()}
+//return data

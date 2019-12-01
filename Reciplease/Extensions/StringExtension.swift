@@ -13,5 +13,4 @@ extension String {
     var isBlank: Bool {
         return self.trimmingCharacters(in: .whitespaces) == String() ? true : false
     }
-
 }

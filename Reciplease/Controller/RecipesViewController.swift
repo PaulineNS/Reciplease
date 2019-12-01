@@ -37,6 +37,7 @@ final class RecipesViewController: UIViewController {
     func updateRecipeData(indexPath: IndexPath){
         recipeDetailsDataReceived = recipeData?.hits?[indexPath.row]
     }
+
 }
 
 extension RecipesViewController: UITableViewDelegate, UITableViewDataSource {
@@ -49,10 +50,7 @@ extension RecipesViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "recipeCell", for: indexPath) as? RecipeTableViewCell else {
             return UITableViewCell()
         }
-//        guard let urlImage = URL(string: recipeData[0].hits[indexPath.row].recipe.image) else { return UITableViewCell()
-//        }
         cell.recipe = recipeData?.hits?[indexPath.row]
-//        cell.configure(title: recipeData[0].hits[indexPath.row].recipe.label, pictureUrl: urlImage, time: recipeData[0].hits[indexPath.row].recipe.totalTime.convertIntToTime)
         return cell
     }
     

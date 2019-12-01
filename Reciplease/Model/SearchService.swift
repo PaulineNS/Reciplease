@@ -20,8 +20,8 @@ final class SearchRecipesService {
     }
     
     func f(ingredients: String, health: String, callback: @escaping (Result<Recipe, Error>) -> Void) {
-        let baseURL = URL(string: "https://api.edamam.com/search?")
-        guard let url = mapperEncoderDelegate?.encode(baseUrl: baseURL, parameters: [("q", ingredients + health),("to", "100"),("app_id","e6b49d48"),("app_key","c2809da35956f6fb80d5a86c46199b6b")]?) else {return}
+        guard let baseURL = URL(string: "https://api.edamam.com/search?") else {return}
+        guard let url = mapperEncoderDelegate?.encode(baseUrl: baseURL, parameters: [("q", ingredients + health),("to", "100"),("app_id","e6b49d48"),("app_key","c2809da35956f6fb80d5a86c46199b6b")]) else {return}
         session.request(with: url) { responseData in
             guard let data = responseData.data else {
                 print ("no data")

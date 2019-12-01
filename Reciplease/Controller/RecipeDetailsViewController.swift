@@ -48,11 +48,10 @@ extension RecipeDetailsViewController {
     
     func updateTheViewFromCallback(){
         recipeTitleLabel.text = recipeDetailsData?.recipe?.label
-            //recipeDetailsData[0][0].label
-        guard let urlImage = URL(string: recipeDetailsData?.recipe?.image ?? ""/*recipeDetailsData[0][0].image*/) else { return }
+        guard let urlImage = URL(string: recipeDetailsData?.recipe?.image ?? "") else { return }
         recipeImageView.load(url: urlImage)
         guard let ingredientsArray = recipeDetailsData?.recipe?.ingredientLines else {return}
-        recipeIngredientsTxtView.text = "-" + " " + ingredientsArray.joined(separator: "\n\n" + "-" + " ") /*recipeDetailsData[0][0].ingredientLines.joined(separator: "\n\n" + "-" + " " )*/
+        recipeIngredientsTxtView.text = "-" + " " + ingredientsArray.joined(separator: "\n\n" + "-" + " ")
     }
     
     
@@ -74,7 +73,7 @@ extension RecipeDetailsViewController {
     
     @IBAction func didTapGetDirectionsButton(_ sender: Any) {
         if isSegueFromFavoriteVc == false {
-            guard let directionsUrl = URL(string: recipeDetailsData?.recipe?.url ?? "" /*recipeDetailsData?[0][0].url*/) else {return}
+            guard let directionsUrl = URL(string: recipeDetailsData?.recipe?.url ?? "") else {return}
             UIApplication.shared.open(directionsUrl)
         } else if isSegueFromFavoriteVc == true {
             guard let directionsUrl = URL(string: favoriteRecipeDetailsData?.recipeUrl ?? "") else {return}
@@ -85,28 +84,37 @@ extension RecipeDetailsViewController {
     @IBAction func didTapFavoriteButton(_ sender: UIBarButtonItem) {
         if sender.image == UIImage(named: "heart") {
             sender.image = UIImage(named: "fullHeart")
-            if isSegueFromFavoriteVc == false {
-                guard let name = recipeDetailsData?.recipe?.label, let image = recipeDetailsData?.recipe?.image, let ingredientArray = recipeDetailsData?.recipe?.ingredientLines, let url = recipeDetailsData?.recipe?.url, let time = recipeDetailsData?.recipe?.totalTime /*recipeDetailsData?[0][0].label*/ else { return}
-                coreDataManager?.addRecipeToFavorites(name: name, image: image /*recipeDetailsData?[0][0].image*/, ingredientsDescription: "-" + " " + ingredientArray.joined(separator: "\n\n" + "-" + " "), recipeUrl: url /*recipeDetailsData[0][0].url*/, time: String(time) /*recipeDetailsData[0][0].totalTime*/)
-            } else if isSegueFromFavoriteVc == true {
-                guard let name = favoriteRecipeDetailsData?.name else { return }
-                coreDataManager?.addRecipeToFavorites(name: name, image: favoriteRecipeDetailsData?.image ?? "", ingredientsDescription: favoriteRecipeDetailsData?.ingredients ?? "", recipeUrl: favoriteRecipeDetailsData?.recipeUrl ?? "", time: favoriteRecipeDetailsData?.totalTime ?? "")
-            }
+            addRecipeToFavorites()
         } else if sender.image == UIImage(named: "fullHeart") {
             sender.image = UIImage(named: "heart")
-            if isSegueFromFavoriteVc == false {
+            deleteRecipeFromFavorites()
+        }
+    }
+    
+    func deleteRecipeFromFavorites(){
+        if isSegueFromFavoriteVc == false {
             coreDataManager?.deleteRecipeFromFavorite(recipeName: recipeTitleLabel.text ?? "")
-            } else if isSegueFromFavoriteVc == true {
-                coreDataManager?.deleteRecipeFromFavorite(recipeName: recipeTitleLabel.text ?? "")
-                navigationController?.popViewController(animated: true)
-            }
+        } else if isSegueFromFavoriteVc == true {
+            coreDataManager?.deleteRecipeFromFavorite(recipeName: recipeTitleLabel.text ?? "")
+            navigationController?.popViewController(animated: true)
+        }
+    }
+    
+    func addRecipeToFavorites() {
+        if isSegueFromFavoriteVc == false {
+            guard let name = recipeDetailsData?.recipe?.label, let image = recipeDetailsData?.recipe?.image, let ingredientArray = recipeDetailsData?.recipe?.ingredientLines, let url = recipeDetailsData?.recipe?.url, let time = recipeDetailsData?.recipe?.totalTime else { return}
+            coreDataManager?.addRecipeToFavorites(name: name, image: image, ingredientsDescription: "-" + " " + ingredientArray.joined(separator: "\n\n" + "-" + " "), recipeUrl: url, time: String(time))
+        } else if isSegueFromFavoriteVc == true {
+            guard let name = favoriteRecipeDetailsData?.name else { return }
+            coreDataManager?.addRecipeToFavorites(name: name, image: favoriteRecipeDetailsData?.image ?? "", ingredientsDescription: favoriteRecipeDetailsData?.ingredients ?? "", recipeUrl: favoriteRecipeDetailsData?.recipeUrl ?? "", time: favoriteRecipeDetailsData?.totalTime ?? "")
         }
     }
 }
 
 ////data from url
-//func blabla() {
-//    let stringUrl = ""
-//    guard let url = URL(string: stringUrl) else {return}
-//    guard let data = try? Data(contentsOf: url) else {return}
+//func obtainImageDataFromUrl() -> {
+//    let stringImageUrl = ""
+//    guard let imageUrl = URL(string: stringImageUrl) else {return}
+//    guard let data = try? Data(contentsOf: imageUrl) else {return}
+//    return data
 //}
