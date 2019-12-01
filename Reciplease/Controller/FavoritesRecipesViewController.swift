@@ -59,7 +59,7 @@ extension FavoritesRecipesViewController: UITableViewDataSource {
         }
         guard let imageData = coreDataManager?.favoritesRecipes[indexPath.row].image else { return UITableViewCell()}
         
-        cell.configure(title: coreDataManager?.favoritesRecipes[indexPath.row].name ?? "", pictureUrl: imageData, time: coreDataManager?.favoritesRecipes[indexPath.row].totalTime ?? "")
+        cell.configure(title: coreDataManager?.favoritesRecipes[indexPath.row].name ?? "", imageData: imageData, time: coreDataManager?.favoritesRecipes[indexPath.row].totalTime ?? "")
         
         return cell
     }

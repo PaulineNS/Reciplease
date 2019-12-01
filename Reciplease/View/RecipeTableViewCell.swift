@@ -20,26 +20,17 @@ final class RecipeTableViewCell: UITableViewCell {
     var recipe: Hit? {
         didSet {
             recipeTitleLabel.text = recipe?.recipe?.label
-            if let stringUrl = recipe?.recipe?.image {
-                guard let imageUrl = URL(string: stringUrl) else {return}
-                guard let data = try? Data(contentsOf: imageUrl) else {return}
-                recipeImageView.image = UIImage(data: data)
-                //recipeImageView.load(url: stringUrl)
+            if let stringUrl = URL(string: recipe?.recipe?.image ?? "") {
+                recipeImageView.load(url: stringUrl)
             }
             recipeTimeLabel.text = recipe?.recipe?.totalTime?.convertIntToTime
         }
     }
     
     // Cell Configuration
-    func configure(title: String, pictureUrl: Data, time: String){
+    func configure(title: String, imageData: Data, time: String){
         recipeTitleLabel.text = title
-//        recipeImageView.load(url: pictureUrl)
-        recipeImageView.image = UIImage(data: pictureUrl)
+        recipeImageView.image = UIImage(data: imageData)
         recipeTimeLabel.text = time
     }
 }
-
-
-//guard let imageUrl = URL(string: stringImageUrl) else {return Data()}
-//guard let data = try? Data(contentsOf: imageUrl) else {return Data()}
-//return data

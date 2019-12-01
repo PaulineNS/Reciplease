@@ -28,10 +28,9 @@ extension UIViewController {
     }
     
     //data from url
-    func obtainImageDataFromUrl(stringImageUrl: String) -> Data {
+    func obtainImageDataFromUrl(stringImageUrl: String) -> Data{
         guard let imageUrl = URL(string: stringImageUrl) else {return Data()}
         guard let data = try? Data(contentsOf: imageUrl) else {return Data()}
         return data
     }
-    
 }
