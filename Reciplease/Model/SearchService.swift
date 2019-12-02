@@ -11,7 +11,6 @@ import Foundation
 final class SearchRecipesService {
     
     //MARK: VARIABLES
-//    var searchData = [Recipe]()
     private let session: AlamoSession
     var mapperEncoderDelegate: MapperEncoder?
     
@@ -63,7 +62,6 @@ final class SearchRecipesService {
                 return
             }
             callback(.success(dataDecoded))
-//            self.searchData = [dataDecoded]
         }
     }
 }
