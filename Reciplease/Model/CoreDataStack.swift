@@ -11,18 +11,15 @@ import CoreData
 
 open class CoreDataStack {
     
-    // MARK: - Properties
-    
+    /// MARK: - Properties
     private let modelName: String
     
-    // MARK: - Initializer
-    
+    /// MARK: - Initializer
     public init(modelName: String) {
         self.modelName = modelName
     }
     
-    // MARK: - Core Data stack
-    
+    /// MARK: - Core Data stack
     public lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: modelName)
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in

@@ -17,12 +17,10 @@ struct FakeResponse {
 
 final class MockSearchSession: AlamoSession {
     
-    // MARK: - Properties
-    
+    /// MARK: - Properties
     private let fakeResponse: FakeResponse
     
-    // MARK: - Initializer
-    
+    /// MARK: - Initializer
     init(fakeResponse: FakeResponse) {
         self.fakeResponse = fakeResponse
     }

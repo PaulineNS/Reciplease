@@ -8,7 +8,7 @@
 
 import Foundation
 
-// MARK: - Recipe
+/// MARK: - Recipe
 struct Recipe: Decodable {
     let q: String?
     let to: Int?
@@ -18,13 +18,13 @@ struct Recipe: Decodable {
     let hits: [Hit]?
 }
 
-// MARK: - Hit
+/// MARK: - Hit
 struct Hit: Decodable {
     let recipe: RecipeClass?
 //    let bookmarked, bought: Bool
 }
 
-// MARK: - RecipeClass
+/// MARK: - RecipeClass
 struct RecipeClass: Decodable {
   //  let uri: String?
     let label: String?
@@ -43,7 +43,7 @@ struct RecipeClass: Decodable {
 //    let digest: [Digest]
 }
 
-// MARK: - RecipeClass
+/// MARK: - RecipeClass
 struct RecipeClassRepresentable {
     let label: String?
     let image: Data?

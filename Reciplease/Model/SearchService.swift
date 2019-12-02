@@ -10,9 +10,9 @@ import Foundation
 
 final class SearchRecipesService {
     
-    //MARK: VARIABLES
+    /// MARK: VARIABLES
     private let session: AlamoSession
-    var mapperEncoderDelegate: MapperEncoder?
+    //var mapperEncoderDelegate: MapperEncoder?
     
     init(session: AlamoSession = SearchSession()) {
         self.session = session
@@ -42,7 +42,7 @@ final class SearchRecipesService {
 //        }
 //    }
     
-    // request service 
+    /// request service 
     func getRecipes(ingredients: String, health: String, callback: @escaping (Result<Recipe, Error>) -> Void) {
         guard let url = URL(string: "https://api.edamam.com/search?q=\(ingredients)\(health)&to=100&app_id=e6b49d48&app_key=c2809da35956f6fb80d5a86c46199b6b") else { return }
         session.request(with: url) { responseData in

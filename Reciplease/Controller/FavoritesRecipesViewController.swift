@@ -10,11 +10,11 @@ import UIKit
 
 final class FavoritesRecipesViewController: UIViewController {
     
-    // Variables
-    var recipeRepresentable: RecipeClassRepresentable?
-    var coreDataManager: CoreDataManager?
+    /// MARK: - Variables
+    private var recipeRepresentable: RecipeClassRepresentable?
+    private var coreDataManager: CoreDataManager?
     
-    // Outlets
+    /// MARK: - Outlets
     @IBOutlet weak var favoritesRecipesTableView: UITableView! { didSet { favoritesRecipesTableView.tableFooterView = UIView() }}
     
     override func viewDidAppear(_ animated: Bool) {
@@ -32,21 +32,21 @@ final class FavoritesRecipesViewController: UIViewController {
         favoritesRecipesTableView.reloadData()
     }
     
+    /// MARK: - Segue to RecipeDetailsViewController
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard segue.identifier == "fromFavoritesRecipesToDetailsVC" else {
-            return
-        }
+        guard segue.identifier == "fromFavoritesRecipesToDetailsVC" else {return}
         guard let recipesVc = segue.destination as? RecipeDetailsViewController else {return}
         recipesVc.recipeRepresentable = recipeRepresentable
     }
     
-    // Action 
+    /// MARK: - Action 
     @IBAction func didTapClearButton(_ sender: Any) {
         coreDataManager?.deleteAllFavorites()
         favoritesRecipesTableView.reloadData()
     }
 }
 
+/// Creating The TableView
 extension FavoritesRecipesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return coreDataManager?.favoritesRecipes.count ?? 0

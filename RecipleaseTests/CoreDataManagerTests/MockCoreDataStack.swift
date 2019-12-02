@@ -11,8 +11,7 @@ import CoreData
 
 final class MockCoreDataStack: CoreDataStack {
     
-    // MARK: - Initializer
-    
+    /// MARK: - Initializer
     convenience init() {
         self.init(modelName: "Reciplease")
     }

@@ -10,14 +10,14 @@ import UIKit
 
 final class SearchViewController: UIViewController {
     
-    // Instantiation
+    /// MARK: - Instantiation
     var searchService = SearchRecipesService()
     
-    // Var
+    /// MARK: - Var
     var ingredientsArray = [String]()
     var recipeDataReceived: Recipe?
     
-    // Outlets
+    /// MARK: - Outlets
     @IBOutlet weak var vegetarianSwitch: UISwitch!
     @IBOutlet weak var loadActivityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var searchTextField: UITextField!
@@ -31,13 +31,15 @@ final class SearchViewController: UIViewController {
         updateTheNavigationBar(navBarItem: navigationItem)
     }
     
+    /// MARK: - Segue to RecipeViewController
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard segue.identifier == "fromSearchToRecipesVC" else {return}
         guard let recipesVc = segue.destination as? RecipesViewController else {return}
         recipesVc.recipeData = recipeDataReceived
     }
     
-    func getRecipesDependingVegetarianSwitch(_ allIngredients: String, _ health: String) {
+    /// MARK: - Request Service
+    private func getRecipesDependingVegetarianSwitch(_ allIngredients: String, _ health: String) {
         loadActivityIndicator.isHidden = false
         searchRecipesButton.isHidden = true
         searchService.getRecipes(ingredients: allIngredients, health: health) { result in
@@ -57,14 +59,14 @@ final class SearchViewController: UIViewController {
         }
     }
     
-    func addIngredientToTableView() {
+    private func addIngredientToTableView() {
         guard let searchBarTxt = searchTextField.text else {return}
         ingredientsArray.append(searchBarTxt)
         searchTextField.text = " "
     }
 }
 
-// IBActions
+/// MARK: - IBActions
 extension SearchViewController {
     @IBAction func didTapButtonToAddIngredient(_ sender: Any) {
         guard let ingredientName = searchTextField.text, !ingredientName.isBlank else {
@@ -99,6 +101,7 @@ extension SearchViewController {
     }
 }
 
+/// MARK: - Creating The TableView
 extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -111,7 +114,6 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchCell", for: indexPath)
         cell.textLabel?.text = ingredientsArray[indexPath.row]
-        
         return cell
     }
     
@@ -120,7 +122,6 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        
         if editingStyle == .delete {
             ingredientsArray.remove(at: indexPath.row)
             ingredientsTableView.reloadData()

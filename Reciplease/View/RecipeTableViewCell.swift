@@ -10,13 +10,11 @@ import UIKit
 
 final class RecipeTableViewCell: UITableViewCell {
 
-    // Outlets
+    /// MARK: - Outlets
     @IBOutlet weak var recipeImageView: UIImageView!
     @IBOutlet weak var recipeTitleLabel: UILabel!
     @IBOutlet weak var recipeTimeLabel: UILabel!
     
-    
-    // var recipe: dataRecu
     var recipe: Hit? {
         didSet {
             recipeTitleLabel.text = recipe?.recipe?.label

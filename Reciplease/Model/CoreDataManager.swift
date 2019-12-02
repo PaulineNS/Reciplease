@@ -11,7 +11,7 @@ import CoreData
 
 final class CoreDataManager {
     
-    // MARK: - Properties    
+    /// MARK: - Properties
     private let coreDataStack: CoreDataStack
     private let managedObjectContext: NSManagedObjectContext
     
@@ -22,13 +22,13 @@ final class CoreDataManager {
         return recipes
     }
     
-    // MARK: - Initializer
+    /// MARK: - Initializer
     init(coreDataStack: CoreDataStack) {
         self.coreDataStack = coreDataStack
         self.managedObjectContext = coreDataStack.mainContext
     }
     
-    // MARK: - Manage Task Entity
+    /// MARK: - Manage Task Entity
     func addRecipeToFavorites(name: String, image: Data, ingredientsDescription: String, recipeUrl: String, time: String) {
         let recipe = FavoritesRecipesList(context: managedObjectContext)
         recipe.image = image

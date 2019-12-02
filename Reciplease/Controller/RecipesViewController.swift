@@ -10,11 +10,11 @@ import UIKit
 
 final class RecipesViewController: UIViewController {
     
-    // Variables
+    /// MARK: - Variables
     private var recipeRepresentable: RecipeClassRepresentable?
     var recipeData: Recipe?
     
-    // Outlets
+    /// MARK: - Outlets
     @IBOutlet weak var recipesTableView: UITableView!
     
     override func viewDidLoad() {
@@ -25,6 +25,7 @@ final class RecipesViewController: UIViewController {
         updateTheNavigationBar(navBarItem: navigationItem)
     }
     
+    /// MARK: - Segue to RecipeDetailsViewController
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard segue.identifier == "fromAllRecipesToDetailsVC" else {
             return
@@ -34,6 +35,7 @@ final class RecipesViewController: UIViewController {
     }
 }
 
+/// MARK: - Creating The TableView
 extension RecipesViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

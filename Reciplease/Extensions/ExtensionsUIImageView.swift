@@ -8,15 +8,14 @@
 
 import UIKit
 
-// load url on UIImageview
 extension UIImageView {
+    ///MARK: load url on UIImageview
     func load(url: URL) {
-        if let data = try? Data(contentsOf: url) {
-            if let image = UIImage(data: data) {
-                DispatchQueue.main.async {
-                    self.image = image
-                }
-            }
+        guard let data = try? Data(contentsOf: url) else {return}
+        guard let image = UIImage(data: data) else {return}
+        DispatchQueue.main.async {
+            self.image = image
         }
     }
 }
+
