@@ -56,22 +56,10 @@ final class CoreDataManager {
     
     func checkIfRecipeIsAlreadyFavorite(recipeName: String) -> Bool {
         let request: NSFetchRequest<FavoritesRecipesList> = FavoritesRecipesList.fetchRequest()
-        let predicate = NSPredicate(format: "name == %@", recipeName)
-        request.predicate = predicate
-        guard let recipeFound = try? managedObjectContext.count(for: request) else {
-            return false }
-        guard recipeFound == 0 else { return true}
-        return false
-        
-        
-//        let request: NSFetchRequest<FavoritesRecipesList> = FavoritesRecipesList.fetchRequest()
-//        request.predicate = NSPredicate(format: "name == %@", recipeName)
-//
-//        guard let recipes = try? managedObjectContext.fetch(request) else { return false }
-//        if recipes.isEmpty {
-//            return false
-//        }
-//        return true
+        request.predicate = NSPredicate(format: "name == %@", recipeName)
+        guard let recipes = try? managedObjectContext.fetch(request) else { return false }
+        if recipes.isEmpty {return false}
+        return true
     }
 }
 

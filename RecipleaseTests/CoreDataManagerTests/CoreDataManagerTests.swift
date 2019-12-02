@@ -32,15 +32,29 @@ final class CoreDataManagerTests: XCTestCase {
     // MARK: - Tests
     
     func testAddRecipeToFavoritesMethods_WhenAnEntityIsCreated_ThenShouldBeCorrectlySaved() {
-        coreDataManager.addRecipeToFavorites(name: "Waldorf Salad", image: "https://www.edamam.com/web-img/891/8913165cf2fbd4cd955cd23442dd2184.jpg", ingredientsDescription: "", recipeUrl: "http://www.bbcgoodfood.com/recipes/9753/")
+        coreDataManager.addRecipeToFavorites(name: "Waldorf Salad", image: Data(), ingredientsDescription: "", recipeUrl: "http://www.bbcgoodfood.com/recipes/9753/", time: "")
         XCTAssertTrue(!coreDataManager.favoritesRecipes.isEmpty)
         XCTAssertTrue(coreDataManager.favoritesRecipes.count == 1)
         XCTAssertTrue(coreDataManager.favoritesRecipes[0].name! == "Waldorf Salad")
     }
     
-    func testDeleteAllIngredientsMethod_WhenEntitiesAreDeleted_ThenShouldBeCorrectlyDeleted() {
-        coreDataManager.addRecipeToFavorites(name: "Waldorf Salad", image: "https://www.edamam.com/web-img/891/8913165cf2fbd4cd955cd23442dd2184.jpg", ingredientsDescription: "", recipeUrl: "http://www.bbcgoodfood.com/recipes/9753/")
+    func testDeleteAllRecipesMethod_WhenEntitiesAreDeleted_ThenShouldBeCorrectlyDeleted() {
+        coreDataManager.addRecipeToFavorites(name: "Waldorf Salad", image: Data(), ingredientsDescription: "", recipeUrl: "http://www.bbcgoodfood.com/recipes/9753/", time: "")
         coreDataManager.deleteAllFavorites()
         XCTAssertTrue(coreDataManager.favoritesRecipes.isEmpty)
+    }
+    
+    func testDeleteOneRecipeMethod_WhenEntityIsDeleted_ThenShouldBeCorrectlyDeleted() {
+        coreDataManager.addRecipeToFavorites(name: "Waldorf Salad", image: Data(), ingredientsDescription: "", recipeUrl: "http://www.bbcgoodfood.com/recipes/9753/", time: "")
+        coreDataManager.addRecipeToFavorites(name: "Steak & Chips Salad", image: Data(), ingredientsDescription: "", recipeUrl: "http://www.bbcgoodfood.com/recipes/9753/", time: "")
+        coreDataManager.deleteRecipeFromFavorite(recipeName: "Waldorf Salad")
+        XCTAssertTrue(!coreDataManager.favoritesRecipes.isEmpty)
+        XCTAssertTrue(coreDataManager.favoritesRecipes.count == 1)
+        XCTAssertTrue(coreDataManager.favoritesRecipes[0].name! == "Steak & Chips Salad")
+    }
+    
+    func testCheckingIfRecipeIsAlreadyFavorite_WhenFuncIsCalling_ThenShouldReturnTrue() {
+        coreDataManager.addRecipeToFavorites(name: "Waldorf Salad", image: Data(), ingredientsDescription: "", recipeUrl: "http://www.bbcgoodfood.com/recipes/9753/", time: "")
+        XCTAssertTrue(coreDataManager.checkIfRecipeIsAlreadyFavorite(recipeName: "Waldorf Salad"))
     }
 }

@@ -10,8 +10,8 @@
 import XCTest
 
 class RecipleaseTests: XCTestCase {
-
-    func testGetData_WhenNoDataIsPassed_ThenShouldReturnFailedCallback() {
+    
+    func testGetRecipes_WhenNoDataIsPassed_ThenShouldReturnFailedCallback() {
         let session = MockSearchSession(fakeResponse: FakeResponse(response: nil, data: nil))
         let requestService = SearchRecipesService(session: session)
         let expectation = XCTestExpectation(description: "Wait for queue change.")
@@ -26,7 +26,7 @@ class RecipleaseTests: XCTestCase {
         wait(for: [expectation], timeout: 0.01)
     }
     
-    func testGetData_WhenIncorrectResponseIsPassed_ThenShouldReturnFailedCallback() {
+    func testGetRecipes_WhenIncorrectResponseIsPassed_ThenShouldReturnFailedCallback() {
         let session = MockSearchSession(fakeResponse: FakeResponse(response: FakeResponseData.responseKO, data: FakeResponseData.correctData))
         let requestService = SearchRecipesService(session: session)
         let expectation = XCTestExpectation(description: "Wait for queue change.")
@@ -41,7 +41,7 @@ class RecipleaseTests: XCTestCase {
         wait(for: [expectation], timeout: 0.01)
     }
     
-    func testGetData_WhenUndecodableDataIsPassed_ThenShouldReturnFailedCallback() {
+    func testGetRecipes_WhenUndecodableDataIsPassed_ThenShouldReturnFailedCallback() {
         let session = MockSearchSession(fakeResponse: FakeResponse(response: FakeResponseData.responseOK, data: FakeResponseData.incorrectData))
         let requestService = SearchRecipesService(session: session)
         let expectation = XCTestExpectation(description: "Wait for queue change.")
@@ -55,5 +55,19 @@ class RecipleaseTests: XCTestCase {
         }
         wait(for: [expectation], timeout: 0.01)
     }
-
+    
+    func testGetRecipes_WhenCorrectDataIsPassed_ThenShouldReturnSuccededCallback() {
+        let session = MockSearchSession(fakeResponse: FakeResponse(response: FakeResponseData.responseOK, data: FakeResponseData.correctData))
+        let requestService = SearchRecipesService(session: session)
+        let expectation = XCTestExpectation(description: "Wait for queue change.")
+        requestService.getRecipes(ingredients: "chicken", health: "") { result in
+            guard case .success(let data) = result else {
+                XCTFail("Test getData method with undecodable data failed.")
+                return
+            }
+            XCTAssertTrue(data.hits?[0].recipe?.label == "Chicken Vesuvio")
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 0.01)
+    }    
 }
