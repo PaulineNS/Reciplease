@@ -26,7 +26,7 @@ struct Hit: Decodable {
 
 // MARK: - RecipeClass
 struct RecipeClass: Decodable {
-    let uri: String?
+  //  let uri: String?
     let label: String?
     let image: String?
 //    let source: String
@@ -41,6 +41,15 @@ struct RecipeClass: Decodable {
     let totalTime: Int?
 //    let totalNutrients, totalDaily: [String: Total]
 //    let digest: [Digest]
+}
+
+// MARK: - RecipeClass
+struct RecipeClassRepresentable {
+    let label: String?
+    let image: Data?
+    let url: String?
+    let ingredientLines: String?
+    let totalTime: String?
 }
 
 //// MARK: - Digest

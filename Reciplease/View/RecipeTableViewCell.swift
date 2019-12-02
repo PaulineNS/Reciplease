@@ -38,12 +38,12 @@ final class RecipeTableViewCell: UITableViewCell {
             if let imageData = favoriteRecipe?.image {
                 recipeImageView.image = UIImage(data: imageData)
             }
-            guard favoriteRecipe?.totalTime != "0" else {
+            guard favoriteRecipe?.totalTime != "0mn" else {
                 recipeTimeLabel.isHidden = true
                 return
             }
             recipeTimeLabel.isHidden = false
-            recipeTimeLabel.text = favoriteRecipe?.totalTime?.convertStringToTime
+            recipeTimeLabel.text = favoriteRecipe?.totalTime
         }
     }
 }

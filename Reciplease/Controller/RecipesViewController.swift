@@ -11,8 +11,8 @@ import UIKit
 final class RecipesViewController: UIViewController {
     
     // Variables
+    private var recipeRepresentable: RecipeClassRepresentable?
     var recipeData: Recipe?
-    var recipeDetailsDataReceived: Hit?
     
     // Outlets
     @IBOutlet weak var recipesTableView: UITableView!
@@ -30,12 +30,7 @@ final class RecipesViewController: UIViewController {
             return
         }
         guard let recipesVc = segue.destination as? RecipeDetailsViewController else {return}
-        recipesVc.recipeDetailsData = recipeDetailsDataReceived
-        recipesVc.isSegueFromFavoriteVc = false
-    }
-    
-    func updateRecipeData(indexPath: IndexPath){
-        recipeDetailsDataReceived = recipeData?.hits?[indexPath.row]
+        recipesVc.recipeRepresentable = recipeRepresentable
     }
 }
 
@@ -58,7 +53,10 @@ extension RecipesViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        updateRecipeData(indexPath: indexPath)
+        let recipe = recipeData?.hits?[indexPath.row]
+        guard let imageUrl = recipe?.recipe?.image, let ingredientsArray = recipe?.recipe?.ingredientLines else {return}
+        let recipeRepresentable = RecipeClassRepresentable(label: recipe?.recipe?.label, image: obtainImageDataFromUrl(stringImageUrl: imageUrl), url: recipe?.recipe?.url, ingredientLines: "-" + " " + ingredientsArray.joined(separator: "\n\n" + "-" + " ") , totalTime: recipe?.recipe?.totalTime?.convertIntToTime)
+        self.recipeRepresentable = recipeRepresentable
         performSegue(withIdentifier:"fromAllRecipesToDetailsVC", sender: nil)
     }
 }

@@ -11,8 +11,8 @@ import UIKit
 final class FavoritesRecipesViewController: UIViewController {
     
     // Variables
+    var recipeRepresentable: RecipeClassRepresentable?
     var coreDataManager: CoreDataManager?
-    var favoritesRecipeDetailArray: FavoritesRecipesList?
     
     // Outlets
     @IBOutlet weak var favoritesRecipesTableView: UITableView! { didSet { favoritesRecipesTableView.tableFooterView = UIView() }}
@@ -37,8 +37,7 @@ final class FavoritesRecipesViewController: UIViewController {
             return
         }
         guard let recipesVc = segue.destination as? RecipeDetailsViewController else {return}
-        recipesVc.favoriteRecipeDetailsData = favoritesRecipeDetailArray
-        recipesVc.isSegueFromFavoriteVc = true
+        recipesVc.recipeRepresentable = recipeRepresentable
     }
     
     // Action 
@@ -62,7 +61,9 @@ extension FavoritesRecipesViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        favoritesRecipeDetailArray = coreDataManager?.favoritesRecipes[indexPath.row]
+        let favoriteRecipe = coreDataManager?.favoritesRecipes[indexPath.row]
+        let recipeRepresentable = RecipeClassRepresentable(label: favoriteRecipe?.name, image: favoriteRecipe?.image, url: favoriteRecipe?.recipeUrl, ingredientLines: favoriteRecipe?.ingredients, totalTime: favoriteRecipe?.totalTime)
+        self.recipeRepresentable = recipeRepresentable
         self.performSegue(withIdentifier: "fromFavoritesRecipesToDetailsVC", sender: nil)
     }
 }
