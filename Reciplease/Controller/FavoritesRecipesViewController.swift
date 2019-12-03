@@ -78,15 +78,15 @@ extension FavoritesRecipesViewController: UITableViewDataSource {
 extension FavoritesRecipesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let label = UILabel()
-        label.text = "You haven't any favorites yet"
+        label.text = "You haven't any favorites yet 😢 "
         label.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
         label.textAlignment = .center
-        label.textColor = .darkGray
+        label.textColor = #colorLiteral(red: 0.08918375522, green: 0.2295971513, blue: 0.2011210024, alpha: 1)
         return label
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return coreDataManager?.favoritesRecipes.isEmpty ?? true ? 200 : 0
+        return coreDataManager?.favoritesRecipes.isEmpty ?? true ? tableView.bounds.size.height : 0
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
