@@ -138,14 +138,14 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let imageView = UIImageView()
-        imageView.image = #imageLiteral(resourceName: "logo")
+        imageView.image = #imageLiteral(resourceName: "reciplease")
         imageView.contentMode = .scaleAspectFill
         imageView.contentMode = .center
         return imageView
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return ingredientsArray.isEmpty ? 400 : 0
+        return ingredientsArray.isEmpty ? tableView.bounds.size.height : 0
     }
 }
 
