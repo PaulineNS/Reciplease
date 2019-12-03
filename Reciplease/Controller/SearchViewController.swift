@@ -24,12 +24,17 @@ final class SearchViewController: UIViewController {
     @IBOutlet weak var addIngredientButton: UIButton!
     @IBOutlet weak var ingredientsTableView: UITableView! { didSet { ingredientsTableView.tableFooterView = UIView() }}
     @IBOutlet weak var searchRecipesButton: UIButton!
+    @IBOutlet var clearButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         loadActivityIndicator.isHidden = true
-        updateTheNavigationBar(navBarItem: navigationItem)
+        navigationItem.rightBarButtonItem = nil
+
+    //updateTheNavigationBar(navBarItem: navigationItem)
+        
     }
+    
     
     /// MARK: - Segue to RecipeViewController
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -63,6 +68,8 @@ final class SearchViewController: UIViewController {
         guard let searchBarTxt = searchTextField.text else {return}
         ingredientsArray.append(searchBarTxt)
         searchTextField.text = " "
+        navigationItem.rightBarButtonItem = clearButton
+
     }
 }
 
@@ -92,6 +99,7 @@ extension SearchViewController {
     }
     
     @IBAction func didTapClearButton(_ sender: Any) {
+        navigationItem.rightBarButtonItem = nil
         ingredientsArray = [String]()
         ingredientsTableView.reloadData()
     }

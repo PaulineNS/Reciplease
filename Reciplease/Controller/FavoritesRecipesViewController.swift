@@ -16,20 +16,26 @@ final class FavoritesRecipesViewController: UIViewController {
     
     /// MARK: - Outlets
     @IBOutlet weak var favoritesRecipesTableView: UITableView! { didSet { favoritesRecipesTableView.tableFooterView = UIView() }}
+    @IBOutlet var clearButton: UIBarButtonItem!
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
+    override func viewDidLoad() {
+        super.viewDidLoad()
         updateTheNavigationBar(navBarItem: navigationItem)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
         let nibName = UINib(nibName: "RecipeTableViewCell", bundle: nil)
         favoritesRecipesTableView.register(nibName, forCellReuseIdentifier: "recipeCell")
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
         let coreDataStack = appDelegate.coreDataStack
         coreDataManager = CoreDataManager(coreDataStack: coreDataStack)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         favoritesRecipesTableView.reloadData()
+        guard coreDataManager?.favoritesRecipes.count == 0 else {
+            navigationItem.rightBarButtonItem = clearButton
+            return
+        }
+        navigationItem.rightBarButtonItem = nil
     }
     
     /// MARK: - Segue to RecipeDetailsViewController
@@ -41,6 +47,7 @@ final class FavoritesRecipesViewController: UIViewController {
     
     /// MARK: - Action 
     @IBAction func didTapClearButton(_ sender: Any) {
+        navigationItem.rightBarButtonItem = nil
         coreDataManager?.deleteAllFavorites()
         favoritesRecipesTableView.reloadData()
     }
@@ -90,5 +97,10 @@ extension FavoritesRecipesViewController: UITableViewDelegate {
         guard let recipeName = coreDataManager?.favoritesRecipes[indexPath.row].name else {return}
         coreDataManager?.deleteRecipeFromFavorite(recipeName: recipeName)
         favoritesRecipesTableView.reloadData()
+        guard coreDataManager?.favoritesRecipes.isEmpty == true else {
+            navigationItem.rightBarButtonItem = clearButton
+            return
+        }
+        navigationItem.rightBarButtonItem = nil
     }
 }

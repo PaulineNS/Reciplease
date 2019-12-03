@@ -37,6 +37,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="CFy-Ha-9IP">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.75771301984786987" green="0.75492751598358154" blue="0.72653031349182129" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="KnP-8R-eYo" kind="relationship" relationship="rootViewController" id="HbZ-z7-sp9"/>
@@ -73,13 +74,14 @@
                         <viewLayoutGuide key="safeArea" id="vM1-nQ-piF"/>
                     </view>
                     <navigationItem key="navigationItem" id="81w-1G-XyC">
-                        <barButtonItem key="rightBarButtonItem" title="Clear" id="e52-gJ-Co4">
+                        <barButtonItem key="rightBarButtonItem" title="🗑️" id="e52-gJ-Co4">
                             <connections>
                                 <action selector="didTapClearButton:" destination="KnP-8R-eYo" id="uIO-YC-Wpi"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="clearButton" destination="e52-gJ-Co4" id="o5j-bq-dha"/>
                         <outlet property="favoritesRecipesTableView" destination="cdd-tY-dXx" id="Dez-6I-qpS"/>
                         <segue destination="MFT-TQ-Uvq" kind="show" identifier="fromFavoritesRecipesToDetailsVC" id="sUL-7I-qfw"/>
                     </connections>
@@ -96,6 +98,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="nZ9-qZ-X3M">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.75771301984786987" green="0.75492751598358154" blue="0.72653031349182129" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="pnX-Ix-Q8a" kind="relationship" relationship="rootViewController" id="4Uk-Qe-UP6"/>
@@ -105,7 +108,7 @@
             </objects>
             <point key="canvasLocation" x="87" y="-1023"/>
         </scene>
-        <!--Search View Controller-->
+        <!--What's in your fridge ? -->
         <scene sceneID="xki-i1-xrk">
             <objects>
                 <viewController id="pnX-Ix-Q8a" customClass="SearchViewController" customModule="Reciplease" customModuleProvider="target" sceneMemberID="viewController">
@@ -116,17 +119,11 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="nu9-Xl-LkH">
                                 <rect key="frame" x="15" y="94" width="384" height="708"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What's in your fridge ?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ixb-Dn-n6i">
-                                        <rect key="frame" x="0.0" y="0.0" width="384" height="31.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="26"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vxI-JS-539">
-                                        <rect key="frame" x="0.0" y="80" width="384" height="34.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="384" height="193.5"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Milk, Tomato, Rice, Chicken..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="96q-io-dV9">
-                                                <rect key="frame" x="0.0" y="0.0" width="339" height="34.5"/>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="I'm looking for an ingredient..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="96q-io-dV9">
+                                                <rect key="frame" x="0.0" y="0.0" width="354" height="193.5"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -135,9 +132,9 @@
                                                 </connections>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uhw-DN-17H">
-                                                <rect key="frame" x="339" y="0.0" width="45" height="34.5"/>
+                                                <rect key="frame" x="354" y="0.0" width="30" height="193.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                                <state key="normal" title="Add">
+                                                <state key="normal" title="+ ">
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
@@ -146,15 +143,6 @@
                                             </button>
                                         </subviews>
                                     </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UsZ-6f-i8g">
-                                        <rect key="frame" x="0.0" y="163.5" width="384" height="30"/>
-                                        <state key="normal" title="Clear">
-                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="didTapClearButton:" destination="pnX-Ix-Q8a" eventType="touchUpInside" id="dwo-cL-gl6"/>
-                                        </connections>
-                                    </button>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HE9-HO-dte">
                                         <rect key="frame" x="0.0" y="242" width="384" height="190"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -199,7 +187,7 @@
                                             <constraint firstAttribute="height" constant="42" id="waD-6B-Odc"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                        <state key="normal" title="Search For Recipes">
+                                        <state key="normal" title="Let's go ! ">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
@@ -232,9 +220,16 @@
                             <outletCollection property="gestureRecognizers" destination="s15-Cg-qiD" appends="YES" id="bUh-YW-NU6"/>
                         </connections>
                     </view>
-                    <navigationItem key="navigationItem" id="uZR-Xq-l4I"/>
+                    <navigationItem key="navigationItem" title="What's in your fridge ? " id="uZR-Xq-l4I">
+                        <barButtonItem key="rightBarButtonItem" title="🗑️" id="m0l-dE-ea7">
+                            <connections>
+                                <action selector="didTapClearButton:" destination="pnX-Ix-Q8a" id="Tqc-j2-seB"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="addIngredientButton" destination="Uhw-DN-17H" id="Onm-4s-V7p"/>
+                        <outlet property="clearButton" destination="m0l-dE-ea7" id="qxV-ZP-DQw"/>
                         <outlet property="ingredientsTableView" destination="HE9-HO-dte" id="Iyn-HC-BZc"/>
                         <outlet property="loadActivityIndicator" destination="uc4-xo-Q3i" id="HAl-jH-bN2"/>
                         <outlet property="searchRecipesButton" destination="asF-MQ-Szi" id="FuN-7j-cfK"/>
