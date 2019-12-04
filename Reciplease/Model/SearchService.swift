@@ -44,7 +44,7 @@ final class SearchRecipesService {
     
     /// request service 
     func getRecipes(ingredients: String, health: String, callback: @escaping (Result<Recipe, Error>) -> Void) {
-        guard let url = URL(string: "https://api.edamam.com/search?q=\(ingredients)\(health)&to=100&app_id=e6b49d48&app_key=c2809da35956f6fb80d5a86c46199b6b") else { return }
+        guard let url = URL(string: "https://api.edamam.com/search?q=\(ingredients)\(health)&to=30&app_id=e6b49d48&app_key=c2809da35956f6fb80d5a86c46199b6b") else { return }
         session.request(with: url) { responseData in
             guard let data = responseData.data else {
                 print ("no data")

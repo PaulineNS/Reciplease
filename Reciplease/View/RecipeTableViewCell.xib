@@ -12,55 +12,75 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleAspectFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="recipeCell" rowHeight="320" id="KGk-i7-Jjw" customClass="RecipeTableViewCell" customModule="Reciplease" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
+        <tableViewCell contentMode="scaleAspectFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="recipeCell" rowHeight="853" id="KGk-i7-Jjw" customClass="RecipeTableViewCell" customModule="Reciplease" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="1091" height="853"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="319.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="1091" height="852.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ieu-Nh-DaJ">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="319.5"/>
+                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ieu-Nh-DaJ" userLabel="PrincipalView">
+                        <rect key="frame" x="10" y="10" width="1071" height="832.5"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FAm-7S-VsK">
-                                <rect key="frame" x="17" y="249.5" width="286" height="49"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="Sis-a6-XBS">
+                                <rect key="frame" x="2" y="2" width="1067" height="16"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eCv-wt-GXe">
+                                <rect key="frame" x="0.0" y="18" width="1071" height="814.5"/>
+                                <color key="backgroundColor" red="0.089183755219999994" green="0.2295971513" blue="0.2011210024" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="CeK-i3-77p"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="NotoSansChakma-Regular" family="Noto Sans Chakma" pointSize="20"/>
+                                <color key="textColor" red="0.65612059830000002" green="0.74892628189999999" blue="0.73460352419999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="Sis-a6-XBS">
-                                <rect key="frame" x="17" y="0.0" width="286" height="241.5"/>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eCv-wt-GXe">
-                                <rect key="frame" x="248" y="263.5" width="42" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FAm-7S-VsK">
+                                <rect key="frame" x="991" y="10" width="70" height="70"/>
+                                <color key="backgroundColor" red="0.65612059830000002" green="0.74892628189999999" blue="0.73460352419999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="XHE-Jy-y8H"/>
+                                    <constraint firstAttribute="width" constant="70" id="F9b-bC-Unn"/>
+                                    <constraint firstAttribute="height" constant="70" id="awK-CI-huL"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="NotoSansChakma-Regular" family="Noto Sans Chakma" pointSize="20"/>
+                                <color key="textColor" red="0.089183755219999994" green="0.2295971513" blue="0.2011210024" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="35"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.089183755219999994" green="0.2295971513" blue="0.2011210024" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="FAm-7S-VsK" firstAttribute="top" secondItem="Sis-a6-XBS" secondAttribute="bottom" constant="8.0000000000001137" id="1tY-Q6-yOT"/>
-                            <constraint firstItem="FAm-7S-VsK" firstAttribute="centerY" secondItem="eCv-wt-GXe" secondAttribute="centerY" id="3Ys-DD-PWu"/>
-                            <constraint firstItem="eCv-wt-GXe" firstAttribute="top" secondItem="Sis-a6-XBS" secondAttribute="bottom" constant="22.000000000000114" id="Bur-oA-Yg2"/>
-                            <constraint firstItem="Sis-a6-XBS" firstAttribute="leading" secondItem="FAm-7S-VsK" secondAttribute="leading" id="FYw-e8-VqJ"/>
-                            <constraint firstItem="Sis-a6-XBS" firstAttribute="centerX" secondItem="Ieu-Nh-DaJ" secondAttribute="centerX" id="HwD-bG-yhz"/>
-                            <constraint firstItem="Sis-a6-XBS" firstAttribute="leading" secondItem="Ieu-Nh-DaJ" secondAttribute="leading" constant="17" id="WJn-e1-Hge"/>
-                            <constraint firstItem="Sis-a6-XBS" firstAttribute="top" secondItem="Ieu-Nh-DaJ" secondAttribute="top" id="hXp-0R-bup"/>
-                            <constraint firstItem="Sis-a6-XBS" firstAttribute="trailing" secondItem="FAm-7S-VsK" secondAttribute="trailing" id="p5b-6Z-Fnc"/>
-                            <constraint firstAttribute="trailing" secondItem="eCv-wt-GXe" secondAttribute="trailing" constant="30" id="q2K-2g-BHI"/>
-                            <constraint firstAttribute="bottom" secondItem="FAm-7S-VsK" secondAttribute="bottom" constant="21" id="ufD-Ov-BxN"/>
+                            <constraint firstAttribute="trailing" secondItem="Sis-a6-XBS" secondAttribute="trailing" constant="2" id="2CP-bP-Dzz"/>
+                            <constraint firstAttribute="bottom" secondItem="eCv-wt-GXe" secondAttribute="bottom" id="9Sc-xF-gxP"/>
+                            <constraint firstAttribute="trailing" secondItem="eCv-wt-GXe" secondAttribute="trailing" id="Erg-RR-99d"/>
+                            <constraint firstItem="eCv-wt-GXe" firstAttribute="leading" secondItem="Ieu-Nh-DaJ" secondAttribute="leading" id="QRw-az-gal"/>
+                            <constraint firstAttribute="trailing" secondItem="FAm-7S-VsK" secondAttribute="trailing" constant="10" id="ccG-Bv-EUf"/>
+                            <constraint firstItem="FAm-7S-VsK" firstAttribute="top" secondItem="Ieu-Nh-DaJ" secondAttribute="top" constant="10" id="tDZ-WQ-tbW"/>
+                            <constraint firstItem="Sis-a6-XBS" firstAttribute="leading" secondItem="Ieu-Nh-DaJ" secondAttribute="leading" constant="2" id="vE7-DB-Xyg"/>
+                            <constraint firstItem="eCv-wt-GXe" firstAttribute="top" secondItem="Sis-a6-XBS" secondAttribute="bottom" id="xNF-w4-DMC"/>
+                            <constraint firstItem="Sis-a6-XBS" firstAttribute="top" secondItem="Ieu-Nh-DaJ" secondAttribute="top" constant="2" id="xlC-DE-WT6"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="10"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="Ieu-Nh-DaJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="8yY-s9-1Nw"/>
-                    <constraint firstItem="Ieu-Nh-DaJ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="PDh-bE-Oer"/>
-                    <constraint firstItem="Ieu-Nh-DaJ" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="aQw-1y-ij9"/>
-                    <constraint firstAttribute="trailing" secondItem="Ieu-Nh-DaJ" secondAttribute="trailing" id="oKa-CT-4DI"/>
+                    <constraint firstAttribute="bottom" secondItem="Ieu-Nh-DaJ" secondAttribute="bottom" constant="10" id="MtM-Qj-Ver"/>
+                    <constraint firstItem="Ieu-Nh-DaJ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="XdG-bk-gEm"/>
+                    <constraint firstItem="Ieu-Nh-DaJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="dlo-N1-BpK"/>
+                    <constraint firstAttribute="trailing" secondItem="Ieu-Nh-DaJ" secondAttribute="trailing" constant="10" id="zoc-PF-Kbc"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -69,7 +89,7 @@
                 <outlet property="recipeTimeLabel" destination="FAm-7S-VsK" id="hIh-Nn-0Tk"/>
                 <outlet property="recipeTitleLabel" destination="eCv-wt-GXe" id="7pc-LG-wIh"/>
             </connections>
-            <point key="canvasLocation" x="137.68115942028987" y="218.30357142857142"/>
+            <point key="canvasLocation" x="694.92753623188412" y="396.76339285714283"/>
         </tableViewCell>
     </objects>
     <resources>
