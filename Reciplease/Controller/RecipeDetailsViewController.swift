@@ -22,11 +22,17 @@ final class RecipeDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        recipeIngredientsTxtView.isEditable = false
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
         let coreDataStack = appDelegate.coreDataStack
         coreDataManager = CoreDataManager(coreDataStack: coreDataStack)
         updateTheNavigationBar(navBarItem: navigationItem)
         updateTheView()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        recipeIngredientsTxtView.contentOffset = .zero
     }
     
     override func viewWillAppear(_ animated: Bool) {
