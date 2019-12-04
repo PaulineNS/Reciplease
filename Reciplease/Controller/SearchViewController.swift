@@ -69,7 +69,6 @@ final class SearchViewController: UIViewController {
         ingredientsArray.append(searchBarTxt)
         searchTextField.text = " "
         navigationItem.rightBarButtonItem = clearButton
-
     }
 }
 
@@ -77,15 +76,17 @@ final class SearchViewController: UIViewController {
 extension SearchViewController {
     @IBAction func didTapButtonToAddIngredient(_ sender: Any) {
         guard let ingredientName = searchTextField.text, !ingredientName.isBlank else {
-            presentAlert(message: "Veuillez saisir un ingrédient")
+            presentAlert(message: "Please enter an ingredient 😃")
             return}
         addIngredientToTableView()
+        searchTextField.text = nil
+        searchTextField.placeholder = "I'm looking for an ingredient..."
         ingredientsTableView.reloadData()
     }
     
     @IBAction func didTapGoButton(_ sender: Any) {
         guard ingredientsArray.count != 0 else {
-            presentAlert(message: "You have to enter at least 1 ingredient")
+            presentAlert(message: "You have to enter at least 1 ingredient 😃")
             return
         }
         guard let allIngredients = ingredientsArray.joined(separator: ",").addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {
@@ -122,6 +123,9 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchCell", for: indexPath)
         cell.textLabel?.text = ingredientsArray[indexPath.row]
+        cell.textLabel?.textAlignment = .center
+        cell.textLabel?.textColor = #colorLiteral(red: 0.08918375522, green: 0.2295971513, blue: 0.2011210024, alpha: 1)
+        cell.textLabel?.font = UIFont(name: "Noto Sans Chakma", size: 20)
         return cell
     }
     
@@ -146,6 +150,10 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return ingredientsArray.isEmpty ? tableView.bounds.size.height : 0
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 20
     }
 }
 
