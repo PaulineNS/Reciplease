@@ -130,7 +130,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="354" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" name="NotoSansChakma-Regular" family="Noto Sans Chakma" pointSize="16"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="pnX-Ix-Q8a" id="qyg-pM-op6"/>
                                                 </connections>
@@ -334,13 +334,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="Ffj-zg-Nhb">
-                                <rect key="frame" x="0.0" y="88" width="414" height="323"/>
+                                <rect key="frame" x="20" y="108" width="374" height="200"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="323" id="UOK-74-09d"/>
+                                    <constraint firstAttribute="height" constant="200" id="UOK-74-09d"/>
                                 </constraints>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="oFW-yd-wPf">
-                                <rect key="frame" x="20" y="419" width="374" height="393"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="oFW-yd-wPf">
+                                <rect key="frame" x="20" y="328" width="374" height="465"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pvp-fg-9Y5">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="20.5"/>
@@ -349,14 +349,14 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="Qwp-PD-BMU">
-                                        <rect key="frame" x="0.0" y="29.5" width="374" height="272"/>
+                                        <rect key="frame" x="0.0" y="40.5" width="374" height="348.5"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c8H-Jc-YC7">
-                                        <rect key="frame" x="0.0" y="310.5" width="374" height="82.5"/>
+                                        <rect key="frame" x="0.0" y="409" width="374" height="56"/>
                                         <state key="normal" title="Get directions"/>
                                         <connections>
                                             <action selector="didTapGetDirectionsButton:" destination="MFT-TQ-Uvq" eventType="touchUpInside" id="Wie-nJ-b60"/>
@@ -368,12 +368,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Ffj-zg-Nhb" firstAttribute="centerX" secondItem="oFW-yd-wPf" secondAttribute="centerX" id="Shv-ou-Gf2"/>
-                            <constraint firstAttribute="trailing" secondItem="Ffj-zg-Nhb" secondAttribute="trailing" id="bQW-o1-sDu"/>
+                            <constraint firstAttribute="trailing" secondItem="Ffj-zg-Nhb" secondAttribute="trailing" constant="20" id="bQW-o1-sDu"/>
                             <constraint firstItem="oFW-yd-wPf" firstAttribute="leading" secondItem="uAt-eK-Ol7" secondAttribute="leadingMargin" id="cyT-2c-7Xo"/>
-                            <constraint firstItem="CCX-WP-ff5" firstAttribute="bottom" secondItem="oFW-yd-wPf" secondAttribute="bottom" constant="1" id="iRO-dk-sWy"/>
-                            <constraint firstItem="Ffj-zg-Nhb" firstAttribute="top" secondItem="CCX-WP-ff5" secondAttribute="top" id="pXp-4f-OwH"/>
-                            <constraint firstItem="Ffj-zg-Nhb" firstAttribute="leading" secondItem="uAt-eK-Ol7" secondAttribute="leading" id="r64-ut-zD8"/>
-                            <constraint firstItem="oFW-yd-wPf" firstAttribute="top" secondItem="Ffj-zg-Nhb" secondAttribute="bottom" constant="8" symbolic="YES" id="sgP-HM-WWo"/>
+                            <constraint firstItem="CCX-WP-ff5" firstAttribute="bottom" secondItem="oFW-yd-wPf" secondAttribute="bottom" constant="20" id="iRO-dk-sWy"/>
+                            <constraint firstItem="Ffj-zg-Nhb" firstAttribute="top" secondItem="CCX-WP-ff5" secondAttribute="top" constant="20" id="pXp-4f-OwH"/>
+                            <constraint firstItem="Ffj-zg-Nhb" firstAttribute="leading" secondItem="uAt-eK-Ol7" secondAttribute="leading" constant="20" id="r64-ut-zD8"/>
+                            <constraint firstItem="oFW-yd-wPf" firstAttribute="top" secondItem="Ffj-zg-Nhb" secondAttribute="bottom" constant="20" id="sgP-HM-WWo"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="CCX-WP-ff5"/>
                     </view>
