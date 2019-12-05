@@ -30,11 +30,7 @@ final class SearchViewController: UIViewController {
         super.viewDidLoad()
         loadActivityIndicator.isHidden = true
         navigationItem.rightBarButtonItem = nil
-
-    //updateTheNavigationBar(navBarItem: navigationItem)
-        
     }
-    
     
     /// MARK: - Segue to RecipeViewController
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -122,10 +118,10 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SearchCell", for: indexPath)
-        cell.textLabel?.text = ingredientsArray[indexPath.row]
+        cell.textLabel?.text = "-" + " " + ingredientsArray[indexPath.row].capitalized
         cell.textLabel?.textAlignment = .center
         cell.textLabel?.textColor = #colorLiteral(red: 0.08918375522, green: 0.2295971513, blue: 0.2011210024, alpha: 1)
-        cell.textLabel?.font = UIFont(name: "Noto Sans Chakma", size: 20)
+        cell.textLabel?.font = UIFont(name: "Savoye LET", size: 40)
         return cell
     }
     
@@ -150,10 +146,6 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return ingredientsArray.isEmpty ? tableView.bounds.size.height : 0
-    }
-    
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 20
     }
 }
 

@@ -57,7 +57,7 @@ extension RecipesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let recipe = recipeData?.hits?[indexPath.row]
         guard let imageUrl = recipe?.recipe?.image, let ingredientsArray = recipe?.recipe?.ingredientLines else {return}
-        let recipeRepresentable = RecipeClassRepresentable(label: recipe?.recipe?.label, image: obtainImageDataFromUrl(stringImageUrl: imageUrl), url: recipe?.recipe?.url, ingredientLines: "-" + " " + ingredientsArray.joined(separator: "\n\n" + "-" + " ") , totalTime: recipe?.recipe?.totalTime?.convertIntToTime)
+        let recipeRepresentable = RecipeClassRepresentable(label: recipe?.recipe?.label, image: obtainImageDataFromUrl(stringImageUrl: imageUrl), url: recipe?.recipe?.url, ingredientLines: "●" + " " + ingredientsArray.joined(separator: "\n" + "●" + " ") , totalTime: recipe?.recipe?.totalTime?.convertIntToTime)
         self.recipeRepresentable = recipeRepresentable
         performSegue(withIdentifier:"fromAllRecipesToDetailsVC", sender: nil)
     }

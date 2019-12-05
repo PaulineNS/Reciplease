@@ -130,7 +130,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="354" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" name="NotoSansChakma-Regular" family="Noto Sans Chakma" pointSize="16"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
+                                                <textInputTraits key="textInputTraits"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="pnX-Ix-Q8a" id="qyg-pM-op6"/>
                                                 </connections>
@@ -224,15 +224,15 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="40" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HE9-HO-dte">
-                                <rect key="frame" x="20" y="225" width="374" height="343.5"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="45" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HE9-HO-dte">
+                                <rect key="frame" x="20" y="235" width="374" height="333.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="MyCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchCell" id="Zf9-R9-FTt">
-                                        <rect key="frame" x="0.0" y="28" width="374" height="40"/>
+                                        <rect key="frame" x="0.0" y="28" width="374" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Zf9-R9-FTt" id="8BE-qw-CiA">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="40"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="45"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -247,7 +247,7 @@
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="aPO-Ye-iyq" firstAttribute="trailing" secondItem="Hox-kP-BeS" secondAttribute="trailing" constant="20" id="BHm-8I-rT5"/>
-                            <constraint firstItem="HE9-HO-dte" firstAttribute="top" secondItem="Zih-ma-l8r" secondAttribute="bottom" constant="10" id="Ffk-mq-pVA"/>
+                            <constraint firstItem="HE9-HO-dte" firstAttribute="top" secondItem="Zih-ma-l8r" secondAttribute="bottom" constant="20" id="Ffk-mq-pVA"/>
                             <constraint firstItem="Zih-ma-l8r" firstAttribute="leading" secondItem="aPO-Ye-iyq" secondAttribute="leading" constant="20" id="Lei-wz-lIP"/>
                             <constraint firstItem="HE9-HO-dte" firstAttribute="trailing" secondItem="Zih-ma-l8r" secondAttribute="trailing" id="Rl5-Ve-SyQ"/>
                             <constraint firstItem="Hox-kP-BeS" firstAttribute="leading" secondItem="aPO-Ye-iyq" secondAttribute="leading" constant="20" id="WWm-z9-IlD"/>
@@ -382,7 +382,7 @@
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="Qwp-PD-BMU">
                                                         <rect key="frame" x="20" y="50" width="354" height="218.5"/>
                                                         <color key="backgroundColor" red="0.65612059830000002" green="0.74892628189999999" blue="0.73460352419999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                        <mutableString key="text">● Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
                                                         <color key="textColor" red="0.089183755219999994" green="0.2295971513" blue="0.2011210024" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" name="NotoSansChakma-Regular" family="Noto Sans Chakma" pointSize="17"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -392,7 +392,7 @@
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="32" id="dLp-tn-oe1"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" name="NotoSansChakma-Regular" family="Noto Sans Chakma" pointSize="20"/>
+                                                        <fontDescription key="fontDescription" name="NotoSansChakma-Regular" family="Noto Sans Chakma" pointSize="25"/>
                                                         <color key="textColor" red="0.089183755219999994" green="0.2295971513" blue="0.2011210024" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
