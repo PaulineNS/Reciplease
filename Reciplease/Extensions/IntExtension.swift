@@ -10,7 +10,9 @@ import Foundation
 
 extension Int {
     
-    ///MARK: Convert Int to Time format
+    // MARK: - Properties
+    
+    /// Convert Int to Time format
     var convertIntToTime: String {
         let hrs = self / 60
         let min = self % 60

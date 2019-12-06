@@ -9,11 +9,14 @@
 import UIKit
 
 final class RecipeTableViewCell: UITableViewCell {
+    
+    // MARK: - Outlets
 
-    /// MARK: - Outlets
-    @IBOutlet weak var recipeImageView: UIImageView!
-    @IBOutlet weak var recipeTitleLabel: UILabel!
-    @IBOutlet weak var recipeTimeLabel: UILabel!
+    @IBOutlet private weak var recipeImageView: UIImageView!
+    @IBOutlet private weak var recipeTitleLabel: UILabel!
+    @IBOutlet private weak var recipeTimeLabel: UILabel!
+    
+    // MARK: - Variables
     
     var recipe: Hit? {
         didSet {

@@ -10,7 +10,9 @@ import Foundation
 
 extension String {
     
-    /// MARK: Check if a string contains at least one element
+    // MARK: - Properties
+
+    /// Check if a string contains at least one element
     var isBlank: Bool {
         return self.trimmingCharacters(in: .whitespaces) == String() ? true : false
     }

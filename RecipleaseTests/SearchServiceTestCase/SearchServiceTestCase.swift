@@ -11,6 +11,8 @@ import XCTest
 
 class RecipleaseTests: XCTestCase {
     
+    // MARK: - Tests
+    
     func testGetRecipes_WhenNoDataIsPassed_ThenShouldReturnFailedCallback() {
         let session = MockSearchSession(fakeResponse: FakeResponse(response: nil, data: nil))
         let requestService = SearchRecipesService(session: session)

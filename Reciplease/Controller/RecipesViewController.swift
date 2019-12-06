@@ -10,12 +10,14 @@ import UIKit
 
 final class RecipesViewController: UIViewController {
     
-    /// MARK: - Variables
+    // MARK: - Variables
+
     private var recipeRepresentable: RecipeClassRepresentable?
     var recipeData: Recipe?
     
-    /// MARK: - Outlets
-    @IBOutlet weak var recipesTableView: UITableView!
+    // MARK: - Outlets
+
+    @IBOutlet private weak var recipesTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +27,9 @@ final class RecipesViewController: UIViewController {
         updateTheNavigationBar(navBarItem: navigationItem)
     }
     
-    /// MARK: - Segue to RecipeDetailsViewController
+    // MARK: - Segue
+
+    /// Segue to RecipeDetailsViewController
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard segue.identifier == "fromAllRecipesToDetailsVC" else {
             return
@@ -35,7 +39,8 @@ final class RecipesViewController: UIViewController {
     }
 }
 
-/// MARK: - Creating The TableView
+// MARK: - TableView
+
 extension RecipesViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -60,6 +65,16 @@ extension RecipesViewController: UITableViewDelegate, UITableViewDataSource {
         let recipeRepresentable = RecipeClassRepresentable(label: recipe?.recipe?.label, image: obtainImageDataFromUrl(stringImageUrl: imageUrl), url: recipe?.recipe?.url, ingredientLines: "●" + " " + ingredientsArray.joined(separator: "\n" + "●" + " ") , totalTime: recipe?.recipe?.totalTime?.convertIntToTime)
         self.recipeRepresentable = recipeRepresentable
         performSegue(withIdentifier:"fromAllRecipesToDetailsVC", sender: nil)
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let translation = CATransform3DTranslate(CATransform3DIdentity, 0, 50, 0)
+        cell.layer.transform = translation
+        cell.alpha = 0
+        UIView.animate(withDuration: 0.75) {
+            cell.layer.transform = CATransform3DIdentity
+            cell.alpha = 1
+        }
     }
 }
 

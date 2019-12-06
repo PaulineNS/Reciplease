@@ -10,11 +10,13 @@ import XCTest
 
 final class CoreDataManagerTests: XCTestCase {
     
-    /// MARK: - Properties
+    // MARK: - Variables
+    
     var coreDataStack: MockCoreDataStack!
     var coreDataManager: CoreDataManager!
     
-    /// MARK: - Tests Life Cycle
+    // MARK: - Tests Life Cycle
+    
     override func setUp() {
         super.setUp()
         coreDataStack = MockCoreDataStack()
@@ -27,7 +29,8 @@ final class CoreDataManagerTests: XCTestCase {
         coreDataStack = nil
     }
     
-    /// MARK: - Tests
+    // MARK: - Tests
+    
     func testAddRecipeToFavoritesMethods_WhenAnEntityIsCreated_ThenShouldBeCorrectlySaved() {
         coreDataManager.addRecipeToFavorites(name: "Waldorf Salad", image: Data(), ingredientsDescription: "", recipeUrl: "http://www.bbcgoodfood.com/recipes/9753/", time: "")
         XCTAssertTrue(!coreDataManager.favoritesRecipes.isEmpty)

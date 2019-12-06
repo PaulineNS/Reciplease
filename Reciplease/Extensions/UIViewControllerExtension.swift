@@ -10,14 +10,16 @@ import UIKit
 
 extension UIViewController {
     
-    /// MARK: ALERT
+    // MARK: - Properties
+    
+    /// Alert
     func presentAlert(message: String){
         let alertVC = UIAlertController(title: "Oups", message: message, preferredStyle: .alert)
         alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         present(alertVC, animated: true, completion: nil)
     }
     
-    /// MARK: Update the Navigation Bar with an icon
+    /// Update the Navigation Bar with an icon
     func updateTheNavigationBar(navBarItem: UINavigationItem){
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
         imageView.contentMode = .scaleAspectFit
@@ -26,7 +28,7 @@ extension UIViewController {
         navBarItem.titleView = imageView
     }
     
-    /// MARK: obtain data from url
+    /// Obtain data from url
     func obtainImageDataFromUrl(stringImageUrl: String) -> Data{
         guard let imageUrl = URL(string: stringImageUrl) else {return Data()}
         guard let data = try? Data(contentsOf: imageUrl) else {return Data()}

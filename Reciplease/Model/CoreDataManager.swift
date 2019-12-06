@@ -11,24 +11,28 @@ import CoreData
 
 final class CoreDataManager {
     
-    /// MARK: - Properties
+
+    // MARK: - Variables
+    
     private let coreDataStack: CoreDataStack
     private let managedObjectContext: NSManagedObjectContext
     
     var favoritesRecipes: [FavoritesRecipesList] {
         let request: NSFetchRequest<FavoritesRecipesList> = FavoritesRecipesList.fetchRequest()
-        //request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
         guard let recipes = try? managedObjectContext.fetch(request) else { return [] }
         return recipes
     }
     
-    /// MARK: - Initializer
+    // MARK: - Initializer
+    
     init(coreDataStack: CoreDataStack) {
         self.coreDataStack = coreDataStack
         self.managedObjectContext = coreDataStack.mainContext
     }
     
-    /// MARK: - Manage Task Entity
+    // MARK: - Properties
+    
+    /// Manage  Favorite Recipes List entities
     func addRecipeToFavorites(name: String, image: Data, ingredientsDescription: String, recipeUrl: String, time: String) {
         let recipe = FavoritesRecipesList(context: managedObjectContext)
         recipe.image = image
@@ -39,6 +43,7 @@ final class CoreDataManager {
         coreDataStack.saveContext()
     }
     
+    /// Delete recipe from favorite thanks to his name
     func deleteRecipeFromFavorite(recipeName: String) {
         let request: NSFetchRequest<FavoritesRecipesList> = FavoritesRecipesList.fetchRequest()
         let predicate = NSPredicate(format: "name == %@", recipeName)
@@ -49,11 +54,13 @@ final class CoreDataManager {
         coreDataStack.saveContext()
     }
 
+    /// Delete all favorites recipes
     func deleteAllFavorites() {
         favoritesRecipes.forEach { managedObjectContext.delete($0)}
         coreDataStack.saveContext()
     }
     
+    /// Checking if a recipe is already saved as favorite
     func checkIfRecipeIsAlreadyFavorite(recipeName: String) -> Bool {
         let request: NSFetchRequest<FavoritesRecipesList> = FavoritesRecipesList.fetchRequest()
         request.predicate = NSPredicate(format: "name == %@", recipeName)

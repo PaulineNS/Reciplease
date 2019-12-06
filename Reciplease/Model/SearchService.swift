@@ -8,43 +8,24 @@
 
 import Foundation
 
-final class SearchRecipesService {
+final class SearchRecipesService: MapperEncoder {
     
-    /// MARK: VARIABLES
+    // MARK: - Variables
+
     private let session: AlamoSession
-    //var mapperEncoderDelegate: MapperEncoder?
     
+    // MARK: - Initializer
+
     init(session: AlamoSession = SearchSession()) {
         self.session = session
     }
     
-//    func f(ingredients: String, health: String, callback: @escaping (Result<Recipe, Error>) -> Void) {
-//        guard let baseURL = URL(string: "https://api.edamam.com/search?") else {return}
-//        guard let url = mapperEncoderDelegate?.encode(baseUrl: baseURL, parameters: [("q", ingredients + health),("to", "100"),("app_id","e6b49d48"),("app_key","c2809da35956f6fb80d5a86c46199b6b")]) else {return}
-//        session.request(with: url) { responseData in
-//            guard let data = responseData.data else {
-//                print ("no data")
-//                callback(.failure(NetworkError.noData))
-//                return
-//            }
-//            guard responseData.response?.statusCode == 200 else {
-//                print ("bad status code")
-//                callback(.failure(NetworkError.incorrectResponse))
-//                return
-//            }
-//            guard let dataDecoded = try? JSONDecoder().decode(Recipe.self, from: data) else {
-//                print ("no json")
-//                callback(.failure(NetworkError.undecodable))
-//                return
-//            }
-//            callback(.success(dataDecoded))
-//            self.searchData = [dataDecoded]
-//        }
-//    }
-    
-    /// request service 
+    // MARK: - Properties
+
+    /// request service
     func getRecipes(ingredients: String, health: String, callback: @escaping (Result<Recipe, Error>) -> Void) {
-        guard let url = URL(string: "https://api.edamam.com/search?q=\(ingredients)\(health)&to=30&app_id=e6b49d48&app_key=c2809da35956f6fb80d5a86c46199b6b") else { return }
+        guard let baseURL = URL(string: "https://api.edamam.com/search?") else {return}
+        let url = encode(baseUrl: baseURL, parameters: [("q", ingredients + health),("to", "100"),("app_id","e6b49d48"),("app_key","c2809da35956f6fb80d5a86c46199b6b")])
         session.request(with: url) { responseData in
             guard let data = responseData.data else {
                 print ("no data")

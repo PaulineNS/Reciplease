@@ -9,7 +9,10 @@
 import UIKit
 
 extension UIImageView {
-    ///MARK: load url on UIImageview
+    
+    // MARK: - Properties
+
+    /// Load url on UIImageview
     func load(url: URL) {
         guard let data = try? Data(contentsOf: url) else {return}
         guard let image = UIImage(data: data) else {return}

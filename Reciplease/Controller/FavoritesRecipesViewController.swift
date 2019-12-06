@@ -10,13 +10,15 @@ import UIKit
 
 final class FavoritesRecipesViewController: UIViewController {
     
-    /// MARK: - Variables
+    // MARK: - Variables
+
     private var recipeRepresentable: RecipeClassRepresentable?
     private var coreDataManager: CoreDataManager?
     
-    /// MARK: - Outlets
-    @IBOutlet weak var favoritesRecipesTableView: UITableView! { didSet { favoritesRecipesTableView.tableFooterView = UIView() }}
-    @IBOutlet var clearButton: UIBarButtonItem!
+    // MARK: - Outlets
+
+    @IBOutlet private weak var favoritesRecipesTableView: UITableView! { didSet { favoritesRecipesTableView.tableFooterView = UIView() }}
+    @IBOutlet private var clearButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,22 +40,26 @@ final class FavoritesRecipesViewController: UIViewController {
         navigationItem.rightBarButtonItem = nil
     }
     
-    /// MARK: - Segue to RecipeDetailsViewController
+    // MARK: - Segue
+
+    /// Segue to RecipeDetailsViewController
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard segue.identifier == "fromFavoritesRecipesToDetailsVC" else {return}
         guard let recipesVc = segue.destination as? RecipeDetailsViewController else {return}
         recipesVc.recipeRepresentable = recipeRepresentable
     }
     
-    /// MARK: - Action 
-    @IBAction func didTapClearButton(_ sender: Any) {
+    // MARK: - Action
+
+    @IBAction private func didTapClearButton(_ sender: Any) {
         navigationItem.rightBarButtonItem = nil
         coreDataManager?.deleteAllFavorites()
         favoritesRecipesTableView.reloadData()
     }
 }
 
-/// Creating The TableView
+// MARK: - TableView DataSource
+
 extension FavoritesRecipesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return coreDataManager?.favoritesRecipes.count ?? 0
@@ -74,6 +80,8 @@ extension FavoritesRecipesViewController: UITableViewDataSource {
         self.performSegue(withIdentifier: "fromFavoritesRecipesToDetailsVC", sender: nil)
     }
 }
+
+// MARK: - TableView Delegate
 
 extension FavoritesRecipesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
@@ -102,5 +110,15 @@ extension FavoritesRecipesViewController: UITableViewDelegate {
             return
         }
         navigationItem.rightBarButtonItem = nil
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let translation = CATransform3DTranslate(CATransform3DIdentity, 0, 50, 0)
+        cell.layer.transform = translation
+        cell.alpha = 0
+        UIView.animate(withDuration: 0.75) {
+            cell.layer.transform = CATransform3DIdentity
+            cell.alpha = 1
+        }
     }
 }

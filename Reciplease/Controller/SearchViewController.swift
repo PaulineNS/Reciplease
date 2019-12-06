@@ -10,21 +10,24 @@ import UIKit
 
 final class SearchViewController: UIViewController {
     
-    /// MARK: - Instantiation
-    var searchService = SearchRecipesService()
+    // MARK: - Instantiation
+
+    private let searchService = SearchRecipesService()
     
-    /// MARK: - Var
-    var ingredientsArray = [String]()
-    var recipeDataReceived: Recipe?
+    // MARK: - Variables
+
+    private var ingredientsArray = [String]()
+    private var recipeDataReceived: Recipe?
     
-    /// MARK: - Outlets
-    @IBOutlet weak var vegetarianSwitch: UISwitch!
-    @IBOutlet weak var loadActivityIndicator: UIActivityIndicatorView!
-    @IBOutlet weak var searchTextField: UITextField!
-    @IBOutlet weak var addIngredientButton: UIButton!
-    @IBOutlet weak var ingredientsTableView: UITableView! { didSet { ingredientsTableView.tableFooterView = UIView() }}
-    @IBOutlet weak var searchRecipesButton: UIButton!
-    @IBOutlet var clearButton: UIBarButtonItem!
+    // MARK: - Outlets
+
+    @IBOutlet private weak var vegetarianSwitch: UISwitch!
+    @IBOutlet private weak var loadActivityIndicator: UIActivityIndicatorView!
+    @IBOutlet private weak var searchTextField: UITextField!
+    @IBOutlet private weak var addIngredientButton: UIButton!
+    @IBOutlet private weak var ingredientsTableView: UITableView! { didSet { ingredientsTableView.tableFooterView = UIView() }}
+    @IBOutlet private weak var searchRecipesButton: UIButton!
+    @IBOutlet private var clearButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,14 +35,16 @@ final class SearchViewController: UIViewController {
         navigationItem.rightBarButtonItem = nil
     }
     
-    /// MARK: - Segue to RecipeViewController
+    // MARK: - Properties
+    
+    /// Segue to RecipeViewController
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard segue.identifier == "fromSearchToRecipesVC" else {return}
         guard let recipesVc = segue.destination as? RecipesViewController else {return}
         recipesVc.recipeData = recipeDataReceived
     }
     
-    /// MARK: - Request Service
+    /// Request Service
     private func getRecipesDependingVegetarianSwitch(_ allIngredients: String, _ health: String) {
         loadActivityIndicator.isHidden = false
         searchRecipesButton.isHidden = true
@@ -60,6 +65,7 @@ final class SearchViewController: UIViewController {
         }
     }
     
+    /// Add ingredient to the tableView
     private func addIngredientToTableView() {
         guard let searchBarTxt = searchTextField.text else {return}
         ingredientsArray.append(searchBarTxt)
@@ -68,9 +74,10 @@ final class SearchViewController: UIViewController {
     }
 }
 
-/// MARK: - IBActions
+// MARK: - Actions
+
 extension SearchViewController {
-    @IBAction func didTapButtonToAddIngredient(_ sender: Any) {
+    @IBAction private func didTapButtonToAddIngredient(_ sender: Any) {
         guard let ingredientName = searchTextField.text, !ingredientName.isBlank else {
             presentAlert(message: "Please enter an ingredient 😃")
             return}
@@ -80,7 +87,7 @@ extension SearchViewController {
         ingredientsTableView.reloadData()
     }
     
-    @IBAction func didTapGoButton(_ sender: Any) {
+    @IBAction private func didTapGoButton(_ sender: Any) {
         guard ingredientsArray.count != 0 else {
             presentAlert(message: "You have to enter at least 1 ingredient 😃")
             return
@@ -95,18 +102,19 @@ extension SearchViewController {
         getRecipesDependingVegetarianSwitch(allIngredients, "&health=vegetarian")
     }
     
-    @IBAction func didTapClearButton(_ sender: Any) {
+    @IBAction private func didTapClearButton(_ sender: Any) {
         navigationItem.rightBarButtonItem = nil
         ingredientsArray = [String]()
         ingredientsTableView.reloadData()
     }
     
-    @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
+    @IBAction private func dismissKeyboard(_ sender: UITapGestureRecognizer) {
         searchTextField.resignFirstResponder()
     }
 }
 
-/// MARK: - Creating The TableView
+// MARK: - TableView
+
 extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
