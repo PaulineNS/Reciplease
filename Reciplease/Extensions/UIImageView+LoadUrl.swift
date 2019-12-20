@@ -1,8 +1,8 @@
 //
-//  ExtensionsUIImageView.swift
+//  UIImageView+LoadUrl.swift
 //  Reciplease
 //
-//  Created by Pauline Nomballais on 19/11/2019.
+//  Created by Pauline Nomballais on 20/12/2019.
 //  Copyright © 2019 PaulineNomballais. All rights reserved.
 //
 
@@ -11,7 +11,7 @@ import UIKit
 extension UIImageView {
     
     // MARK: - Properties
-
+    
     /// Load url on UIImageview
     func load(url: URL) {
         guard let data = try? Data(contentsOf: url) else {return}
@@ -21,4 +21,3 @@ extension UIImageView {
         }
     }
 }
-

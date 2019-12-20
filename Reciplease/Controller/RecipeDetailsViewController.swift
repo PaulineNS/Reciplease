@@ -13,7 +13,7 @@ final class RecipeDetailsViewController: UIViewController {
     // MARK: - Variables
 
     var recipeRepresentable: RecipeClassRepresentable?
-    private var coreDataManager: CoreDataManager?
+    private var dataBaseManager: DataBaseManager?
     
     // MARK: - Outlets
 
@@ -26,20 +26,21 @@ final class RecipeDetailsViewController: UIViewController {
         super.viewDidLoad()
         recipeIngredientsTxtView.isEditable = false
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
-        let coreDataStack = appDelegate.coreDataStack
-        coreDataManager = CoreDataManager(coreDataStack: coreDataStack)
+        let coreDataStack = appDelegate.dataBaseStack
+        dataBaseManager = DataBaseManager(dataBaseStack: coreDataStack)
         updateTheNavigationBar(navBarItem: navigationItem)
         updateTheView()
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        recipeIngredientsTxtView.contentOffset = .zero
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         updateTheFavoriteIcon()
+    }
+
+    // Show the textView At the top
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        recipeIngredientsTxtView.contentOffset = .zero
     }
 }
 
@@ -49,7 +50,7 @@ extension RecipeDetailsViewController {
     
     /// Update the favorite icon
     private func updateTheFavoriteIcon(){
-        guard coreDataManager?.checkIfRecipeIsAlreadyFavorite(recipeName: recipeTitleLabel.text ?? "") == true else {
+        guard dataBaseManager?.checkIfRecipeIsInFavorite(recipeName: recipeTitleLabel.text ?? "") == true else {
             favoritesIconButton.image = UIImage(named: "heart")
             return }
         favoritesIconButton.image = UIImage(named: "fullHeart")
@@ -60,23 +61,6 @@ extension RecipeDetailsViewController {
         recipeTitleLabel.text = recipeRepresentable?.label
         recipeImageView.image = UIImage(data: recipeRepresentable?.image ?? Data())
         recipeIngredientsTxtView.text = recipeRepresentable?.ingredientLines
-    }
-}
-
-// MARK: - CoreData Properties
-
-extension RecipeDetailsViewController {
-    
-    /// Delete recipe from coredata depending his name
-    private func deleteRecipeFromFavorites(){
-        coreDataManager?.deleteRecipeFromFavorite(recipeName: recipeTitleLabel.text ?? "")
-        navigationController?.popViewController(animated: true)
-    }
-    
-    /// Adding recipes to coredata
-    private func addRecipeToFavorites() {
-        guard let name = recipeRepresentable?.label, let image = recipeRepresentable?.image, let ingredients = recipeRepresentable?.ingredientLines, let url = recipeRepresentable?.url, let time = recipeRepresentable?.totalTime else {return}
-        coreDataManager?.addRecipeToFavorites(name: name, image: image, ingredientsDescription: ingredients, recipeUrl: url, time: time)
     }
 }
 
@@ -99,5 +83,22 @@ extension RecipeDetailsViewController {
             sender.image = UIImage(named: "heart")
             deleteRecipeFromFavorites()
         }
+    }
+}
+
+// MARK: - CoreData Properties
+
+extension RecipeDetailsViewController {
+    
+    /// Delete recipe from coredata depending his name
+    private func deleteRecipeFromFavorites(){
+        dataBaseManager?.deleteRecipeFromFavorite(recipeName: recipeTitleLabel.text ?? "")
+        navigationController?.popViewController(animated: true)
+    }
+    
+    /// Adding recipes to coredata
+    private func addRecipeToFavorites() {
+        guard let name = recipeRepresentable?.label, let image = recipeRepresentable?.image, let ingredients = recipeRepresentable?.ingredientLines, let url = recipeRepresentable?.url, let time = recipeRepresentable?.totalTime else {return}
+        dataBaseManager?.addRecipeToFavorites(name: name, image: image, ingredientsDescription: ingredients, recipeUrl: url, time: time)
     }
 }

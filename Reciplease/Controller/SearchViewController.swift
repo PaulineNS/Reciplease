@@ -11,20 +11,19 @@ import UIKit
 final class SearchViewController: UIViewController {
     
     // MARK: - Instantiation
-
-    private let searchService = SearchRecipesService()
+    
+    private let searchService = SearchService()
     
     // MARK: - Variables
-
+    
     private var ingredientsArray = [String]()
     private var recipeDataReceived: Recipe?
     
     // MARK: - Outlets
-
+    
     @IBOutlet private weak var vegetarianSwitch: UISwitch!
     @IBOutlet private weak var loadActivityIndicator: UIActivityIndicatorView!
     @IBOutlet private weak var searchTextField: UITextField!
-    @IBOutlet private weak var addIngredientButton: UIButton!
     @IBOutlet private weak var ingredientsTableView: UITableView! { didSet { ingredientsTableView.tableFooterView = UIView() }}
     @IBOutlet private weak var searchRecipesButton: UIButton!
     @IBOutlet private var clearButton: UIBarButtonItem!
@@ -34,56 +33,22 @@ final class SearchViewController: UIViewController {
         loadActivityIndicator.isHidden = true
         navigationItem.rightBarButtonItem = nil
     }
-    
-    // MARK: - Properties
-    
-    /// Segue to RecipeViewController
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard segue.identifier == "fromSearchToRecipesVC" else {return}
-        guard let recipesVc = segue.destination as? RecipesViewController else {return}
-        recipesVc.recipeData = recipeDataReceived
-    }
-    
-    /// Request Service
-    private func getRecipesDependingVegetarianSwitch(_ allIngredients: String, _ health: String) {
-        loadActivityIndicator.isHidden = false
-        searchRecipesButton.isHidden = true
-        searchService.getRecipes(ingredients: allIngredients, health: health) { result in
-            self.loadActivityIndicator.isHidden = true
-            self.searchRecipesButton.isHidden = false
-            switch result {
-            case .success(let data):
-                if data.count != 0 {
-                    self.recipeDataReceived = data
-                    self.performSegue(withIdentifier: "fromSearchToRecipesVC", sender: nil)
-                } else {
-                    self.presentAlert(message: "No recipes found")
-                }
-            case .failure:
-                self.presentAlert(message: "Please try later")
-            }
-        }
-    }
-    
-    /// Add ingredient to the tableView
-    private func addIngredientToTableView() {
-        guard let searchBarTxt = searchTextField.text else {return}
-        ingredientsArray.append(searchBarTxt)
-        searchTextField.text = " "
-        navigationItem.rightBarButtonItem = clearButton
-    }
 }
 
 // MARK: - Actions
 
 extension SearchViewController {
-    @IBAction private func didTapButtonToAddIngredient(_ sender: Any) {
+    @IBAction private func didTapAddButton(_ sender: Any) {
         guard let ingredientName = searchTextField.text, !ingredientName.isBlank else {
             presentAlert(message: "Please enter an ingredient 😃")
             return}
         addIngredientToTableView()
-        searchTextField.text = nil
-        searchTextField.placeholder = "I'm looking for an ingredient..."
+        ingredientsTableView.reloadData()
+    }
+    
+    @IBAction private func didTapClearButton(_ sender: Any) {
+        navigationItem.rightBarButtonItem = nil
+        ingredientsArray = [String]()
         ingredientsTableView.reloadData()
     }
     
@@ -96,16 +61,10 @@ extension SearchViewController {
             return
         }
         guard vegetarianSwitch.isOn else {
-            getRecipesDependingVegetarianSwitch(allIngredients, "")
+            getRecipes(allIngredients, "")
             return
         }
-        getRecipesDependingVegetarianSwitch(allIngredients, "&health=vegetarian")
-    }
-    
-    @IBAction private func didTapClearButton(_ sender: Any) {
-        navigationItem.rightBarButtonItem = nil
-        ingredientsArray = [String]()
-        ingredientsTableView.reloadData()
+        getRecipes(allIngredients, "&health=vegetarian")
     }
     
     @IBAction private func dismissKeyboard(_ sender: UITapGestureRecognizer) {
@@ -113,12 +72,53 @@ extension SearchViewController {
     }
 }
 
+// MARK: - Properties
+
+extension SearchViewController {
+    
+    /// Add ingredient to the tableView
+    private func addIngredientToTableView() {
+        guard let searchBarTxt = searchTextField.text else {return}
+        ingredientsArray.append(searchBarTxt)
+        searchTextField.text = nil
+        searchTextField.placeholder = "I'm looking for an ingredient..."
+        navigationItem.rightBarButtonItem = clearButton
+    }
+    
+    /// Request Service
+    private func getRecipes(_ allIngredients: String, _ health: String) {
+        loadActivityIndicator.isHidden = false
+        searchRecipesButton.isHidden = true
+        searchService.getRecipes(ingredients: allIngredients, health: health) { result in
+            DispatchQueue.main.async {
+                self.loadActivityIndicator.isHidden = true
+                self.searchRecipesButton.isHidden = false
+                switch result {
+                case .success(let data):
+                    if data.count != 0 {
+                        self.recipeDataReceived = data
+                        self.performSegue(withIdentifier: "fromSearchToRecipesVC", sender: nil)
+                    } else {
+                        self.presentAlert(message: "No recipes found")
+                    }
+                case .failure:
+                    self.presentAlert(message: "Please try later")
+                }
+            }
+        }
+    }
+    
+    /// Segue to RecipeViewController
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == "fromSearchToRecipesVC" else {return}
+        guard let recipesVc = segue.destination as? RecipesViewController else {return}
+        recipesVc.recipeData = recipeDataReceived
+    }
+}
+
 // MARK: - TableView
 
 extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return ingredientsArray.count
@@ -156,4 +156,6 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
         return ingredientsArray.isEmpty ? tableView.bounds.size.height : 0
     }
 }
+
+
 

@@ -9,11 +9,11 @@
 import Foundation
 import Alamofire
 
-protocol AlamoSession {
+protocol RequestSession {
     func request(with url: URL, callBack: @escaping (DataResponse<Any>) -> Void)
 }
 
-final class SearchSession: AlamoSession {
+final class SearchSession: RequestSession {
     func request(with url: URL, callBack: @escaping (DataResponse<Any>) -> Void) {
         Alamofire.request(url).responseJSON { responseData in
             callBack(responseData)

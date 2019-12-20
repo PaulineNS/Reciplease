@@ -9,12 +9,12 @@
 import Foundation
 import CoreData
 
-final class CoreDataManager {
+final class DataBaseManager {
     
 
     // MARK: - Variables
     
-    private let coreDataStack: CoreDataStack
+    private let dataBaseStack: DataBaseStack
     private let managedObjectContext: NSManagedObjectContext
     
     var favoritesRecipes: [FavoritesRecipesList] {
@@ -25,9 +25,9 @@ final class CoreDataManager {
     
     // MARK: - Initializer
     
-    init(coreDataStack: CoreDataStack) {
-        self.coreDataStack = coreDataStack
-        self.managedObjectContext = coreDataStack.mainContext
+    init(dataBaseStack: DataBaseStack) {
+        self.dataBaseStack = dataBaseStack
+        self.managedObjectContext = dataBaseStack.mainContext
     }
     
     // MARK: - Properties
@@ -40,7 +40,7 @@ final class CoreDataManager {
         recipe.name = name
         recipe.recipeUrl = recipeUrl
         recipe.totalTime = time
-        coreDataStack.saveContext()
+        dataBaseStack.saveContext()
     }
     
     /// Delete recipe from favorite thanks to his name
@@ -51,17 +51,17 @@ final class CoreDataManager {
         if let objects = try? managedObjectContext.fetch(request) {
             objects.forEach { managedObjectContext.delete($0)}
         }
-        coreDataStack.saveContext()
+        dataBaseStack.saveContext()
     }
 
     /// Delete all favorites recipes
     func deleteAllFavorites() {
         favoritesRecipes.forEach { managedObjectContext.delete($0)}
-        coreDataStack.saveContext()
+        dataBaseStack.saveContext()
     }
     
     /// Checking if a recipe is already saved as favorite
-    func checkIfRecipeIsAlreadyFavorite(recipeName: String) -> Bool {
+    func checkIfRecipeIsInFavorite(recipeName: String) -> Bool {
         let request: NSFetchRequest<FavoritesRecipesList> = FavoritesRecipesList.fetchRequest()
         request.predicate = NSPredicate(format: "name == %@", recipeName)
         guard let recipes = try? managedObjectContext.fetch(request) else { return false }

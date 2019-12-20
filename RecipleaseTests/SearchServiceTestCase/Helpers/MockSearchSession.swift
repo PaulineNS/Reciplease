@@ -15,7 +15,7 @@ struct FakeResponse {
     var data: Data?
 }
 
-final class MockSearchSession: AlamoSession {
+final class MockSearchSession: RequestSession {
     
     // MARK: - Variables
     

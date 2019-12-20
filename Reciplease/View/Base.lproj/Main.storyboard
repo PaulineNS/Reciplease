@@ -148,7 +148,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="didTapButtonToAddIngredient:" destination="pnX-Ix-Q8a" eventType="touchUpInside" id="IyZ-20-fwM"/>
+                                                    <action selector="didTapAddButton:" destination="pnX-Ix-Q8a" eventType="touchUpInside" id="IyZ-20-fwM"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -270,7 +270,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="addIngredientButton" destination="Uhw-DN-17H" id="Onm-4s-V7p"/>
                         <outlet property="clearButton" destination="m0l-dE-ea7" id="qxV-ZP-DQw"/>
                         <outlet property="ingredientsTableView" destination="HE9-HO-dte" id="Iyn-HC-BZc"/>
                         <outlet property="loadActivityIndicator" destination="uc4-xo-Q3i" id="HAl-jH-bN2"/>
@@ -382,7 +381,7 @@
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="Qwp-PD-BMU">
                                                         <rect key="frame" x="20" y="50" width="354" height="218.5"/>
                                                         <color key="backgroundColor" red="0.65612059830000002" green="0.74892628189999999" blue="0.73460352419999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <mutableString key="text">● Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                                        <string key="text">● Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                         <color key="textColor" red="0.089183755219999994" green="0.2295971513" blue="0.2011210024" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" name="NotoSansChakma-Regular" family="Noto Sans Chakma" pointSize="17"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>

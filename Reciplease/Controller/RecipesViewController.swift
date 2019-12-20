@@ -55,10 +55,6 @@ extension RecipesViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 300
-    }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let recipe = recipeData?.hits?[indexPath.row]
         guard let imageUrl = recipe?.recipe?.image, let ingredientsArray = recipe?.recipe?.ingredientLines else {return}
@@ -75,6 +71,10 @@ extension RecipesViewController: UITableViewDelegate, UITableViewDataSource {
             cell.layer.transform = CATransform3DIdentity
             cell.alpha = 1
         }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 300
     }
 }
 

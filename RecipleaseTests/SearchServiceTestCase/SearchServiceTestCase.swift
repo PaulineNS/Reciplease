@@ -15,7 +15,7 @@ class RecipleaseTests: XCTestCase {
     
     func testGetRecipes_WhenNoDataIsPassed_ThenShouldReturnFailedCallback() {
         let session = MockSearchSession(fakeResponse: FakeResponse(response: nil, data: nil))
-        let requestService = SearchRecipesService(session: session)
+        let requestService = SearchService(session: session)
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         requestService.getRecipes(ingredients: "chicken", health: "") { result in
             guard case .failure(let error) = result else {
@@ -30,7 +30,7 @@ class RecipleaseTests: XCTestCase {
     
     func testGetRecipes_WhenIncorrectResponseIsPassed_ThenShouldReturnFailedCallback() {
         let session = MockSearchSession(fakeResponse: FakeResponse(response: FakeResponseData.responseKO, data: FakeResponseData.correctData))
-        let requestService = SearchRecipesService(session: session)
+        let requestService = SearchService(session: session)
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         requestService.getRecipes(ingredients: "chicken", health: "") { result in
             guard case .failure(let error) = result else {
@@ -45,7 +45,7 @@ class RecipleaseTests: XCTestCase {
     
     func testGetRecipes_WhenUndecodableDataIsPassed_ThenShouldReturnFailedCallback() {
         let session = MockSearchSession(fakeResponse: FakeResponse(response: FakeResponseData.responseOK, data: FakeResponseData.incorrectData))
-        let requestService = SearchRecipesService(session: session)
+        let requestService = SearchService(session: session)
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         requestService.getRecipes(ingredients: "chicken", health: "") { result in
             guard case .failure(let error) = result else {
@@ -60,7 +60,7 @@ class RecipleaseTests: XCTestCase {
     
     func testGetRecipes_WhenCorrectDataIsPassed_ThenShouldReturnSuccededCallback() {
         let session = MockSearchSession(fakeResponse: FakeResponse(response: FakeResponseData.responseOK, data: FakeResponseData.correctData))
-        let requestService = SearchRecipesService(session: session)
+        let requestService = SearchService(session: session)
         let expectation = XCTestExpectation(description: "Wait for queue change.")
         requestService.getRecipes(ingredients: "chicken", health: "") { result in
             guard case .success(let data) = result else {

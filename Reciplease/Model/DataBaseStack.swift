@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-open class CoreDataStack {
+open class DataBaseStack {
     
     // MARK: - Variables
     
