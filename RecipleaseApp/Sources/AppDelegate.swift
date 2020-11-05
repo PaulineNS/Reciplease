@@ -13,18 +13,23 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    lazy var dataBaseStack = DataBaseStack(modelName: "Reciplease")
+    private var context: Context!
+    private var coordinator: AppCoordinator!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        context = Context.build()
+        coordinator = AppCoordinator(appDelegate: self,
+                                     context: context)
+        coordinator.start()
         return true
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
-        dataBaseStack.saveContext()
+        context.dataBaseStack.saveContext()
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
-         dataBaseStack.saveContext()
+        context.dataBaseStack.saveContext()
     }
 }
 

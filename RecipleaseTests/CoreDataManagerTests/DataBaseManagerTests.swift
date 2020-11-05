@@ -13,14 +13,14 @@ final class DataBaseManagerTests: XCTestCase {
     // MARK: - Variables
     
     var dataBaseStack: MockDataBaseStack!
-    var dataBaseManager: DataBaseManager!
+    var dataBaseManager: DataBaseEngine!
     
     // MARK: - Tests Life Cycle
     
     override func setUp() {
         super.setUp()
         dataBaseStack = MockDataBaseStack()
-        dataBaseManager = DataBaseManager(dataBaseStack: dataBaseStack)
+        dataBaseManager = DataBaseEngine(dataBaseStack: dataBaseStack)
     }
     
     override func tearDown() {

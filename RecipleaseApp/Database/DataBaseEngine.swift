@@ -9,9 +9,8 @@
 import Foundation
 import CoreData
 
-final class DataBaseManager {
+final class DataBaseEngine {
     
-
     // MARK: - Variables
     
     private let dataBaseStack: DataBaseStack
@@ -33,13 +32,13 @@ final class DataBaseManager {
     // MARK: - Properties
     
     /// Manage  Favorite Recipes List entities
-    func addRecipeToFavorites(name: String, image: Data, ingredientsDescription: String, recipeUrl: String, time: String) {
+    func addRecipeToFavorites(recipeItem: RecipeItem) {
         let recipe = FavoritesRecipesList(context: managedObjectContext)
-        recipe.image = image
-        recipe.ingredients = ingredientsDescription
-        recipe.name = name
-        recipe.recipeUrl = recipeUrl
-        recipe.totalTime = time
+        recipe.image = recipeItem.image
+        recipe.ingredients = recipeItem.ingredients
+        recipe.name = recipeItem.name
+        recipe.recipeUrl = recipeItem.url
+        recipe.totalTime = recipeItem.time
         dataBaseStack.saveContext()
     }
     
