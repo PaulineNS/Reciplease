@@ -8,97 +8,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Tab Bar Controller-->
-        <scene sceneID="5Vs-Xp-3nh">
-            <objects>
-                <tabBarController id="SLL-aP-rgj" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="hAJ-go-8FN">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="barTintColor" red="0.60281628370285034" green="0.71602338552474976" blue="0.69880950450897217" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="selectedImageTintColor" red="0.089183755218982697" green="0.22959715127944946" blue="0.2011210024356842" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </tabBar>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zAa-Hs-cdb" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-849" y="-689"/>
-        </scene>
-        <!--Favorites-->
-        <scene sceneID="EyK-yH-a2A">
-            <objects>
-                <navigationController id="OdK-gC-0gM" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Favorites" image="heart" id="YTE-4H-x3C"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="CFy-Ha-9IP">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.65612059831619263" green="0.74892628192901611" blue="0.73460352420806885" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </navigationBar>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="QrV-kE-QeP" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="87" y="-364"/>
-        </scene>
-        <!--Favorites Recipes View Controller-->
-        <scene sceneID="9zr-Hx-2bb">
-            <objects>
-                <viewController id="KnP-8R-eYo" customClass="FavoritesRecipesViewController" customModule="Reciplease" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="dgf-6Y-5Pc">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cdd-tY-dXx">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="KnP-8R-eYo" id="tV5-FU-mPf"/>
-                                    <outlet property="delegate" destination="KnP-8R-eYo" id="9uS-Ux-WUU"/>
-                                </connections>
-                            </tableView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="vM1-nQ-piF"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="cdd-tY-dXx" firstAttribute="bottom" secondItem="vM1-nQ-piF" secondAttribute="bottom" id="2wq-rB-kN9"/>
-                            <constraint firstItem="cdd-tY-dXx" firstAttribute="top" secondItem="vM1-nQ-piF" secondAttribute="top" id="CSi-d2-Cf3"/>
-                            <constraint firstItem="cdd-tY-dXx" firstAttribute="trailing" secondItem="vM1-nQ-piF" secondAttribute="trailing" id="QAs-UV-v4J"/>
-                            <constraint firstItem="cdd-tY-dXx" firstAttribute="leading" secondItem="vM1-nQ-piF" secondAttribute="leading" id="U06-mu-rjD"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="81w-1G-XyC">
-                        <barButtonItem key="rightBarButtonItem" title="🗑️" id="e52-gJ-Co4">
-                            <connections>
-                                <action selector="didTapClearButton:" destination="KnP-8R-eYo" id="uIO-YC-Wpi"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="clearButton" destination="e52-gJ-Co4" id="o5j-bq-dha"/>
-                        <outlet property="favoritesRecipesTableView" destination="cdd-tY-dXx" id="Dez-6I-qpS"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="CGa-ae-eKV" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1764" y="-352"/>
-        </scene>
-        <!--Search-->
-        <scene sceneID="9lA-It-W2s">
-            <objects>
-                <navigationController id="TbP-fZ-Mm3" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Search" image="loupe" id="Hu2-0m-p4O"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="nZ9-qZ-X3M">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.53959089146317818" green="0.67445619790082056" blue="0.64903423941919081" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <textAttributes key="titleTextAttributes">
-                            <color key="textColor" red="0.089183755219999994" green="0.2295971513" blue="0.2011210024" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        </textAttributes>
-                    </navigationBar>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="TwM-7h-bdY" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="87" y="-1023"/>
-        </scene>
         <!--What's in your fridge ? -->
         <scene sceneID="xki-i1-xrk">
             <objects>
@@ -450,13 +359,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SMT-ka-ly1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2794.202898550725" y="-768.08035714285711"/>
+            <point key="canvasLocation" x="2571" y="-1027"/>
         </scene>
     </scenes>
     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
     <resources>
         <image name="heart" width="29" height="29"/>
         <image name="logo" width="1074" height="694"/>
-        <image name="loupe" width="29" height="29"/>
     </resources>
 </document>
