@@ -40,8 +40,6 @@ final class RecipesViewController: UIViewController {
         super.viewDidLoad()
         bind(to: source)
         bind(to: viewModel)
-//        viewModel.start()
-        recipesTableView.reloadData()
         let nibName = UINib(nibName: "RecipeTableViewCell",
                             bundle: nil)
         recipesTableView.register(nibName,

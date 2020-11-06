@@ -3,4 +3,86 @@
    uuid = "EE55E682-A36B-49D0-BDF5-70FEA52D5441"
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "69EAC657-EAC7-442F-9780-EDE7DA640E2E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RecipleaseApp/App/Search/SearchViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
+            landmarkName = "didSelectGoButton(for:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "69EAC657-EAC7-442F-9780-EDE7DA640E2E - 62aee050fd32d289"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Reciplease.SearchViewModel.didSelectGoButton(for: Swift.Bool) -&gt; ()"
+                  moduleName = "Reciplease"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/paulinenomballais/Desktop/Reciplease/RecipleaseApp/App/Search/SearchViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "65"
+                  endingLineNumber = "65"
+                  offsetFromSymbolStart = "1161">
+               </Location>
+               <Location
+                  uuid = "69EAC657-EAC7-442F-9780-EDE7DA640E2E - 30ee613d9ea00706"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Bool) -&gt; () in Reciplease.SearchViewModel.didSelectGoButton(for: Swift.Bool) -&gt; ()"
+                  moduleName = "Reciplease"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/paulinenomballais/Desktop/Reciplease/RecipleaseApp/App/Search/SearchViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "65"
+                  endingLineNumber = "65"
+                  offsetFromSymbolStart = "33">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "899D4C83-CAD3-417D-AEF7-0128D086EB4E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RecipleaseApp/App/Search/SearchViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
+            landmarkName = "didSelectGoButton(for:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AB2E2B84-3B1B-4065-87A5-93D6ECC45FF9"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RecipleaseApp/App/Search/SearchViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
+            landmarkName = "didSelectGoButton(for:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

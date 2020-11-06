@@ -35,7 +35,7 @@ final class SearchViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel.start()
+        viewModel.updateView()
         ingredientsTableView.delegate = source
         ingredientsTableView.dataSource = source
     }
@@ -43,8 +43,7 @@ final class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         bind(to: viewModel)
-        loadActivityIndicator.isHidden = true
-        navigationItem.rightBarButtonItem = nil
+        viewModel.start()
     }
     
     // MARK: - Bindings
@@ -57,6 +56,24 @@ final class SearchViewController: UIViewController {
             self?.source.updateCell(with: ingredients)
             self?.ingredientsTableView.reloadData()
         }
+        viewModel.activityIndicatorIsHidden = { [weak self] isHidden in
+            switch isHidden {
+            case true:
+                self?.loadActivityIndicator.isHidden = true
+                self?.searchRecipesButton.isHidden = false
+            case false:
+                self?.loadActivityIndicator.isHidden = false
+                self?.searchRecipesButton.isHidden = true
+            }
+        }
+        viewModel.rightBarButtonItemIsHidden = { [weak self] isHidden in
+            switch isHidden {
+            case true:
+                self?.navigationItem.rightBarButtonItem = nil
+            case false:
+                self?.navigationItem.rightBarButtonItem = self?.clearButton
+            }
+        }
     }
 }
 
@@ -68,27 +85,16 @@ extension SearchViewController {
         guard let searchBarTxt = searchTextField.text else {return}
         viewModel.didAdd(ingredient: searchBarTxt)
         searchTextField.text = nil
-        navigationItem.rightBarButtonItem = clearButton
         ingredientsTableView.reloadData()
-        self.loadActivityIndicator.isHidden = true
-        self.searchRecipesButton.isHidden = false
     }
     
     @IBAction private func didTapClearButton(_ sender: Any) {
-        navigationItem.rightBarButtonItem = nil
         viewModel.didSelectClearButton()
         ingredientsTableView.reloadData()
     }
     
     @IBAction private func didTapGoButton(_ sender: Any) {
-        loadActivityIndicator.isHidden = false
-        searchRecipesButton.isHidden = true
-        viewModel.didSelectGoButton(for: vegetarianSwitch.isOn) { response in
-            if response == true {
-                self.loadActivityIndicator.isHidden = true
-                self.searchRecipesButton.isHidden = false
-            }
-        }
+        viewModel.didSelectGoButton(for: vegetarianSwitch.isOn)
     }
     
     @IBAction private func dismissKeyboard(_ sender: UITapGestureRecognizer) {

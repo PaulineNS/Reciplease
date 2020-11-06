@@ -12,6 +12,7 @@ enum AlertType: Equatable {
     case networkError
     case noIngredients
     case noRecipesFound
+    case recipesError
 }
 
 struct Alert: Equatable {
@@ -31,6 +32,9 @@ extension Alert {
         case .noRecipesFound:
             self = Alert(title: "Oups",
                          message: "No recipes found")
+        case .recipesError:
+            self = Alert(title: "Oups",
+                         message: "Something went wrong... Try again later")
         }
     }
 }

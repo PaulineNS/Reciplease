@@ -38,9 +38,8 @@ final class RecipesViewModel {
                 switch result {
                 case.success(value: let recipes):
                     self?.recipeItems = recipes
-                case .error(error: let error):
-                    print(error)
-                    //TODO ERROR
+                case .error:
+                    self?.delegate?.recipeScreenShouldDisplayAlert(for: .recipesError)
                 }
             }
         }

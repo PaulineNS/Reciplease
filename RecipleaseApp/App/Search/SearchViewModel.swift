@@ -33,24 +33,30 @@ final class SearchViewModel {
 
     var ingredientsToSearch: (([String]) -> Void)?
     var searchPlaceholder: ((String) -> Void)?
+    var activityIndicatorIsHidden: ((Bool) -> Void)?
+    var rightBarButtonItemIsHidden: ((Bool) -> Void)?
     
     // MARK: - Life cycle
 
     func start() {
+        rightBarButtonItemIsHidden?(true)
+    }
+    
+    func updateView() {
         searchPlaceholder?("I'm looking for an ingredient...")
+        activityIndicatorIsHidden?(true)
     }
     
     // MARK: - Inputs
 
     func didSelectClearButton() {
+        rightBarButtonItemIsHidden?(true)
         ingredientsSearched = []
     }
     
-    func didSelectGoButton(for vegetarian: Bool,
-                           completion: @escaping (Bool) -> Void) {
+    func didSelectGoButton(for vegetarian: Bool) {
         guard ingredientsSearched.count != 0 else {
             delegate?.homeScreenShouldDisplayAlert(for: .noIngredients)
-            completion(true)
             return
         }
         guard let allIngredients = ingredientsSearched
@@ -58,15 +64,14 @@ final class SearchViewModel {
                 .addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {
             return
         }
-        guard vegetarian else {
-            getRecipes(ingredients: allIngredients,
-                       health: "",
-                       completion: completion)
-            return
-        }
+        activityIndicatorIsHidden?(false)
+        let health = vegetarian ? "&health=vegetarian" : ""
         getRecipes(ingredients: allIngredients,
-                   health: "&health=vegetarian",
-                   completion: completion)
+                   health: health) { [weak self] response in
+            if response == true {
+                self?.activityIndicatorIsHidden?(true)
+            }
+        }
     }
     
     func didAdd(ingredient: String) {
@@ -75,6 +80,8 @@ final class SearchViewModel {
             return}
         searchPlaceholder?("I'm looking for an ingredient...")
         ingredientsSearched.append(ingredient)
+        rightBarButtonItemIsHidden?(false)
+
     }
     
     // MARK: - Private Methods
